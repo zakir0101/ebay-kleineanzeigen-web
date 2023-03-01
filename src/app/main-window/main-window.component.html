@@ -1,0 +1,93 @@
+<div class="container-fluid   bg-ebay-background " >
+  <div class="container-lg  px-lg-3 px-xl-5    ">
+    <app-main-categories-sm></app-main-categories-sm>
+    <div class="container-fluid  px-0">
+      <div class="row gx-4 py-2 py-lg-5">
+        <div class="d-none d-lg-block col-lg-3   bg-white p-2">
+          <app-main-categories-lg></app-main-categories-lg>
+        </div>
+        <div class="col-12 col-lg-9     ">
+          <div class="p-2 pb-0 bg-ebay-background bg-lg-yellow  ">
+            <div class="d-flex gap-2 align-items-center mb-2">
+              <span class="fw-bold  text-black me-auto">Galerie</span>
+              <span class="text-black fw-light d-none d-lg-block">Anzeige hier platzieren</span>
+              <i class="bi-arrow-left-short  text-black bg-white px-1 cursor-pointer  rounded-2"></i>
+              <i class="bi-arrow-right-short text-black bg-white px-1 cursor-pointer  rounded-2"></i>
+            </div>
+
+            <div class="container-fluid p-0  ">
+              <div class="row g-2 row-cols-2 row-cols-sm-3 pb-3 row-cols-md-4 flex-nowrap overflow-auto">
+                <div *ngFor="let item of galereis" class="col">
+                  <div class="bg-white position-relative shadow-sm p-2  d-flex flex-column gap-1">
+                    <div *ngIf="item.price"
+                         class="position-absolute lh-sm small text-white shadow translate-middle-y end-0 px-2 py-1 bg-ebay"
+                         style="top: 50%!important;z-index: 3; right: -3px!important;">
+                      <span>{{item.price}}</span>
+                    </div>
+                    <div *ngIf="!item.image_link"
+                         class="w-100 bg-light opacity-75 d-flex align-items-center justify-content-center"
+                         style="height: 6rem;">
+                      <i class="bi-mortarboard-fill  display-3 text-ebay"></i>
+                    </div>
+                    <div *ngIf="item.image_link" class="w-100   d-flex align-items-center justify-content-center"
+                         style="height: 7rem;">
+                      <img [src]="item.image_link" class="w-100 h-100" alt="">
+                    </div>
+                    <span class="fs-6 text-black" style="font-size: 14px!important;">
+                      {{item.title.length > 14 ? item.title.slice(0, 14) + "..." : item.title}}
+                    </span>
+                    <span class="fw-bold text-black-50" style="font-size: 12px">
+                      {{item.location.length > 14 ? item.location.slice(0, 14) + "..." : item.location}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="p-2 bg-ebay-background  mt-5 ">
+            <div class="d-flex gap-2 align-items-center mb-2">
+              <span class="fw-bold  text-black me-auto">für dich empfohlen</span>
+              <span class=" fw-light text-ebay">Anzeige Aufgaben</span>
+            </div>
+
+            <div class="container-fluid p-0  ">
+              <div class="row g-2 row-cols-2 row-cols-sm-3 row-cols-md-4 ">
+                <div *ngFor="let item of mainItems" class="col">
+                  <div class="bg-white position-relative   d-flex flex-column gap-1">
+                    <div *ngIf="item.price"
+                         class="position-absolute lh-sm small text-white shadow translate-middle-y end-0 px-2 py-1 bg-ebay"
+                         style="top: 50%!important;z-index: 3; right: -3px!important;">
+                      <span>{{item.price}}</span>
+                    </div>
+                    <div *ngIf="!item.image_link"
+                         class="w-100 bg-light opacity-75 d-flex align-items-center justify-content-center"
+                         style="height: 6rem;">
+                      <i class="bi-mortarboard-fill  display-3 text-ebay"></i>
+                    </div>
+                    <div *ngIf="item.image_link" class="w-100   d-flex align-items-center justify-content-center"
+                         style="height: 7rem;">
+                      <img [src]="item.image_link" class="w-100 h-100" alt="">
+                    </div>
+                    <div class=" d-flex flex-column gap-1 p-2">
+                      <span class="fs-6 text-black" style="font-size: 14px!important;">
+                          {{item.title.length > 14 ? item.title.slice(0, 14) + "..." : item.title}}
+                      </span>
+                      <span class="fw-bold text-black-50" style="font-size: 12px">
+                          {{item.location.length > 20 ? item.location.slice(0, 20) + "..." : item.location}}
+
+                    </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

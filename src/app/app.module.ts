@@ -2,15 +2,42 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { AppbarComponent } from './appbar/appbar.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbDropdown, NgbDropdownAnchor, NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AppbarSmComponent } from './appbar-sm/appbar-sm.component';
+import {FormsModule } from "@angular/forms";
+import { MainWindowComponent } from './main-window/main-window.component';
+import { MainCategoriesSmComponent } from './main-categories-sm/main-categories-sm.component';
+import { MainCategoriesLgComponent } from './main-categories-lg/main-categories-lg.component';
+import { MainGalerieComponent } from './main-galerie/main-galerie.component';
+import { AppRoutingModule } from './app-routing.module';
+import { SearchWindowComponent } from './search-window/search-window.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppbarComponent,
+    AppbarSmComponent,
+    MainWindowComponent,
+    MainCategoriesSmComponent,
+    MainCategoriesLgComponent,
+    MainGalerieComponent,
+    SearchWindowComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    NgbDropdownModule,
+    NgbDropdown,
+    NgbDropdownAnchor,
+    FormsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+1

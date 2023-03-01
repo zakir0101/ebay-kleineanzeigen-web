@@ -1,1 +1,226 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow-x: hidden;
+  background-color: #f4f4f4;
+}
+
+
+.text-ebay {
+  color: #86b817;
+}
+
+.bg-ebay {
+  background-color: #86b817;
+}
+
+.fs-13-px {
+  font-size: 13px !important;
+}
+
+.bg-ebay-background {
+  background-color: #f4f4f4;
+}
+
+.bg-black-25 {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.bg-light-darker {
+  background-color: #eee;
+}
+
+.bg-primary-dark {
+  background-color: #133167;
+}
+
+.w-90 {
+  width: 90%;
+}
+
+.my-opacity-0 {
+  opacity: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.bg-hover-white:hover {
+  transition: 1s;
+  background-color: white !important;
+}
+
+.bg-hover-primary:hover {
+  transition: 1s;
+  background-color: var(--bs-primary) !important;
+}
+
+
+.text-hover-dark:hover {
+  transition: 1s;
+  color: black !important;
+}
+
+.text-hover-white:hover {
+  transition: 1s;
+  color: white !important;
+}
+
+.mw-50 {
+  min-width: 50%;
+}
+
+
+@media (min-width: 576px) {
+
+  .me-sm-4p5 {
+    margin-right: 4.05rem !important;
+  }
+
+
+}
+
+@media (min-width: 992px) {
+  .w-lg-75 {
+    width: 75% !important;
+    min-width: 75% !important;
+  }
+
+  .h-lg-auto {
+    height: auto !important;
+  }
+
+  .fw-lg-bold {
+    font-weight: bold !important;
+  }
+
+  .p-lg-8 {
+    padding-bottom: 8rem !important;;
+    padding-top: 8rem !important;
+  }
+
+  .w-lg-auto {
+    width: auto !important;
+  }
+
+  .bg-lg-transparent {
+    background-color: transparent !important;
+  }
+
+  .bg-lg-yellow {
+    background-color: #f5af02 !important;
+  }
+
+  .bg-lg-white {
+    background-color: white !important;
+
+  }
+
+  .text-lg-white {
+    color: var(--bs-white) !important;
+  }
+
+  .text-lg-white:hover {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .text-lg-white-50 {
+
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .fs-lg-1 {
+    font-size: 2.5rem;
+  }
+
+  .fs-lg-2 {
+    font-size: 2rem;
+  }
+
+  .fs-lg-4 {
+    font-size: 1.5rem;
+  }
+
+  .fs-lg-5 {
+    font-size: 1.25rem !important;
+  }
+
+}
+
+
+@media (min-width: 768px) {
+  /** {*/
+  /*    padding: 0 !important;*/
+  /*    margin:0 !important;*/
+  /*    box-sizing : border-box !important;*/
+  /*}*/
+  .mw-md-25 {
+    min-width: 25% !important;
+  }
+
+  .display-md-7 {
+    font-size: 7rem !important;
+  }
+
+  .display-md-6 {
+    font-size: 7rem !important;
+  }
+
+  .display-md-1 {
+    font-size: 5rem !important;
+  }
+
+  .p-md-8 {
+    padding-bottom: 8rem !important;;
+    padding-top: 8rem !important;
+  }
+
+  .w-md-auto {
+    width: auto !important;
+  }
+
+  .bg-md-transparent {
+    background-color: transparent !important;
+  }
+
+  .h-md-auto {
+    height: auto !important;
+  }
+
+  .text-md-white {
+    color: var(--bs-white) !important;
+  }
+
+  .text-md-white:hover {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .text-md-white-50 {
+
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .fs-md-1 {
+    font-size: 2.5rem;
+  }
+
+  .fs-md-2 {
+    font-size: 2rem;
+  }
+
+  .fw-md-bold {
+    font-weight: bold !important;
+  }
+
+  .fs-md-4 {
+    font-size: 1.5rem;
+  }
+
+  .fs-md-5 {
+    font-size: 1.25rem !important;
+  }
+
+}

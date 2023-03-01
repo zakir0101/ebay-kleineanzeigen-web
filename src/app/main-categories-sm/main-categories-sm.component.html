@@ -1,0 +1,15 @@
+<div class="d-flex d-lg-none gap-3 p-2 text-center">
+  <div class="container-fluid">
+    <div class="row row-cols-5 row-cols-md-6 justify-content-center ">
+      <div *ngFor="let item of items" class="col">
+        <div class="d-flex  flex-column gap-1 align-items-center">
+          <div class="badge rounded-circle p-2 d-flex align-items-center justify-content-center bg-ebay text-white"
+          >
+            <i [class]="item.icon" class=" fs-2"></i>
+          </div>
+          <span class="" style="font-size: 10px">{{item.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

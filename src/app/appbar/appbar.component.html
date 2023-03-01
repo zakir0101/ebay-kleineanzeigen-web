@@ -1,0 +1,103 @@
+<!--    ****************     Appbar top lg  *****************-->
+<div class="bg-lg-white">
+  <div class="  container-lg px-lg-3 px-xl-5 py-2 d-none d-lg-block bg-lg-white ">
+    <div class="d-none d-md-flex justify-content-between align-items-center ">
+      <div class="d-flex flex-column cursor-pointer">
+        <img src="../../assets/logo.png" [routerLink]="['/']" style="width: 13rem;" alt="">
+        <span class="fw-bold text-black-50  fs-6  ">Kostenlos. Einfach. Lokal</span>
+      </div>
+      <div class="d-flex gap-3  align-items-center">
+        <span class="small">angemeldet als: zakirelkheir2@gmail.com</span>
+        <span class="fw-bold cursor-pointer text-ebay">Ausloggen</span>
+        <i class="bi-bell fs-4  text-dark"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--    ****************     Appbar bottom lg  *****************-->
+<div class="bg-ebay d-none d-lg-block ">
+  <div class="container-lg px-lg-3 px-xl-5 ">
+
+    <div class="d-flex gap-2 justify-content-between align-items-center  ">
+      <div class="d-flex align-items-center gap-3">
+        <div class="input-group input-group-sm  " style="width: auto!important;">
+          <input type="text" class="form-control   "
+                 [(ngModel)]="searchService.activeSearch"
+                 style="width: 10rem;"
+          >
+          <div class="dropdown" data-bs-offset="0,-40">
+            <button class="btn btn-light btn-sm rounded-0 rounded-end  bg-ebay-background dropdown-toggle "
+                    type="button"
+                    style="width: 7.5rem;" data-bs-toggle="dropdown">
+
+              {{categoryService.getActiveCategory().name.slice(0, 14)}}</button>
+            <ul class="dropdown-menu "
+                data-offset="10,20" style="top: 10px!important; ">
+              <li>
+                <a (click)="categoryService.setActiveCategory( all_categories);searchService.onUpdate()"
+                   class="dropdown-item">{{all_categories.name}}</a>
+              </li>
+              <li *ngFor="let kat of categories">
+                <a (click)="categoryService.setActiveCategory( kat); searchService.onUpdate()"
+                   class="dropdown-item cursor-pointer">{{kat.name}}</a>
+                <ul *ngIf="kat.children.length>0" class="submenu dropdown-menu">
+                  <li *ngFor="let kat2 of kat.children">
+                    <a (click)="categoryService.setActiveCategory( kat2 );searchService.onUpdate()"
+                       class="dropdown-item">{{kat2.name}}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="input-group input-group-sm  " style="width: auto!important;">
+          <input id="typeahead-basic" type="text" class="form-control"
+                 style="width: 10rem;"
+                 [(ngModel)]="citiesService.activeCity"
+                 (selectItem)="searchService.onUpdate()"
+                 [class.is-invalid]="searchFailed"
+                 [resultFormatter]="inputFormatter" [inputFormatter]="outputFormatter"
+                 [ngbTypeahead]="search"/>
+          <!--                   (selectItem)="logger($event.item.code)"-->
+          <!--            <input type="text" class="form-control  " >-->
+          <button class="btn btn-light bg-ebay-background  dropdown-toggle" type="button"
+                  style="width: 7rem;"
+                  data-bs-toggle="dropdown" aria-expanded="false">ganzer Ort
+          </button>
+          <!--            <ul class="dropdown-menu" data-offset="10,20" style="top: 1rem">-->
+          <!--              <li *ngFor="let kat of kategorien"><a (click)="kategorie=kat.name"-->
+          <!--                                                    class="dropdown-item" href="#">{{kat.name}}</a>-->
+          <!--                <ul *ngIf="kat.children.length>0" class="submenu dropdown-menu">-->
+          <!--                  <li *ngFor="let kat2 of kat.children"><a (click)="kategorie=kat2.name"-->
+          <!--                                                           class="dropdown-item" href="#">{{kat2.name}}</a></li>-->
+          <!--                </ul>-->
+          <!--              </li>-->
+          <!--            </ul>-->
+        </div>
+        <button (click)="searchService.onUpdate()"
+                class="btn btn-secondary bg-black-25 btn-sm d-flex gap-2">
+          <i class="bi-search"></i>
+          <span>Finden</span>
+        </button>
+
+      </div>
+
+
+      <div class="d-flex align-items-center gap-2    ">
+        <div
+          class="d-flex gap-2 text-white pt-1 mt-1 pb-2 px-1 bg-hover-white text-hover-dark  align-items-center rounded-top">
+          <i class="bi-bag-plus fs-5"></i>
+          <span class="small">Anzeige Aufgaben</span>
+        </div>
+        <div class="bg-white py-2 " style="min-height: 2rem;width: 1px;"></div>
+        <div
+          class="d-flex gap-2 text-white pt-1 mt-1 pb-2 px-1 bg-hover-white text-hover-dark w-auto align-items-center rounded-top">
+          <i class="bi-person fs-5 "></i>
+          <span class="small">Meins</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
