@@ -1,0 +1,203 @@
+<!--//************************************************************************-->
+<!--//**************************** Menu filter -->
+<!--//************************************************************************-->
+
+
+<div class="offcanvas offcanvas-end  " #filterMenu id="filterMenu" style="width: 20rem;" tabindex="-1">
+  <div class="offcanvas-header bg-ebay  py-1 px-3 align-items-center d-flex gap-2  text-white justify-content-start ">
+    <div class="d-flex gap-2 align-items-center py-1  pe-2 cursor-pointer"
+         (click)="searchService.onUpdate() ; bootstrapFilterMenu.hide()">
+      <i class="bi-check-lg "></i>
+      <span class="small fs-10-px fw-500">Fertig</span>
+    </div>
+    <div class="h-100 bg-white " style="width: 1px!important;"></div>
+  </div>
+  <div class="offcanvas-body bg-ebay-background px-2 py-3">
+    <div id="first" class="bg-white d-flex py-1  gap-1 flex-column  text-black-50">
+      <div class="d-flex flex-column">
+        <span class="px-2 fs-10-px mb-1 fw-500  ">Ort</span>
+        <div (click)="bootstrapFilterCity.show()"
+             class="px-2 cursor-pointer  bg-hover-light d-flex justify-content-between align-items-center  ">
+          <span class="small text-ebay fs-13-px fw-500">{{getCityName()}}</span>
+          <i class="bi-arrow-right-short fs-4 p-0 m-0   "></i>
+        </div>
+        <div class="bg-black-10   " style="height: 0.5px !important"></div>
+      </div>
+      <div class="d-flex flex-column">
+        <span class="px-2 fs-10-px mb-1 fw-500  ">Pries</span>
+        <div (click)="bootstrapFilterPries.show();"
+             class="px-2 cursor-pointer  bg-hover-light d-flex justify-content-between align-items-center  ">
+          <span class="small text-ebay fs-13-px fw-500">{{getPreisName()}}</span>
+          <i class="bi-arrow-right-short fs-4 p-0 m-0   "></i>
+        </div>
+        <div class="bg-black-10   " style="height: 0.5px !important"></div>
+      </div>
+
+
+      <div class="d-flex flex-column">
+        <span class="px-2 fs-10-px mb-1 fw-500  ">Kategorie</span>
+        <div (click)="bootstrapFilterCategory.show()"
+             class="px-2 cursor-pointer  bg-hover-light d-flex justify-content-between align-items-center  ">
+          <span class="small text-ebay fs-13-px fw-500">{{getCategoryName()}}</span>
+          <i class="bi-arrow-right-short fs-4 p-0 m-0   "></i>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div id="second"
+         class="bg-white d-flex py-1 py-2 align-items-center mt-3  gap-1  justify-content-between  text-black-50">
+      <span class="px-2 fs-12-px  fw-500 text-black-50   ">nur "Direkt Kaufen"</span>
+      <div class="form-check form-switch">
+        <input class="form-check-input align-items-center" type="checkbox" role="switch"
+               (change)="direktKaufenOnChange($event)"
+               id="flexSwitchCheckDefault"
+        >
+      </div>
+    </div>
+
+
+    <div id="third" class="bg-white d-flex py-1 mt-3  gap-1 flex-column  text-black-50">
+      <span class="px-2 fs-10-px mb-1 fw-500 text-black-50 ">Paketdienst</span>
+      <select (change)="paketdienstOnChange($event)"
+              class="form-select form-select-sm fs-13-px fw-500 bg-hover-white px-2 border-0 box-shadow-focus-0 text-ebay"
+      >
+        <!--        [selected]="searchService.paketdienst===''"-->
+        <option [value]="''" class="text-black-50 " [selected]="searchService.paketdienst===''">Alle</option>
+        <option [value]="'dhl'" class="text-black-50 " [selected]="searchService.paketdienst==='dhl'">DHL</option>
+        <option [value]="'hermes'" class="text-black-50 " [selected]="searchService.paketdienst==='hermes'">Hermes
+        </option>
+      </select>
+
+    </div>
+
+
+    <div id="forth" class="bg-white d-flex py-1 mt-3  gap-1 flex-column  text-black-50">
+      <span class="px-2 fs-10-px mb-1 fw-500 text-black-50 ">Verkäufer</span>
+      <select (change)="anbieterOnChange($event)"
+              class="form-select form-select-sm fs-13-px fw-500 bg-hover-white px-2 border-0 box-shadow-focus-0 text-ebay"
+              aria-label="Default select example">
+        <option value="" class="text-black-50 " [selected]="searchService.anbieter===''">Privat & Gewerblich</option>
+        <option value="privat" class="text-black-50 " [selected]="searchService.anbieter==='privat'">Privat</option>
+        <option value="gewerblich" class="text-black-50 " [selected]="searchService.anbieter==='gewerblich'">
+          Gewerblich
+        </option>
+      </select>
+      <div class="bg-black-10   " style="height: 0.5px !important"></div>
+      <span class="px-2 fs-10-px mb-1 fw-500 text-black-50 ">Angebotstyp</span>
+      <select (change)="angebotOnChange($event)"
+              class="form-select form-select-sm fs-13-px fw-500  bg-hover-white px-2 border-0 box-shadow-focus-0 text-ebay"
+              aria-label="Default select example">
+        <option value="" class="text-black-50 " [selected]="searchService.anzeige===''">Angebote & Gesuche</option>
+        <option value="angebote" class="text-black-50 " [selected]="searchService.anzeige==='angebote'">Angebote
+        </option>
+        <option value="gesuche" class="text-black-50 " [selected]="searchService.anzeige==='gesuche'">Gesuche</option>
+      </select>
+    </div>
+
+
+  </div>
+</div>
+<!--//************************************************************************-->
+<!--//**************************** Category filter -->
+<!--//************************************************************************-->
+
+<div class="offcanvas offcanvas-end " #filterCategory id="filterCategory" style="width: 20rem;" tabindex="-1">
+  <div class="offcanvas-header d-flex text-white bg-ebay justify-content-start p-0 p-2 ">
+    <i class="bi-arrow-left-short fs-4 cursor-pointer  "
+       (click)="onFilterCategoryBack()"
+    ></i>
+    <span class="ms-4 fw-500 ">{{getCategoryTitle()}}</span>
+  </div>
+
+  <div class="offcanvas-body bg-ebay-background p-0">
+    <div (click)="onFilterCategoryItemClick(parentCategory)"
+         class="d-flex gap-2 p-1 cursor-pointer bg-white px-2 my-1 align-items-center">
+      <i [ngClass]=" {'opacity-0': activeCategory.code !== parentCategory.code}"
+         class="bi-check-lg text-ebay fs-5"></i>
+      <span class="small fw-500 ">{{'Alle in ' + parentCategory.name}}</span>
+    </div>
+    <div *ngFor="let item of categories" (click)="onFilterCategoryItemClick(item)"
+         class="d-flex cursor-pointer gap-2 border-1 border-top border-bottom  p-1 bg-white px-2  align-items-center">
+      <i [ngClass]=" {'opacity-0': activeCategory.code !== item.code}" class="bi-check-lg  text-ebay fs-5  "></i>
+      <span class="small fw-500 ">{{item.name}}</span>
+    </div>
+
+
+  </div>
+</div>
+
+<!--//************************************************************************-->
+<!--//**************************** City filter -->
+<!--//************************************************************************-->
+
+<div class="offcanvas offcanvas-end " #filterCity id="filterCity" style="width: 20rem;" tabindex="-1">
+  <div class="offcanvas-header bg-ebay  py-1 px-3 align-items-center d-flex gap-2  text-white justify-content-start ">
+    <div class="d-flex gap-2 align-items-center py-1  pe-2 cursor-pointer"
+         (click)="searchService.onUpdate() ; bootstrapFilterCity.hide();bootstrapFilterMenu.show()">
+      <i class="bi-check-lg "></i>
+      <span class="small fs-10-px fw-500">Fertig</span>
+    </div>
+    <div class="h-100 bg-white " style="width: 1px!important;"></div>
+  </div>
+  <div class="offcanvas-body px-0  d-flex flex-column ">
+    <div class="d-flex gap-2 border-bottom border-1 mx-2 px-2 align-items-center border-ebay">
+      <i class="bi-search text-black-50"></i>
+      <input id="typeahead-basic" type="text"
+             class="form-control form-control-sm border-0 border-focus-0 box-shadow-focus-0"
+             style="width: 10rem;"
+             [defaultValue]="citiesService.deutschland"
+             [(ngModel)]="citiesService.activeCity"
+             (selectItem)="onCityChange($event)"
+             [resultFormatter]="inputFormatter" [inputFormatter]="outputFormatter"
+             [ngbTypeahead]="search"/>
+      <i *ngIf="citiesService.activeCity.code!==citiesService.deutschland.code"
+         class="bi-x-lg ms-auto text-black-50"
+         (click)="citiesService.activeCity=citiesService.deutschland"></i>
+
+    </div>
+    <span class="px-2 fs-12-px pt-3 pb-1 fw-500 text-black-50  ">{{getRangeText()}}</span>
+
+    <input  type="range" class="form-range mx-3 w-auto" min="0" max="200" step="5"
+            [value]="rangeToNumber()" (change)="onRangeChange($event)" >
+
+  </div>
+</div>
+
+<!--//************************************************************************-->
+<!--//**************************** Preis filter -->
+<!--//************************************************************************-->
+
+<div class="offcanvas offcanvas-end " #filterPreis id="filterPreis" style="width: 20rem;" tabindex="-1">
+  <div class="offcanvas-header bg-ebay  py-1 px-3 align-items-center d-flex gap-2  text-white justify-content-start ">
+    <div class="d-flex gap-2 align-items-center py-1  pe-2 cursor-pointer"
+         (click)="searchService.onUpdate() ; bootstrapFilterPries.hide();bootstrapFilterMenu.show()">
+      <i class="bi-check-lg "></i>
+      <span class="small fs-10-px fw-500">Fertig</span>
+    </div>
+    <div class="h-100 bg-white " style="width: 1px!important;"></div>
+  </div>
+  <div class="offcanvas-body ">
+    <div class="d-flex  align-items-center gap-4">
+
+      <div class="form-floating  ">
+        <input type="number" class="form-control  py-2 px-2 ps-5 "
+               style="height: 2.2rem!important;" id="floatingVon"
+               [value]="searchService.preisFrom"
+               (change)="onChangeFrom($event)">
+        <label for="floatingVon" class="fs-12-px py-2 px-2 "
+        >Von</label>
+      </div>
+      <div class="form-floating  ">
+        <input type="number" class="form-control py-2 px-2 ps-5 "
+               style="height: 2.2rem!important;"
+               id="floatingTo" [value]="searchService.preisTo"
+               (change)="onChangeTo($event)"/>
+        <label for="floatingTo" class="fs-12-px py-2 px-2 "
+        >Bis</label>
+      </div>
+    </div>
+  </div>
+</div>

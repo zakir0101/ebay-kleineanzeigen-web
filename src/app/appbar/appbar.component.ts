@@ -5,11 +5,14 @@ import {CitiesService, City} from "../cities.service";
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {SearchService} from "../search.service";
+import {NgbDropdownConfig} from "@ng-bootstrap/ng-bootstrap";
+import {MenuItem} from "../appbar-sm/appbar-sm.component";
 
 @Component({
   selector: 'app-appbar',
   templateUrl: './appbar.component.html',
-  styleUrls: ['./appbar.component.css']
+  styleUrls: ['./appbar.component.css'],
+  providers: [NgbDropdownConfig], // add NgbDropdownConfig to the component providers
 })
 export class AppbarComponent {
 
@@ -20,6 +23,18 @@ export class AppbarComponent {
   public cities: any[] = []
   searching: boolean = false
   searchFailed: boolean = false
+  ranges:string[] = ["5","10","20","30","50","100","150","200"]
+  meinsItems:MenuItem[]=[
+    {icon:"",name:"Nachrichten",onItemClick:()=>{}},
+    {icon:"",name:"Anzeigen",onItemClick:()=>{}},
+    {icon:"",name:"Einstellung",onItemClick:()=>{}},
+  ]
+meinsItems2:MenuItem[]=[
+    {icon:"",name:"Merkliste",onItemClick:()=>{}},
+    {icon:"",name:"Nutzer",onItemClick:()=>{}},
+    {icon:"",name:"Über uns",onItemClick:()=>{}},
+  ]
+
   // searchingFor: string = ""
   inputFormatter = (c: City) => {
     return c.name
@@ -35,7 +50,9 @@ export class AppbarComponent {
               public categoryService: CategoryService,
               public citiesService: CitiesService,
               public route: ActivatedRoute,
-              public router: Router) {
+              public router: Router, dropdownConfig:NgbDropdownConfig) {
+
+
   }
 
   ngOnInit() {
@@ -43,17 +60,8 @@ export class AppbarComponent {
     this.categoryService.getCategories().subscribe(g_list => {
       this.categories = g_list
     })
-    this.searchService.activeSearch = ""
-    this.route.queryParams.subscribe(params => {
-      this.searchService.activeSearch = params["text"]
-      this.categoryService.setActiveCategoryByCode(params['category'])
-      let city: City = {name: params["city"].split(":")[0], code: params["city"].split(":")[1]}
-      this.citiesService.setActiveCity(city)
-      this.searchService.preisFrom = params['preis'].split(":")[0]
-      this.searchService.preisTo = params['preis'].split(":")[1]
-      this.searchService.anbieter = params['anbieter']
-    });
-  }
+    // this.searchService.activeSearch = ""
+     }
 
 
   search: OperatorFunction<string, readonly City[]> = (text$: Observable<string>) =>
@@ -74,44 +82,5 @@ export class AppbarComponent {
 
   ngAfterContentInit() {
 
-    document.addEventListener("DOMContentLoaded", function () {
-// make it as accordion for smaller screens
-      if (window.innerWidth < 992) {
-
-
-        // close all inner dropdowns when parent is closed
-        // document.querySelectorAll('.dropdown').forEach((everydropdown: Element) => {
-        //   everydropdown.addEventListener('hidden.bs.dropdown', () => {
-        //     // after dropdown is hidden, then find all submenus
-        //     this.querySelectorAll('.submenu').forEach((everysubmenu) => {
-        //       // hide every submenu as well
-        //       // everysubmenu.style.display = 'none';
-        //       everysubmenu.setAttribute('style', "display:none;")
-        //     });
-        //   })
-        // });
-
-        // document.querySelectorAll('.dropdown-menu a').forEach(function (element: Element) {
-        //   element.addEventListener('click', (e) => {
-        //     element = <HTMLElement>element;
-        //     let nextEl = <HTMLElement>element.nextElementSibling;
-        //     if (nextEl && nextEl.classList.contains('submenu')) {
-        //       // prevent opening link if link needs to open dropdown
-        //       e.preventDefault();
-        //       if (nextEl.style.display == 'block') {
-        //         nextEl.style.display = 'none';
-        //       } else {
-        //         nextEl.style.display = 'block';
-        //       }
-        //
-        //     }
-        //   });
-        // })
-
-
-      }
-// end if innerWidth
-    });
-// DOMContentLoaded  end
   }
 }

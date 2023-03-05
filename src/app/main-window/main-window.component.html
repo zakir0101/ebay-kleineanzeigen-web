@@ -1,10 +1,10 @@
-<div class="container-fluid   bg-ebay-background " >
+<div class="container-fluid   bg-ebay-background ">
   <div class="container-lg  px-lg-3 px-xl-5    ">
     <app-main-categories-sm></app-main-categories-sm>
     <div class="container-fluid  px-0">
       <div class="row gx-4 py-2 py-lg-5">
-        <div class="d-none d-lg-block col-lg-3   bg-white p-2">
-          <app-main-categories-lg></app-main-categories-lg>
+        <div class="d-none d-lg-block col-lg-3    p-2">
+          <app-search-filter-lg></app-search-filter-lg>
         </div>
         <div class="col-12 col-lg-9     ">
           <div class="p-2 pb-0 bg-ebay-background bg-lg-yellow  ">
@@ -52,10 +52,13 @@
               <span class=" fw-light text-ebay">Anzeige Aufgaben</span>
             </div>
 
-            <div class="container-fluid p-0  ">
+            <div class="container-fluid p-0 text-center ">
               <div class="row g-2 row-cols-2 row-cols-sm-3 row-cols-md-4 ">
-                <div *ngFor="let item of mainItems" class="col">
-                  <div class="bg-white position-relative   d-flex flex-column gap-1">
+                <div *ngFor="let item of mainItems;index as i "
+                     class="col"
+                     [ngClass]="{'p-0 m-0':i>=mainCount}">
+                  <div *ngIf="i<mainCount"
+                       class="bg-white position-relative    flex-column gap-1 ">
                     <div *ngIf="item.price"
                          class="position-absolute lh-sm small text-white shadow translate-middle-y end-0 px-2 py-1 bg-ebay"
                          style="top: 50%!important;z-index: 3; right: -3px!important;">
@@ -82,7 +85,10 @@
                   </div>
                 </div>
               </div>
+              <button class="btn btn-light  mt-3 text-ebay small fw-500 p-3 py-2 mx-auto border-ebay bg-white text-hover-ebay bg-hover-light"
+                      (click)="mainCount=mainCount+40">Weitere Anzeigen</button>
             </div>
+
           </div>
 
 

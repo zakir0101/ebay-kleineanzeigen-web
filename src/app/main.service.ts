@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
+import makeFetchCookie from 'fetch-cookie'
 
 interface MainItem {
   url_link: string,
@@ -13,6 +14,7 @@ interface MainItem {
   providedIn: 'root'
 })
 export class MainService {
+  fetchCookie:any = makeFetchCookie(fetch)
 
   constructor() {
   }
@@ -38,9 +40,22 @@ export class MainService {
     const observable:Observable<MainItem[]> = new Observable((subscriber) => {
       subscriber.next([])
 
-      fetch("http://127.0.0.1:5000/main")
-        .then((response) => response.json())
-        .then((data) => {
+      let handleResponse = (response:Response) => {
+
+        console.log("header logging")
+        let cookie = response.headers.get("Set-Cookies")
+        if(cookie)
+          console.log(cookie)
+        else
+          console.log("there is no Set-Cookies")
+      }
+
+      this.fetchCookie("http://127.0.0.1:5000/main")
+        .then((response:Response) =>{
+          handleResponse(response)
+          return response.json()
+        })
+        .then((data:any) => {
           if (!data.type)
             subscriber.next(data)
         });

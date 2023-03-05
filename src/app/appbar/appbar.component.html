@@ -26,23 +26,23 @@
                  [(ngModel)]="searchService.activeSearch"
                  style="width: 10rem;"
           >
-          <div class="dropdown" data-bs-offset="0,-40">
-            <button class="btn btn-light btn-sm rounded-0 rounded-end  bg-ebay-background dropdown-toggle "
-                    type="button"
-                    style="width: 7.5rem;" data-bs-toggle="dropdown">
+          <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-light btn-sm rounded-0 rounded-end  bg-ebay-background  "
+                    type="button" ngbDropdownToggle
+                    style="width: 7.5rem;">
 
               {{categoryService.getActiveCategory().name.slice(0, 14)}}</button>
-            <ul class="dropdown-menu "
-                data-offset="10,20" style="top: 10px!important; ">
-              <li>
+            <ul class="bg-ebay-background " ngbDropdownMenu
+            >
+              <li class="ps-2 small text-black-50">
                 <a (click)="categoryService.setActiveCategory( all_categories);searchService.onUpdate()"
-                   class="dropdown-item">{{all_categories.name}}</a>
+                   class="" ngbDropdownItem>{{all_categories.name}}</a>
               </li>
-              <li *ngFor="let kat of categories">
+              <li *ngFor="let kat of categories" class="ps-2 small text-black-50">
                 <a (click)="categoryService.setActiveCategory( kat); searchService.onUpdate()"
                    class="dropdown-item cursor-pointer">{{kat.name}}</a>
-                <ul *ngIf="kat.children.length>0" class="submenu dropdown-menu">
-                  <li *ngFor="let kat2 of kat.children">
+                <ul *ngIf="kat.children.length>0" class="submenu dropdown-menu bg-ebay-background">
+                  <li *ngFor="let kat2 of kat.children" class="ps-2 small text-black-50">
                     <a (click)="categoryService.setActiveCategory( kat2 );searchService.onUpdate()"
                        class="dropdown-item">{{kat2.name}}</a>
                   </li>
@@ -55,28 +55,37 @@
           <input id="typeahead-basic" type="text" class="form-control"
                  style="width: 10rem;"
                  [(ngModel)]="citiesService.activeCity"
+                 [defaultValue]="citiesService.deutschland"
+                 (change)="logger(citiesService.activeCity.name)"
                  (selectItem)="searchService.onUpdate()"
                  [class.is-invalid]="searchFailed"
                  [resultFormatter]="inputFormatter" [inputFormatter]="outputFormatter"
                  [ngbTypeahead]="search"/>
           <!--                   (selectItem)="logger($event.item.code)"-->
           <!--            <input type="text" class="form-control  " >-->
-          <button class="btn btn-light bg-ebay-background  dropdown-toggle" type="button"
-                  style="width: 7rem;"
-                  data-bs-toggle="dropdown" aria-expanded="false">ganzer Ort
-          </button>
-          <!--            <ul class="dropdown-menu" data-offset="10,20" style="top: 1rem">-->
-          <!--              <li *ngFor="let kat of kategorien"><a (click)="kategorie=kat.name"-->
-          <!--                                                    class="dropdown-item" href="#">{{kat.name}}</a>-->
-          <!--                <ul *ngIf="kat.children.length>0" class="submenu dropdown-menu">-->
-          <!--                  <li *ngFor="let kat2 of kat.children"><a (click)="kategorie=kat2.name"-->
-          <!--                                                           class="dropdown-item" href="#">{{kat2.name}}</a></li>-->
-          <!--                </ul>-->
-          <!--              </li>-->
-          <!--            </ul>-->
+          <div class="d-inline-block " ngbDropdown>
+            <button class="btn btn-light  btn-sm rounded-0 rounded-end  bg-ebay-background " ngbDropdownToggle
+                    type="button" style="width: 7rem;"
+                    #btn1  [ngClass]="{'text-black-50 opacity-100':btn1.disabled}"
+                    [disabled]="citiesService.activeCity.name && citiesService.activeCity.code===citiesService.deutschland.code"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+              {{!searchService.activeRange ? 'Ganzer Ort' : "+ " + searchService.activeRange + " km" }}
+            </button>
+            <ul class="bg-ebay-background " ngbDropdownMenu
+            >
+              <li class="ps-2 small text-black-50">
+                <a (click)="searchService.activeRange='';searchService.onUpdate()"
+                   class="" ngbDropdownItem>Ganzer Ort</a>
+              </li>
+              <li *ngFor="let range of ranges" class="ps-2 small text-black-50">
+                <a (click)="searchService.activeRange=range;searchService.onUpdate()"
+                   class="" ngbDropdownItem>{{"+ " + range + " km"}}</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <button (click)="searchService.onUpdate()"
-                class="btn btn-secondary bg-black-25 btn-sm d-flex gap-2">
+        <button (click)="searchService.onSearch()"
+                class="btn btn-secondary bg-hover-black-30  bg-black-25 btn-sm d-flex gap-2">
           <i class="bi-search"></i>
           <span>Finden</span>
         </button>
@@ -90,9 +99,28 @@
           <i class="bi-bag-plus fs-5"></i>
           <span class="small">Anzeige Aufgaben</span>
         </div>
-        <div class="bg-white py-2 " style="min-height: 2rem;width: 1px;"></div>
+        <div class="bg-white py-2  " style="min-height: 2rem;width: 1px;"></div>
         <div
-          class="d-flex gap-2 text-white pt-1 mt-1 pb-2 px-1 bg-hover-white text-hover-dark w-auto align-items-center rounded-top">
+          class="d-flex gap-2 position-relative transition-500-ms  text-white pt-1 mt-1 pb-2 px-1  bg-hover-white text-hover-dark w-auto align-items-center rounded-top"
+          (mouseover)=" menu.style.visibility='visible';menu.style.opacity='1'"
+          (mouseleave)=" menu.style.visibility='hidden';menu.style.opacity='0'">
+
+          <div #menu
+               class="position-absolute transition-500-ms end-0 bg-white border-bottom border-end border-start border-1 border-ebay"
+               style=" width: 9rem!important;
+             visibility: hidden ; opacity: 0;"
+               [ngStyle]="{'bottom':'-'+meinsList.style.height , 'height':meinsList.style.height}"
+          >
+            <ul #meinsList class="list-unstyled  d-flex flex-column gap-2 p-2 ps-2"
+              style="height: 12rem;">
+              <li class="small fw-500 ms-2 text-black-50 cursor-pointer text-decoration-hover-underline " *ngFor="let item of meinsItems">{{item.name}}</li>
+              <div class="bg-black-25 " style="height: 0.5px;"></div>
+              <li *ngFor="let item of meinsItems2"
+                  class="small fw-500   cursor-pointer text-decoration-hover-underline"
+                  [ngClass]="{'text-primary opacity-50': item.name.includes('uns'),
+                  'text-black-50':!item.name.includes('uns')}">{{item.name}}</li>
+            </ul>
+          </div>
           <i class="bi-person fs-5 "></i>
           <span class="small">Meins</span>
         </div>

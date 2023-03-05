@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainCategoriesLgComponent } from './main-categories-lg.component';
+import { SearchFilterLgComponent } from './search-filter-lg.component';
 
 describe('MainCategoriesLgComponent', () => {
-  let component: MainCategoriesLgComponent;
-  let fixture: ComponentFixture<MainCategoriesLgComponent>;
+  let component: SearchFilterLgComponent;
+  let fixture: ComponentFixture<SearchFilterLgComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainCategoriesLgComponent ]
+      declarations: [ SearchFilterLgComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MainCategoriesLgComponent);
+    fixture = TestBed.createComponent(SearchFilterLgComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

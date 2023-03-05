@@ -51,6 +51,7 @@ export class CategoryService {
     return this.activeCategory
   }
 
+
   setActiveCategory(k:Category){
     this.activeCategory=k;
   }

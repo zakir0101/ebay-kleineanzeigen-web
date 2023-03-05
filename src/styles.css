@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+  --ebay-color : #86b817;
+  --ebay-bg-color : #f4f4f4;
+}
+.offcanvas.offcanvas-start{
+  width:16rem !important;
+}
+
+
 
 html, body {
   width: 100vw !important;
@@ -9,23 +18,54 @@ html, body {
 
 
 .text-ebay {
-  color: #86b817;
+  color: var(--ebay-color) !important;
+}
+
+.border-ebay {
+  border-color: var(--ebay-color) !important;
+}
+
+
+.border-focus-0:focus{
+  outline: none !important;
+}
+.box-shadow-focus-0{
+  box-shadow: none !important;
+}
+.text-ebay-darker {
+  color: #52b817;
 }
 
 .bg-ebay {
-  background-color: #86b817;
+  background-color: var(--ebay-color) !important;
 }
 
 .fs-13-px {
   font-size: 13px !important;
 }
 
+.fs-12-px {
+  font-size: 12px !important;
+}
+
+.fs-10-px {
+  font-size: 10px !important;
+}
+.fw-500{
+  font-weight: 500!important;
+}
 .bg-ebay-background {
-  background-color: #f4f4f4;
+  background-color: var(--ebay-bg-color);
 }
 
 .bg-black-25 {
   background-color: rgba(0, 0, 0, 0.25);
+}
+.bg-black-10 {
+  background-color: rgba(0, 0, 0, 0.10);
+}
+.bg-hover-black-30:hover {
+  background-color: rgba(0, 0, 0, 0.30);
 }
 
 .bg-light-darker {
@@ -49,8 +89,20 @@ html, body {
 }
 
 .bg-hover-white:hover {
-  transition: 1s;
   background-color: white !important;
+}
+.text-decoration-hover-underline:hover{
+  text-decoration:underline;
+}
+.transition-1{
+  transition: 1s;
+}
+.transition-500-ms{
+  transition: 500ms !important;
+}
+.bg-hover-light:hover {
+  transition: 1s;
+  background-color: var(--bs-light) !important;
 }
 
 .bg-hover-primary:hover {
@@ -67,6 +119,10 @@ html, body {
 .text-hover-white:hover {
   transition: 1s;
   color: white !important;
+}
+
+.text-hover-ebay:hover {
+  color: var(--ebay-color) !important;
 }
 
 .mw-50 {

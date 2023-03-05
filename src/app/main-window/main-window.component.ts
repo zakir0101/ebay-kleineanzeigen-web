@@ -10,6 +10,7 @@ export class MainWindowComponent {
   list:number[] = [];
   galereis : MainItem[] = []
   mainItems :MainItem[] = []
+  mainCount : number  = 40
   constructor(public mainService:MainService) {
   }
 

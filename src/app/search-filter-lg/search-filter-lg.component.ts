@@ -7,13 +7,12 @@ import {CitiesService, City} from "../cities.service";
 
 
 @Component({
-  selector: 'app-main-categories-lg',
-  templateUrl: './main-categories-lg.component.html',
-  styleUrls: ['./main-categories-lg.component.css']
+  selector: 'app-search-filter-lg',
+  templateUrl: './search-filter-lg.component.html',
+  styleUrls: ['./search-filter-lg.component.css']
 })
-export class MainCategoriesLgComponent {
-  from:string = ""
-  to:string = ""
+export class SearchFilterLgComponent {
+
   categories:Category[]=[]
   active:Category = {name:"",code:"",url_link:"",children:[
     ]};

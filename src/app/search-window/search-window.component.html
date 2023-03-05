@@ -4,7 +4,7 @@
     <div class="container-fluid  px-0">
       <div class="row gx-4 py-2 py-lg-5 justify-content-center">
         <div class="d-none d-lg-block col-lg-3    ">
-          <app-main-categories-lg></app-main-categories-lg>
+          <app-search-filter-lg></app-search-filter-lg>
         </div>
         <div class="col-12 col-sm-10 col-lg-9     ">
           <div class="d-flex flex-column gap-0 gap-md-3 ">
@@ -30,8 +30,8 @@
                       <i class="bi-calendar  ms-auto"></i>
                       <span class="small">16.12.1996</span>
                     </div>
-                    <div class="fs-13-px fs-md-5 fw-md-bold lh-1 pb-1 pb-lg-2"
-                        >{{res.title}}</div>
+                    <div class="fs-13-px fs-md-5 fw-md-bold lh-1 pb-1 pb-lg-2" style="word-wrap: break-word"
+                        >{{res.title.length>60?res.title.slice(0,60)+'..':res.title}}</div>
                     <p class="d-none d-md-block text-black-50 pb-0 mb-0 small">{{res.description}}</p>
                     <div class="text-ebay fs-13-px fs-md-5   fw-md-bold"
                          >{{res.price}}</div>
