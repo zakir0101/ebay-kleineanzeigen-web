@@ -1,0 +1,27 @@
+<div
+  class="bg-white position-relative    flex-column gap-1 "
+  [class.p-2]="galerie"
+>
+  <div *ngIf="false"
+       class="position-absolute lh-sm small text-white shadow translate-middle-y end-0 px-2 py-1 bg-ebay"
+       style="top: 50%!important;z-index: 3; right: -3px!important;">
+    <span>VB</span>
+  </div>
+  <div *ngIf="true"
+       class="w-100 bg-light opacity-75 d-flex align-items-center justify-content-center"
+       style="height: 6rem;">
+    <i class="bi-mortarboard-fill  display-3 text-ebay"></i>
+  </div>
+  <div *ngIf="false" class="w-100   d-flex align-items-center justify-content-center"
+       style="height: 7rem;">
+    <img [src]="" class="w-100 h-100" alt="">
+  </div>
+  <div class="d-flex flex-column gap-1 align-items-start placeholder-glow" [class.p-2]="!galerie">
+                      <span class="fs-6 text-black placeholder col-10" style="font-size: 14px!important;">
+
+                      </span>
+    <span class="fw-bold text-black-50 placeholder col-5" style="font-size: 12px">
+
+                    </span>
+  </div>
+</div>

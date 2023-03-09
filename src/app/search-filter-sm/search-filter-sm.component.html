@@ -6,7 +6,7 @@
 <div class="offcanvas offcanvas-end  " #filterMenu id="filterMenu" style="width: 20rem;" tabindex="-1">
   <div class="offcanvas-header bg-ebay  py-1 px-3 align-items-center d-flex gap-2  text-white justify-content-start ">
     <div class="d-flex gap-2 align-items-center py-1  pe-2 cursor-pointer"
-         (click)="searchService.onUpdate() ; bootstrapFilterMenu.hide()">
+         (click)="navigationService.refreshSearchPage() ; bootstrapFilterMenu.hide()">
       <i class="bi-check-lg "></i>
       <span class="small fs-10-px fw-500">Fertig</span>
     </div>
@@ -136,7 +136,7 @@
 <div class="offcanvas offcanvas-end " #filterCity id="filterCity" style="width: 20rem;" tabindex="-1">
   <div class="offcanvas-header bg-ebay  py-1 px-3 align-items-center d-flex gap-2  text-white justify-content-start ">
     <div class="d-flex gap-2 align-items-center py-1  pe-2 cursor-pointer"
-         (click)="searchService.onUpdate() ; bootstrapFilterCity.hide();bootstrapFilterMenu.show()">
+         (click)="navigationService.refreshSearchPage() ; bootstrapFilterCity.hide();bootstrapFilterMenu.show()">
       <i class="bi-check-lg "></i>
       <span class="small fs-10-px fw-500">Fertig</span>
     </div>
@@ -173,7 +173,7 @@
 <div class="offcanvas offcanvas-end " #filterPreis id="filterPreis" style="width: 20rem;" tabindex="-1">
   <div class="offcanvas-header bg-ebay  py-1 px-3 align-items-center d-flex gap-2  text-white justify-content-start ">
     <div class="d-flex gap-2 align-items-center py-1  pe-2 cursor-pointer"
-         (click)="searchService.onUpdate() ; bootstrapFilterPries.hide();bootstrapFilterMenu.show()">
+         (click)="navigationService.refreshSearchPage() ; bootstrapFilterPries.hide();bootstrapFilterMenu.show()">
       <i class="bi-check-lg "></i>
       <span class="small fs-10-px fw-500">Fertig</span>
     </div>

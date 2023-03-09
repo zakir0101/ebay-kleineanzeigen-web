@@ -1,0 +1,27 @@
+
+<ng-template #modalTemplate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-2 has-validation">
+      <label for="exampleFormControlTextarea1" class="form-label">Copy Paste Cookies</label>
+      <textarea class="form-control "
+                [class.is-valid]="isValid" [class.is-invalid]="!isValid && cookiesText.length>0 "
+                (ngModelChange)="checkCookies($event)"
+                id="exampleFormControlTextarea1" rows="10" [(ngModel)]="cookiesText" required></textarea>
+      <div class="valid-feedback">
+        {{msg}}
+      </div>
+      <div class="invalid-feedback">
+        {{msg}}
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button" [disabled]="!isValid || !msg.includes('logged in')"
+            class="btn btn-outline-dark" (click)="modal.close('Save click');refreshPage()">Save</button>
+  </div>
+</ng-template>

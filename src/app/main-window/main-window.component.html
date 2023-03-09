@@ -1,12 +1,12 @@
 <div class="container-fluid   bg-ebay-background ">
   <div class="container-lg  px-lg-3 px-xl-5    ">
-    <app-main-categories-sm></app-main-categories-sm>
+    <app-main-categories-sm [categories]="categories"></app-main-categories-sm>
     <div class="container-fluid  px-0">
       <div class="row gx-4 py-2 py-lg-5">
-        <div class="d-none d-lg-block col-lg-3    p-2">
-          <app-search-filter-lg></app-search-filter-lg>
+        <div class="d-none d-lg-block col-lg-3 p-2">
+          <app-main-categories-lg [categories]="categories"></app-main-categories-lg>
         </div>
-        <div class="col-12 col-lg-9     ">
+        <div class="col-12 col-lg-9 ">
           <div class="p-2 pb-0 bg-ebay-background bg-lg-yellow  ">
             <div class="d-flex gap-2 align-items-center mb-2">
               <span class="fw-bold  text-black me-auto">Galerie</span>
@@ -18,80 +18,46 @@
             <div class="container-fluid p-0  ">
               <div class="row g-2 row-cols-2 row-cols-sm-3 pb-3 row-cols-md-4 flex-nowrap overflow-auto">
                 <div *ngFor="let item of galereis" class="col">
-                  <div class="bg-white position-relative shadow-sm p-2  d-flex flex-column gap-1">
-                    <div *ngIf="item.price"
-                         class="position-absolute lh-sm small text-white shadow translate-middle-y end-0 px-2 py-1 bg-ebay"
-                         style="top: 50%!important;z-index: 3; right: -3px!important;">
-                      <span>{{item.price}}</span>
-                    </div>
-                    <div *ngIf="!item.image_link"
-                         class="w-100 bg-light opacity-75 d-flex align-items-center justify-content-center"
-                         style="height: 6rem;">
-                      <i class="bi-mortarboard-fill  display-3 text-ebay"></i>
-                    </div>
-                    <div *ngIf="item.image_link" class="w-100   d-flex align-items-center justify-content-center"
-                         style="height: 7rem;">
-                      <img [src]="item.image_link" class="w-100 h-100" alt="">
-                    </div>
-                    <span class="fs-6 text-black" style="font-size: 14px!important;">
-                      {{item.title.length > 14 ? item.title.slice(0, 14) + "..." : item.title}}
-                    </span>
-                    <span class="fw-bold text-black-50" style="font-size: 12px">
-                      {{item.location.length > 14 ? item.location.slice(0, 14) + "..." : item.location}}
-                    </span>
+                  <app-main-item [item]="item" [galerie]="true"></app-main-item>
+                </div>
+                <div  *ngFor="let item of [].constructor(5)" class="col"
+                      [ngClass]="{'p-0 m-0':galereis.length > 0}">
+                  <div   *ngIf="galereis.length == 0">
+                    <app-main-item-placeholder [galerie]="true"></app-main-item-placeholder>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
           <div class="p-2 bg-ebay-background  mt-5 ">
             <div class="d-flex gap-2 align-items-center mb-2">
               <span class="fw-bold  text-black me-auto">für dich empfohlen</span>
               <span class=" fw-light text-ebay">Anzeige Aufgaben</span>
             </div>
-
             <div class="container-fluid p-0 text-center ">
               <div class="row g-2 row-cols-2 row-cols-sm-3 row-cols-md-4 ">
                 <div *ngFor="let item of mainItems;index as i "
                      class="col"
                      [ngClass]="{'p-0 m-0':i>=mainCount}">
-                  <div *ngIf="i<mainCount"
-                       class="bg-white position-relative    flex-column gap-1 ">
-                    <div *ngIf="item.price"
-                         class="position-absolute lh-sm small text-white shadow translate-middle-y end-0 px-2 py-1 bg-ebay"
-                         style="top: 50%!important;z-index: 3; right: -3px!important;">
-                      <span>{{item.price}}</span>
-                    </div>
-                    <div *ngIf="!item.image_link"
-                         class="w-100 bg-light opacity-75 d-flex align-items-center justify-content-center"
-                         style="height: 6rem;">
-                      <i class="bi-mortarboard-fill  display-3 text-ebay"></i>
-                    </div>
-                    <div *ngIf="item.image_link" class="w-100   d-flex align-items-center justify-content-center"
-                         style="height: 7rem;">
-                      <img [src]="item.image_link" class="w-100 h-100" alt="">
-                    </div>
-                    <div class=" d-flex flex-column gap-1 p-2">
-                      <span class="fs-6 text-black" style="font-size: 14px!important;">
-                          {{item.title.length > 14 ? item.title.slice(0, 14) + "..." : item.title}}
-                      </span>
-                      <span class="fw-bold text-black-50" style="font-size: 12px">
-                          {{item.location.length > 20 ? item.location.slice(0, 20) + "..." : item.location}}
-
-                    </span>
-                    </div>
+                  <ng-container *ngIf="i<mainCount">
+                    <app-main-item [item]="item"></app-main-item>
+                  </ng-container>
+                </div>
+                <div class="col"  *ngFor="let item of [].constructor(40)"
+                     [ngClass]="{'p-0 m-0':mainItems.length > 0}">
+                  <div *ngIf="mainItems.length == 0">
+                    <app-main-item-placeholder></app-main-item-placeholder>
                   </div>
                 </div>
               </div>
-              <button class="btn btn-light  mt-3 text-ebay small fw-500 p-3 py-2 mx-auto border-ebay bg-white text-hover-ebay bg-hover-light"
-                      (click)="mainCount=mainCount+40">Weitere Anzeigen</button>
+              <button
+                class="btn btn-light  mt-3 text-ebay small fw-500 p-3 py-2 mx-auto border-ebay bg-white text-hover-ebay bg-hover-light"
+                *ngIf="mainItems.length>40"
+                (click)="mainCount=mainCount+40">Weitere Anzeigen
+              </button>
             </div>
 
           </div>
-
-
         </div>
       </div>
     </div>

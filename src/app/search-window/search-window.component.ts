@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {SearchResults, SearchService} from "../search.service";
+import { SearchService} from "../search.service";
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {City} from "../cities.service";
-import {Category} from "../category.service";
+import {SearchResults} from "../typing";
+import {NavigationService} from "../navigation.service";
+
 
 
 @Component({
@@ -12,16 +13,24 @@ import {Category} from "../category.service";
 })
 export class SearchWindowComponent {
   searchResults:SearchResults[] = []
+  navigation:number  = 0
+  alternative:SearchResults[] = []
 
-
-  constructor(public searchService:SearchService , private route:ActivatedRoute) {
+  constructor(public searchService:SearchService , private route:ActivatedRoute,
+              public navigationService:NavigationService) {
 
   }
 
   ngOnInit(){
-    this.route.queryParams.subscribe(params => {
+    // this.route.queryParams.subscribe(params => {
+    //   this.onSearch(params['text'],params['city'].split(":")[1],params['category'])
+    // });
+
+
+    this.navigationService.loadQueryParamForSearch().
+    subscribe(params =>
       this.onSearch(params['text'],params['city'].split(":")[1],params['category'])
-    });
+    )
   }
 
 
@@ -29,7 +38,9 @@ export class SearchWindowComponent {
   onSearch(text:string,city:string,category:string){
     this.searchService.getSearchResults(text, city ,category)
       .subscribe( (res) =>{
-        this.searchResults= res;
+        this.searchResults= res.result;
+        this.alternative = res.alternative
+        this.navigation = res.navigation
       })
   }
 }

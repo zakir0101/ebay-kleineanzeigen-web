@@ -10,14 +10,14 @@
          class="d-flex flex-column gap-1">
       <div *ngFor="let item of categories;index as i1" class="d-flex flex-column ">
         <span (click)="categoryService.setActiveCategory(item);
-                       searchService.onUpdate()"
+                       navigationService.refreshSearchPage()"
               class="text-black cursor-pointer w-auto" style="font-size: 12px;">{{item.name}}</span>
         <div *ngIf="item.children && !isSearch" class="d-flex flex-column  ps-2">
             <span *ngFor="let it of item.children;index as i" class="text-black-50  cursor-pointer w-auto"
                   [class.d-none]="active!==item && i>2"
                   style="font-size: 10px"
                   (click)="categoryService.setActiveCategory(it);
-                           searchService.onUpdate()"
+                           navigationService.refreshSearchPage()"
             >{{it.name}}</span>
         </div>
         <span *ngIf="!isSearch"
@@ -35,7 +35,7 @@
            class="d-flex px-2 justify-content-between bg-light-darker py-1 align-items-center">
         <span class="small">{{categoryService.getActiveCategory().name}}</span>
         <button (click)="categoryService.setActiveCategory(allCategories);
-                      searchService.onUpdate()"
+                      navigationService.refreshSearchPage()"
                 class="btn btn-light bg-light-darker btn-sm p-0 px-1 border-0">
           <i class="bi-x "></i>
         </button>
@@ -58,7 +58,7 @@
           <input type="number" class="form-control form-control-sm"
                  placeholder="bis" [value]="searchService.preisTo"
                  (change)="onChangeTo($event)"/>
-          <button (click)="searchService.onUpdate()"
+          <button (click)="navigationService.refreshSearchPage()"
                   class="btn btn-success bg-ebay btn-sm">
             <i class="bi-arrow-right-short"></i>
           </button>
@@ -76,21 +76,21 @@
 
       <div id="anbieterFilter" class="d-flex flex-column gap-1">
         <span class="fw-normal mb-2 " style="font-weight: 500!important;;">Anbieter</span>
-        <div class="d-flex cursor-pointer " (click)="searchService.anbieter='privat';;searchService.onUpdate()"
+        <div class="d-flex cursor-pointer " (click)="searchService.anbieter='privat';navigationService.refreshSearchPage()"
              [ngClass]="{'px-2 py-1 bg-light-darker':searchService.anbieter==='privat'}">
           <span class="small fs-13-px t">Privat</span>
           <button *ngIf="searchService.anbieter==='privat'"
-                  (click)="searchService.anbieter='';$event.stopPropagation();searchService.onUpdate()"
+                  (click)="searchService.anbieter='';$event.stopPropagation();navigationService.refreshSearchPage()"
                   class="btn btn-light bg-light-darker btn-sm ms-auto p-0 px-1 border-0">
             <i class="bi-x "></i>
           </button>
         </div>
         <div class="d-flex cursor-pointer "
-             (click)="searchService.anbieter='gewerblich';searchService.onUpdate()"
+             (click)="searchService.anbieter='gewerblich';navigationService.refreshSearchPage()"
              [ngClass]="{'px-2 py-1 bg-light-darker':searchService.anbieter==='gewerblich'}">
           <span class="small fs-13-px t">Gewerblich</span>
           <button *ngIf="searchService.anbieter==='gewerblich'"
-                  (click)="searchService.anbieter='';$event.stopPropagation();searchService.onUpdate()"
+                  (click)="searchService.anbieter='';$event.stopPropagation();navigationService.refreshSearchPage()"
                   class="btn btn-light bg-light-darker btn-sm p-0 px-1 border-0 ms-auto">
             <i class="bi-x "></i>
           </button>
@@ -106,20 +106,20 @@
       <div class="bg-black-25 mt-2  " style="height: 0.5px !important"></div>
       <div id="Angebotstype" class="d-flex flex-column gap-1 ">
         <span class="fw-normal mb-2 " style="font-weight: 500!important;">Angebotstype</span>
-        <div class="d-flex cursor-pointer " (click)="searchService.anzeige='angebote';;searchService.onUpdate()"
+        <div class="d-flex cursor-pointer " (click)="searchService.anzeige='angebote';;navigationService.refreshSearchPage()"
              [ngClass]="{'px-2 py-1 bg-light-darker':searchService.anzeige==='angebote'}">
           <span class="small fs-13-px t">Angebote</span>
           <button *ngIf="searchService.anzeige==='angebote'"
-                  (click)="searchService.anzeige='';$event.stopPropagation();searchService.onUpdate()"
+                  (click)="searchService.anzeige='';$event.stopPropagation();navigationService.refreshSearchPage()"
                   class="btn btn-light bg-light-darker btn-sm ms-auto p-0 px-1 border-0">
             <i class="bi-x "></i>
           </button>
         </div>
-        <div class="d-flex cursor-pointer " (click)="searchService.anzeige='gesuche';;searchService.onUpdate()"
+        <div class="d-flex cursor-pointer " (click)="searchService.anzeige='gesuche';;navigationService.refreshSearchPage()"
              [ngClass]="{'px-2 py-1 bg-light-darker':searchService.anzeige==='gesuche'}">
           <span class="small fs-13-px t">Gesuche</span>
           <button *ngIf="searchService.anzeige==='gesuche'"
-                  (click)="searchService.anzeige='';$event.stopPropagation();searchService.onUpdate()"
+                  (click)="searchService.anzeige='';$event.stopPropagation();navigationService.refreshSearchPage()"
                   class="btn btn-light bg-light-darker btn-sm ms-auto p-0 px-1 border-0">
             <i class="bi-x "></i>
           </button>
@@ -136,11 +136,11 @@
       <div class="bg-black-25 mt-2  " style="height: 0.5px !important"></div>
       <div id="DirektKaufen" class="d-flex flex-column gap-1 ">
         <span class="fw-normal mb-2 " style="font-weight: 500!important;">Direkt Kaufen</span>
-        <div class="d-flex cursor-pointer " (click)="searchService.direktKaufen='aktiv';;searchService.onUpdate()"
+        <div class="d-flex cursor-pointer " (click)="searchService.direktKaufen='aktiv';;navigationService.refreshSearchPage()"
              [ngClass]="{'px-2 py-1 bg-light-darker':searchService.direktKaufen==='aktiv'}">
           <span class="small fs-13-px t">Aktiv</span>
           <button *ngIf="searchService.direktKaufen==='aktiv'"
-                  (click)="searchService.direktKaufen='';$event.stopPropagation();searchService.onUpdate()"
+                  (click)="searchService.direktKaufen='';$event.stopPropagation();navigationService.refreshSearchPage()"
                   class="btn btn-light bg-light-darker btn-sm ms-auto p-0 px-1 border-0">
             <i class="bi-x "></i>
           </button>
@@ -157,20 +157,20 @@
       <div class="bg-black-25 mt-2  " style="height: 0.5px !important"></div>
       <div id="Paketdienst" class="d-flex flex-column gap-1 ">
         <span class="fw-normal mb-2 " style="font-weight: 500!important;">Paketdienst</span>
-        <div class="d-flex cursor-pointer " (click)="searchService.paketdienst='dhl';;searchService.onUpdate()"
+        <div class="d-flex cursor-pointer " (click)="searchService.paketdienst='dhl';;navigationService.refreshSearchPage()"
              [ngClass]="{'px-2 py-1 bg-light-darker':searchService.paketdienst==='dhl'}">
           <span class="small fs-13-px t">DHL</span>
           <button *ngIf="searchService.paketdienst==='dhl'"
-                  (click)="searchService.paketdienst='';$event.stopPropagation();searchService.onUpdate()"
+                  (click)="searchService.paketdienst='';$event.stopPropagation();navigationService.refreshSearchPage()"
                   class="btn btn-light bg-light-darker btn-sm ms-auto p-0 px-1 border-0">
             <i class="bi-x "></i>
           </button>
         </div>
-        <div class="d-flex cursor-pointer " (click)="searchService.paketdienst='hermes';;searchService.onUpdate()"
+        <div class="d-flex cursor-pointer " (click)="searchService.paketdienst='hermes';;navigationService.refreshSearchPage()"
              [ngClass]="{'px-2 py-1 bg-light-darker':searchService.paketdienst==='hermes'}">
           <span class="small fs-13-px t">Hermes</span>
           <button *ngIf="searchService.paketdienst==='hermes'"
-                  (click)="searchService.paketdienst='';$event.stopPropagation();searchService.onUpdate()"
+                  (click)="searchService.paketdienst='';$event.stopPropagation();navigationService.refreshSearchPage()"
                   class="btn btn-light bg-light-darker btn-sm ms-auto p-0 px-1 border-0">
             <i class="bi-x "></i>
           </button>
@@ -190,7 +190,7 @@
              class="d-flex px-2 justify-content-between bg-light-darker py-1 align-items-center">
           <span class="small">{{citiesService.activeCity.name}}</span>
           <button (click)="citiesService.activeCity=citiesService.deutschland;
-                        searchService.onUpdate()"
+                        navigationService.refreshSearchPage()"
                   class="btn btn-light bg-light-darker btn-sm p-0 px-1 border-0">
             <i class="bi-x "></i>
           </button>
@@ -199,7 +199,7 @@
              class="d-flex flex-column gap-1">
          <span *ngFor="let city of cities"
                (click)="citiesService.activeCity = city;
-                       searchService.onUpdate()"
+                       navigationService.refreshSearchPage()"
                class="text-black cursor-pointer w-auto" style="font-size: 12px;">{{city.name}}</span>
         </div>
       </div>

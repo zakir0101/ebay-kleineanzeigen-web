@@ -1,12 +1,16 @@
-import {Component} from '@angular/core';
-import {allCategories, Category, CategoryService} from "../category.service";
+import {Component, ElementRef, Input, TemplateRef, ViewChild} from '@angular/core';
+import {allCategories, CategoryService} from "../category.service";
 import {debounceTime, distinctUntilChanged, map, Observable, OperatorFunction, switchMap} from "rxjs";
-import {CitiesService, City} from "../cities.service";
+import {CitiesService} from "../cities.service";
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {SearchService} from "../search.service";
-import {NgbDropdownConfig} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDropdownConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {MenuItem} from "../appbar-sm/appbar-sm.component";
+import {LoginService} from "../login.service";
+import {CookiesService} from "../cookies.service";
+import {Category, City} from "../typing";
+import {NavigationService} from "../navigation.service";
 
 @Component({
   selector: 'app-appbar',
@@ -17,7 +21,7 @@ import {MenuItem} from "../appbar-sm/appbar-sm.component";
 export class AppbarComponent {
 
   all_categories: Category = allCategories
-  categories: Category[] = []
+  @Input() categories!: Category[]
 
   public city: City = {name: "", code: ""};
   public cities: any[] = []
@@ -44,25 +48,36 @@ meinsItems2:MenuItem[]=[
     else return c.name
   };
   logger = (text: string) => console.log(text)
-
-
+  login:boolean = false
+  modalTemplate:any ;
   constructor(public searchService: SearchService,
               public categoryService: CategoryService,
               public citiesService: CitiesService,
               public route: ActivatedRoute,
-              public router: Router, dropdownConfig:NgbDropdownConfig) {
+              public router: Router, dropdownConfig:NgbDropdownConfig,
+              public loginService:LoginService,
+              public modalService:NgbModal,
+              public cookiesService:CookiesService,
+              public navigationService:NavigationService) {
 
 
   }
 
   ngOnInit() {
     // this.categories=this.categoryService.getCategories().filter((k)=> (k.name!=='alle Kategorien'))
-    this.categoryService.getCategories().subscribe(g_list => {
-      this.categories = g_list
+
+    this.loginService.isUserLogged().subscribe(islogged => {
+      this.login = islogged
     })
+
+
+
     // this.searchService.activeSearch = ""
      }
 
+   refreshPage(){
+    window.location.reload();
+  }
 
   search: OperatorFunction<string, readonly City[]> = (text$: Observable<string>) =>
     text$.pipe(
@@ -72,8 +87,7 @@ meinsItems2:MenuItem[]=[
           if (term.length < 1)
             return []
           else {
-            return this.citiesService.getCities(term).pipe()
-
+            return this.citiesService.getCities(term)
           }
         }
       ),

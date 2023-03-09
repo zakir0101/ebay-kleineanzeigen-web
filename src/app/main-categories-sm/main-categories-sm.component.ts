@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Category} from "../typing";
+
 
 interface ListItem{
   name:string;
@@ -12,7 +14,7 @@ interface ListItem{
   styleUrls: ['./main-categories-sm.component.css']
 })
 export class MainCategoriesSmComponent {
-
+  @Input() categories ! :Category[];
 
   items:ListItem[]=[
     {name:"Auto,Rad & boot", icon:"bi-car-front-fill"},

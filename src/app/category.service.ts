@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {MainItem} from "./main.service";
 import {Router} from "@angular/router";
 import {CitiesService} from "./cities.service";
+import {ModeService} from "./mode.service";
+import {Category} from "./typing";
 
-interface Category {
-  name:string,
-  url_link: string,
-  code :  string,
-  children:Category[]
-}
-
-let allCategories:Category = {name:"alle Kategorien" ,url_link :"https://www.ebay-kleinanzeigen.de/s-suchen.html", code:"", children:[]}
+let allCategories:Category = {name:"alle Kategorien" ,
+  url_link :"https://www.ebay-kleinanzeigen.de/s-suchen.html",
+  code:"", children:[]}
 
 
 @Injectable({
@@ -23,7 +19,7 @@ export class CategoryService {
   categories:Category[] = []
 
   constructor( private citiesService :CitiesService,
-               private router:Router) {
+               private router:Router, private modeService:ModeService) {
   }
 
   getCategories(): Observable<Category[]> {
@@ -32,7 +28,9 @@ export class CategoryService {
       if(this.categories.length > 0)
         subscriber.next(this.categories)
       else {
-        fetch("http://127.0.0.1:5000/categories")
+        fetch(this.modeService.address+"/categories" , {
+          credentials : "include"
+        })
           .then((response) => response.json())
           .then((data) => {
             if (!data.type) {
@@ -81,4 +79,5 @@ export class CategoryService {
 
 }
 
-export {Category,allCategories}
+
+export {allCategories}

@@ -1,17 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {CitiesService, City} from "./cities.service";
-import {allCategories, Category, CategoryService} from "./category.service";
+import {CitiesService} from "./cities.service";
+import {allCategories, CategoryService} from "./category.service";
 import {Router} from "@angular/router";
+import {ModeService} from "./mode.service";
+import {SearchPage} from "./typing";
 
-interface SearchResults {
-  image_url: string,
-  location: string,
-  title: string,
-  description: string,
-  price: string,
-  url_link: string,
-}
 
 @Injectable({
   providedIn: 'root'
@@ -26,68 +20,17 @@ export class SearchService {
   paketdienst:string = ""
   activeRange:string = ""
   isLoaded: boolean = false;
+
   constructor(private categoryService:CategoryService
               ,private citiesService:CitiesService,
-              private router:Router) {
+              private router:Router , private modeService:ModeService) {
 
   }
 
 
-  onUpdate() {
-    let update: boolean = this.router.url.includes("/search")
-    if (update) {
-      this.onSearch()
-    }
-  }
 
-  onSearch(){
-    let cityName ;
-    if(this.citiesService.activeCity.name)
-      cityName = this.citiesService.activeCity.name + ":" + this.citiesService.activeCity.code +":"+this.activeRange
-    else
-      cityName = this.citiesService.deutschland.name+ ":"+this.citiesService.deutschland.code+":"
-    this.router.navigate(
-      ['/search'],
-      {
-        queryParams: {
-          text: this.activeSearch === undefined ? "" : this.activeSearch,
-          city:cityName ,
-          category: this.categoryService.getActiveCategory().code,
-          anbieter: this.anbieter,
-          preis : this.preisFrom+":"+this.preisTo ,
-          anzeige : this.anzeige,
-          direktKaufen:this.direktKaufen,
-          paketdienst : this.paketdienst,
-
-        }
-      });
-
-  }
-
-
-  navigateHome(){
-
-    this.activeSearch = ""
-    this.categoryService.setActiveCategory(allCategories)
-    this.citiesService.setActiveCity(this.citiesService.deutschland)
-    this.preisFrom = ""
-    this.preisTo = ""
-    this.anbieter = ""
-    this.paketdienst = ""
-    this.anzeige = ""
-    this.direktKaufen = ""
-    this.activeRange = ""
-    this.isLoaded = false
-
-
-    this.router.navigate(['/'],);
-
-  }
-
-
-  getSearchResults(search: string, city: string, category: string): Observable<SearchResults[]> {
-    const observable: Observable<SearchResults[]> = new Observable((subscriber) => {
-      subscriber.next([])
+  getSearchResults(search: string, city: string, category: string): Observable<SearchPage> {
+    const observable: Observable<SearchPage> = new Observable((subscriber) => {
       let searchToken = "",path=""
       if (search !== "") {
         searchToken += "k0"
@@ -116,11 +59,18 @@ export class SearchService {
       if(path === "")
         path = "None"
 
-      fetch("http://127.0.0.1:5000/search/" + search + "/" + searchToken+"?path="+path)
+      fetch(this.modeService.address+"/search/" + search + "/" + searchToken+"?path="+path
+        , {
+          credentials : "include"
+        })
         .then((response) => response.json())
-        .then((data) => {
-          if (!data.type) {
+        .then((data:SearchPage) => {
+          if (data.result) {
+
             subscriber.next(data)
+          }
+          else {
+            console.log(data)
           }
         })
     })
@@ -132,4 +82,4 @@ export class SearchService {
 }
 
 
-export {SearchResults}
+

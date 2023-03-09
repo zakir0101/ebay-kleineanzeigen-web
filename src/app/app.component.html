@@ -1,9 +1,9 @@
 <div class="bg-ebay-background vh-100 d-flex flex-column " style="overflow-x: hidden">
   <!--  <div class="d-flex flex-column sticky-top position-sticky top-0  bg-ebay-background    ">-->
-  <app-appbar></app-appbar>
-  <app-appbar-sm></app-appbar-sm>
+  <app-appbar [categories]="categories"></app-appbar>
+  <app-appbar-sm [categories]="categories"></app-appbar-sm>
   <!--  </div>-->
-  <router-outlet></router-outlet>
+  <router-outlet ></router-outlet>
 </div>
 
 

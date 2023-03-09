@@ -1,29 +1,28 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {Category} from "./category.service";
 
-interface City{
-  name: string , code:string
-}
+import {ModeService} from "./mode.service";
+import {City} from "./typing";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitiesService {
 
-  constructor() { }
+  constructor(private modeService:ModeService) { }
   deutschland:City =  {name:"Deutschland - ",code:"0"}
   public activeCity:City = this.deutschland
 
   getCities(search : string): Observable<City[]> {
-    const observable:Observable<any> = new Observable((subscriber) => {
+    const observable:Observable<City[]> = new Observable((subscriber) => {
       subscriber.next([])
 
-      fetch("http://127.0.0.1:5000/cities/"+search)
+      fetch(this.modeService.address+"/cities/"+search , )
         .then((response) => response.json())
         .then((data) => {
           if (!data.type){
-            let  names:string[] =  data.map( (c: City) => c.name)
+            console.log(data)
             subscriber.next(data)
           }
         })
@@ -45,4 +44,4 @@ export class CitiesService {
   }
 }
 
-export {City}
+

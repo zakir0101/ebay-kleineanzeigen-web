@@ -1,9 +1,11 @@
-import {Component, EmbeddedViewRef, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, EmbeddedViewRef, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
 import {SearchService} from "../search.service";
 import {CitiesService} from "../cities.service";
-import {CategoryService} from "../category.service";
+import { CategoryService} from "../category.service";
 import {Router} from "@angular/router";
 import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
+import {NavigationService} from "../navigation.service";
+import {Category} from "../typing";
 
 
 interface MenuItem {
@@ -23,10 +25,10 @@ interface MenuItem {
 export class AppbarSmComponent {
   menu:MenuItem[]=[
     {icon:"bi-house",name:"Start" ,
-      onItemClick: ()=>{this.offcanvasService.dismiss(); this.searchService.navigateHome()}
+      onItemClick: ()=>{this.offcanvasService.dismiss(); this.navigationService.navigateHomePage()}
     },
     {icon:"bi-search",name:"Suche" ,
-      onItemClick: ()=>{this.offcanvasService.dismiss(); this.searchService.onSearch();}
+      onItemClick: ()=>{this.offcanvasService.dismiss(); this.navigationService.navigateSearchPage();}
     },
     {icon:"bi-chat-dots",name:"Nachricht",onItemClick:()=>{}},
     {icon:"bi-star",name:"Favoriten" ,onItemClick:()=>{}},
@@ -38,13 +40,14 @@ export class AppbarSmComponent {
 
   search:string="s";
   @ViewChild('template', { static: true })  template:any;
-
+  @Input() categories!:Category[];
   constructor(public searchService:SearchService
               , public viewContainerRef:ViewContainerRef,
               public citiesService : CitiesService,
               public categoryService : CategoryService,
               public router : Router ,
-              public offcanvasService:NgbOffcanvas) {
+              public offcanvasService:NgbOffcanvas,
+              public navigationService:NavigationService) {
   }
 
   ngOnInit(){

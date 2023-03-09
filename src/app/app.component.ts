@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {CitiesService, City} from "./cities.service";
-import {CategoryService} from "./category.service";
+import {CitiesService} from "./cities.service";
+import { CategoryService} from "./category.service";
 import {SearchService} from "./search.service";
 import {ActivatedRoute, Route, Router} from "@angular/router";
+import {NavigationService} from "./navigation.service";
+import {Category} from "./typing";
 
 @Component({
   selector: 'app-root',
@@ -11,32 +13,20 @@ import {ActivatedRoute, Route, Router} from "@angular/router";
 })
 export class AppComponent {
   title = 'ebay-kleineanzeigen';
-
+  categories : Category[] = []
   constructor(private citiesService:CitiesService ,private categoryService:CategoryService,
-            private searchService:SearchService,private route :ActivatedRoute) {
+            private searchService:SearchService,private route :ActivatedRoute,
+              public navigationService:NavigationService) {
   }
 
 
 
   ngOnInit(){
+    this.categoryService.getCategories().subscribe(g_list => {
+      this.categories = g_list
+    })
 
-    this.route.queryParams.subscribe(params => {
-      if(!params["city"])
-        return
-      this.searchService.activeSearch = params["text"]
-      this.categoryService.setActiveCategoryByCode(params['category'])
-      let city: City = {name: params["city"].split(":")[0], code: params["city"].split(":")[1]}
-      this.citiesService.setActiveCity(city)
-      this.searchService.activeRange = params["city"].split(":")[2]
-      this.searchService.preisFrom = params['preis'].split(":")[0]
-      this.searchService.preisTo = params['preis'].split(":")[1]
-      this.searchService.anbieter = params['anbieter']
-      this.searchService.paketdienst = params['paketdienst']
-      this.searchService.anzeige = params['anzeige']
-      this.searchService.direktKaufen = params['direktKaufen']
-      this.searchService.isLoaded = true
 
-    });
 
   }
 

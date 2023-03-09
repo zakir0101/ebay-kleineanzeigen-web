@@ -41,7 +41,7 @@
         <div class="input-group input-group-sm flex-grow-1 ">
           <input type="text" [(ngModel)]="searchService.activeSearch" class="form-control   ">
           <span class="input-group-text cursor-pointer"
-              (click)="searchService.onSearch()">
+              (click)="navigationService.navigateSearchPage()">
             <i class="bi-search" ></i>
           </span>
         </div>
@@ -83,7 +83,7 @@
           <i class="bi-arrow-down-short"></i>
         </button>
 
-        <app-search-filter-sm></app-search-filter-sm>
+        <app-search-filter-sm [categories]="categories" ></app-search-filter-sm>
       </div>
     </div>
   </div>

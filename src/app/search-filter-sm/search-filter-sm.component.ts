@@ -1,10 +1,12 @@
 import {Component, ElementRef, Input, ViewChild, ViewContainerRef} from '@angular/core';
 import {SearchService} from "../search.service";
-import {CitiesService, City} from "../cities.service";
-import {allCategories, Category, CategoryService} from "../category.service";
+import {CitiesService} from "../cities.service";
+import {allCategories, CategoryService} from "../category.service";
 import {Router} from "@angular/router";
 import {debounceTime, distinctUntilChanged, Observable, OperatorFunction, switchMap} from "rxjs";
 import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
+import {Category, City} from "../typing";
+import {NavigationService} from "../navigation.service";
 
 declare var bootstrap: any;
 
@@ -25,7 +27,7 @@ export class SearchFilterSmComponent {
   bootstrapFilterCity: any;
   bootstrapFilterPries: any;
 
-  categories: Category[] = [];
+  @Input() categories!: Category[] ;
   activeCategory: Category = allCategories;
   public parentCategory: Category = allCategories;
   direktKaufen: boolean = this.searchService.direktKaufen === 'aktive'
@@ -40,7 +42,7 @@ export class SearchFilterSmComponent {
   constructor(public searchService: SearchService,
               public citiesService: CitiesService,
               public categoryService: CategoryService,
-              public router: Router) {
+              public router: Router ,public navigationService:NavigationService) {
   }
 
   ngAfterViewInit() {
@@ -75,14 +77,13 @@ export class SearchFilterSmComponent {
 
   loadCities() {
 
-    this.categoryService.getCategories().subscribe(cs => {
       if (allCategories.code === this.categoryService.activeCategory.code) {
         this.parentCategory = allCategories;
         this.activeCategory = allCategories
-        this.categories = cs
+        this.categories = this.categories
         return;
       }
-      for (const cat of cs) {
+      for (const cat of this.categories) {
         if (cat.code === this.categoryService.activeCategory.code) {
           this.categories = cat.children;
           this.parentCategory = cat;
@@ -98,7 +99,7 @@ export class SearchFilterSmComponent {
           }
         }
       }
-    })
+
 
 
   }
@@ -151,7 +152,7 @@ export class SearchFilterSmComponent {
       }
     } else {
       this.categoryService.activeCategory = cat
-      this.searchService.onUpdate()
+      this.navigationService.refreshSearchPage()
       this.bootstrapFilterCategory.hide()
       this.bootstrapFilterMenu.show()
     }
@@ -209,7 +210,6 @@ export class SearchFilterSmComponent {
             return []
           else {
             return this.citiesService.getCities(term).pipe()
-
           }
         }
       ),
@@ -224,27 +224,27 @@ export class SearchFilterSmComponent {
   paketdienstOnChange(event: any) {
     if (event.target) {
       this.searchService.paketdienst = event.target.value;
-      this.searchService.onUpdate()
+      // this.navigationService.refreshSearchPage()
     }
   }
 
   anbieterOnChange(event: any) {
     if (event.target) {
       this.searchService.anbieter = event.target.value;
-      this.searchService.onUpdate()
+      // this.navigationService.refreshSearchPage()
     }
   }
 
   angebotOnChange(event: any) {
     if (event.target) {
       this.searchService.anzeige = event.target.value;
-      this.searchService.onUpdate()
+      // this.navigationService.refreshSearchPage()
     }
   }
 
   onCityChange(event: NgbTypeaheadSelectItemEvent<City>) {
     this.citiesService.activeCity = event.item
-    this.searchService.onUpdate()
+    this.navigationService.refreshSearchPage()
 
   }
 

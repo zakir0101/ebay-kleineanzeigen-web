@@ -2,6 +2,7 @@
 :root{
   --ebay-color : #86b817;
   --ebay-bg-color : #f4f4f4;
+  --ebay-darker : #3e8d11;
 }
 .offcanvas.offcanvas-start{
   width:16rem !important;
@@ -33,7 +34,7 @@ html, body {
   box-shadow: none !important;
 }
 .text-ebay-darker {
-  color: #52b817;
+  color: var(--ebay-darker);
 }
 
 .bg-ebay {
@@ -123,6 +124,10 @@ html, body {
 
 .text-hover-ebay:hover {
   color: var(--ebay-color) !important;
+}
+
+.bg-hover-ebay-darker:hover {
+  background-color: var(--ebay-darker) !important;
 }
 
 .mw-50 {

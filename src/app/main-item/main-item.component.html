@@ -1,0 +1,31 @@
+<div #con
+  class="bg-white position-relative    flex-column gap-1 "
+  (mouseover)="con.classList.add('shadow')"
+  (mouseleave)="con.classList.remove('shadow')"
+     (click)="addService.add_link=item.url_link ; navigationService.navigateAddPage()"
+    [class.p-2]="galerie"
+>
+  <div *ngIf="item.price"
+       class="position-absolute lh-sm small text-white shadow translate-middle-y end-0 px-2 py-1 bg-ebay"
+       style="top: 50%!important;z-index: 3; right: -3px!important;">
+    <span>{{item.price}}</span>
+  </div>
+  <div *ngIf="!item.image_link"
+       class="w-100 bg-light opacity-75 d-flex align-items-center justify-content-center"
+       style="height: 6rem;">
+    <i class="bi-mortarboard-fill  display-3 text-ebay"></i>
+  </div>
+  <div *ngIf="item.image_link" class="w-100   d-flex align-items-center justify-content-center"
+       style="height: 7rem;">
+    <img [src]="item.image_link" class="w-100 h-100" alt="">
+  </div>
+  <div class="d-flex flex-column gap-1 align-items-start" [class.p-2]="!galerie">
+                      <span class="fs-6 text-black" style="font-size: 14px!important;">
+                          {{item.title.length > 14 ? item.title.slice(0, 14) + "..." : item.title}}
+                      </span>
+    <span class="fw-bold text-black-50" style="font-size: 12px">
+                          {{item.location.length > 20 ? item.location.slice(0, 20) + "..." : item.location}}
+
+                    </span>
+  </div>
+</div>

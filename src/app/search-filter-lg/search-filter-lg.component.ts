@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import {allCategories, Category, CategoryService} from "../category.service";
+import {allCategories, CategoryService} from "../category.service";
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {from, of} from "rxjs";
 import {SearchService} from "../search.service";
-import {CitiesService, City} from "../cities.service";
+import {CitiesService} from "../cities.service";
+import {Category, City} from "../typing";
+import {NavigationService} from "../navigation.service";
 
 
 @Component({
@@ -23,7 +25,8 @@ export class SearchFilterLgComponent {
   constructor (public categoryService:CategoryService,
                public router:Router,
                 public searchService:SearchService,
-               public citiesService :CitiesService) {
+               public citiesService :CitiesService,
+               public navigationService:NavigationService) {
   }
   logger = (s:any) => console.log(s)
 

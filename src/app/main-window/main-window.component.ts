@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {MainItem, MainService} from "../main.service";
+import { MainService} from "../main.service";
+import {CategoryService} from "../category.service";
+import {Category, MainItem} from "../typing";
 
 @Component({
   selector: 'app-main-window',
@@ -11,21 +13,20 @@ export class MainWindowComponent {
   galereis : MainItem[] = []
   mainItems :MainItem[] = []
   mainCount : number  = 40
-  constructor(public mainService:MainService) {
+  categories: Category[] = []
+  constructor(public mainService:MainService ,public categoryService:CategoryService) {
   }
 
   ngOnInit(){
 
 
-    this.mainService.getGalerie().subscribe(g_list => {
-      this.galereis=g_list })
+    this.mainService.getMain().subscribe(m_page => {
+      this.galereis=m_page.galerie
+      this.mainItems=m_page.main
+    })
 
-    this.mainService.getMain().subscribe(m_list => {
-      this.mainItems=m_list })
-
-    // for (let i = 0; i <= 50; i++) {
-    //   this.list.push(i);
-    // }
+    this.categoryService.getCategories().subscribe(m_list => {
+      this.categories=m_list })
 
   }
 
