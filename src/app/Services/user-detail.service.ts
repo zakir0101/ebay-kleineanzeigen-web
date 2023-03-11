@@ -10,6 +10,7 @@ export class UserDetailService {
   userLink: string = ""
   empty_user: User = {
     user_name: "",
+    user_logo:"",
     user_link: "",
     rating: "",
     friendliness: "",

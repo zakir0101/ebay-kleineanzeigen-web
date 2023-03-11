@@ -1,0 +1,25 @@
+<ngb-carousel class="w-100">
+  <ng-template *ngFor="let img_url of imagesUrl;index as i" class="w-100" ngbSlide>
+    <div id="img_con"
+         class="w-auto text-center bg-light-darker position-relative" style="height: 481px;">
+      <img [src]='img_url.image_url' style="z-index: 0!important;"
+           class="h-100 w-100 mx-auto position-absolute top-0 start-0 opacity-25"
+      >
+
+      <img [src]='img_url.image_url'
+           class="h-100 w-auto mx-auto position-relative" style="z-index: 2!important;"
+      >
+    </div>
+  </ng-template>
+
+</ngb-carousel>
+
+<div *ngIf="imagesUrl.length === 0" class="w-100 h-100">
+
+  <div
+    class="w-auto text-center bg-light-darker d-flex justify-content-center align-items-center position-relative" style="height: 481px;">
+    <i class="bi-mortarboard-fill display-1 text-ebay"></i>
+  </div>
+
+
+</div>

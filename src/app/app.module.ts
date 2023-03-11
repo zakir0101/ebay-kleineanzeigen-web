@@ -21,11 +21,13 @@ import { MainItemComponent } from './main-window-components/main-item/main-item.
 import { MainItemPlaceholderComponent } from './main-window-components/main-item-placeholder/main-item-placeholder.component';
 import { MainCategoriesLgComponent } from './main-window-components/main-categories-lg/main-categories-lg.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
-import { AddDetailComponent } from './add-detail/add-detail.component';
+import { AddWindowComponent } from './add-window/add-window.component'
 import { SearchItemComponent } from './search-window-components/search-item/search-item.component';
 import { CityRangeDropdownComponent } from './appbar-components/city-range-dropdown/city-range-dropdown.component';
 import {CategoryDropdownComponent} from "./appbar-components/category-dropdown/category-dropdown.component";
 import {CityTypeaheadComponent} from "./appbar-components/city-typeahead/city-typeahead.component";
+import { AddWindowImagesComponent } from './add-window-images/add-window-images.component';
+import { AddWindowUserComponent } from './add-window-user/add-window-user.component';
 
 
 @NgModule({
@@ -43,11 +45,13 @@ import {CityTypeaheadComponent} from "./appbar-components/city-typeahead/city-ty
     MainItemPlaceholderComponent,
     MainCategoriesLgComponent,
     UserDetailComponent,
-    AddDetailComponent,
+    AddWindowComponent,
     SearchItemComponent,
     CityRangeDropdownComponent,
     CategoryDropdownComponent,
-    CityTypeaheadComponent
+    CityTypeaheadComponent,
+    AddWindowImagesComponent,
+    AddWindowUserComponent
   ],
   imports: [
     BrowserModule,

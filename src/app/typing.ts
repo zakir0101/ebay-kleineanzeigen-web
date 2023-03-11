@@ -21,7 +21,7 @@ interface UserPage{
 
 
 interface AddPage {
-  images_url: string[],
+  images_url: ImageUrl[],
   title: string,
   price: string,
   shipping:string,
@@ -36,7 +36,9 @@ interface AddPage {
   ad_id: string
 }
 
-
+interface ImageUrl{
+  image_url:string
+}
 
 
 interface SearchResults {
@@ -87,6 +89,7 @@ interface Category {
 
 interface User{
   user_name: string,
+  user_logo:string,
   user_link: string,
   rating: string,
   friendliness: string,
@@ -102,4 +105,4 @@ interface User{
 
 
 
-export {SearchResults,SearchPage, UserPage,MainPage ,MainItem, Cookie ,City,Category,User,AddPage}
+export {SearchResults,SearchPage, UserPage,MainPage ,MainItem, Cookie ,City,Category,User,AddPage,ImageUrl}

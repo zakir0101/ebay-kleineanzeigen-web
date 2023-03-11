@@ -1,0 +1,60 @@
+<div class="container-fluid px-0   bg-ebay-background " style="height: 1000px;">
+  <div class="container-lg px-0 px-sm2 px-lg-3 px-xl-5    ">
+    <div class="row gx-3 gy-3 mt-0 justify-content-center pt-3">
+      <div class="col-12 col-sm-10 col-lg-8">
+        <div class="d-flex flex-column  ">
+          <app-add-window-images [imagesUrl]="imagesUrl"></app-add-window-images>
+          <div *ngIf="addPage" class="bg-white d-flex p-3 flex-column gap-1 mt-0 mt-md-3">
+            <h4  class="text-black-50" style="word-break: break-word">{{addPage.title}}</h4>
+            <h5 class="text-ebay">{{addPage.price}}</h5>
+            <div class="text-black-50 small fw-500">
+              <i class="bi-geo-alt"></i>
+              <span>  {{addPage.location}}</span>
+            </div>
+            <div class="text-black-50 d-flex gap-2 small fw-500">
+              <i class="bi-calendar"></i>
+              <span> {{addPage.location}}</span>
+              <i class="bi-eye "></i>
+              <span> {{addPage.views}}</span>
+            </div>
+          </div>
+
+          <div class="bg-white d-flex flex-column p-3 gap-2  mt-3 mt-md-3">
+            <span class="fw-500 fs-5  ">Beschreibung</span>
+            <div class="bg-black-25 w-100" style="height: 0.5px;"></div>
+            <p *ngIf="addPage" class="text-black-50  mt-2" style="word-break: break-word;">{{addPage.description}}</p>
+            <div *ngIf="!addPage" class="placeholder-glow text-black-50 gx-2 gap-2 justify-content-center text-center">
+              <div class="placeholder col-4"></div>
+              <div class="placeholder ms-1 col-7"></div>
+              <div class="placeholder col-6"></div>
+              <div class="placeholder ms-1 col-5"></div>
+              <div class="placeholder col-4"></div>
+              <div class="placeholder ms-1 col-7"></div>
+              <div class="placeholder col-6"></div>
+              <div class="placeholder ms-1 col-5"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="d-flex flex-column gap-3 px-2">
+          <button
+            class="btn btn-success py-2  btn-lg bg-ebay bg-hover-ebay-darker   d-flex align-items-center gap-2 justify-content-center">
+            <i class="bi-chat-left-text-fill "></i>
+            <span class="fs-13-px fw-500">Nachricht schreiben</span>
+          </button>
+          <button class="btn  btn-lg py-2  btn-light bg-white   d-flex align-items-center gap-2 justify-content-center">
+            <i class="bi-star"></i>
+            <span class="fs-13-px fw-500">zu Merkliste hinzufügen</span>
+          </button>
+          <button class="btn btn-lg py-2   btn-light bg-white  d-flex align-items-center gap-2 justify-content-center">
+            <i class="bi-upload"></i>
+            <span class="fs-13-px fw-500">Anzeige Teilen</span>
+          </button>
+
+          <app-add-window-user [user]="user"></app-add-window-user>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

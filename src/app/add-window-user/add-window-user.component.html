@@ -1,0 +1,50 @@
+<div class="p-3 bg-white d-flex flex-column gap-2 ">
+  <div class="d-flex gap-2 w-100 align-items-center align-items-md-start justify-content-center justify-content-md-start">
+    <div
+      class="d-flex justify-content-center p-5 p-md-2 align-items-center badge bg-secondary text-white rounded-circle"
+         style="width: 3rem;height: 3rem;">
+      <span *ngIf="user" class="fs-3 fs-md-5 fw-500">{{user?.user_name?.charAt(0)}}</span>
+      <span *ngIf="!user" class="fs-3 fs-md-5 fw-500">?</span>
+    </div>
+    <div class="d-flex flex-column gap-2 ">
+
+      <div *ngIf="user" class="d-flex flex-column gap-2 ">
+                  <span class="small lh-1 cursor-pointer fw-500 text-ebay text-decoration-hover-underline"
+                        (click)="this.userService.userLink=user.user_link;navigationService.navigateUserPage()"
+                  >{{user?.user_name}}</span>
+
+                  <span *ngIf="user.rating" class="small fw-500 d-flex align-items-center gap-2 lh-1 text-black-50">
+                      <i class="bi-emoji-smile-fill fs-6 lh-1 text-warning  " style="color: yellow;"></i>
+                      <span class="">{{user.rating}}</span>
+                  </span>
+                <span *ngIf="user.friendliness" class="small fw-500 d-flex align-items-center gap-2 lh-1 text-black-50">
+                      <i class="bi-chat-dots fs-6 lh-1 text-warning  " style="color: yellow;"></i>
+                      <span class="">{{user.friendliness}}</span>
+                  </span>
+        <span *ngIf="user.reliability" class="small fw-500 d-flex align-items-center gap-2 lh-1 text-black-50">
+                      <i class="bi-check-circle fs-6 lh-1 text-warning  " style="color: yellow;"></i>
+                      <span class="">{{user.reliability}}</span>
+                  </span>
+        <span class="small fw-500 lh-1 text-black-50">{{user?.user_type}}</span>
+        <span class="small fw-500 lh-1 text-black-50">{{user?.active_since}}</span>
+      </div>
+      <div *ngIf="!user" class="d-flex flex-column gap-2  placeholder-glow w-100">
+        <div class="fs-13-px fw-500 text-ebay  placeholder col-4"
+        ></div>
+
+        <div class="small fw-500 text-black-50 placeholder col-6"></div>
+        <div class="small fw-500 text-black-50 placeholder col-8"></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="w-100 bg-black-25" style="height: 0.5px;"></div>
+  <div class="d-flex justify-content-around justify-content-md-between placeholder-glow align-items-center">
+    <span *ngIf="user" class="text-ebay fs-13-px fw-500 ">{{user.user_ad_number}}</span>
+    <span *ngIf="!user" class="text-ebay fs-13-px fw-500 w-25 placeholder lh-1 col-12"></span>
+    <button class="btn btn-outline-success btn-sm bg-hover-light ">
+      <i class="bi-person-add text-ebay small me-2"></i>
+      <span class="fs-12-px fw-bold text-ebay small">Folgen</span>
+    </button>
+  </div>
+</div>

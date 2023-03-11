@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid p-0">
   <div class="row gx-2 gx-md-3">
     <div class="col-4 cursor-pointer" (click)="onItemClick(item)">
       <img *ngIf="item.image_url" class="bg-dark flex-shrink-0  w-100 h-100 h-md-auto"
@@ -11,20 +11,28 @@
       </div>
     </div>
     <div class="col-8">
-      <div class="d-flex flex-column gap-0 ">
-        <div class="d-flex gap-2 text-black-50 small">
+      <div class="d-flex flex-column gap-2 h-100 ">
+        <div class="d-flex gap-2 text-black-50 small align-items-center">
           <i class="bi-geo-alt text-black-50"></i>
           <span class="small">{{item.location.slice(0, 18)}}</span>
-          <i class="bi-calendar  ms-auto"></i>
-          <span class="small">16.12.1996</span>
+          <i *ngIf="item.date" class="bi-calendar  ms-auto"></i>
+          <span class="small">{{item.date}}</span>
         </div>
-        <div class="fs-13-px fs-md-5 fw-md-bold lh-1 pb-1 pb-lg-2 cursor-pointer text-decoration-hover-underline"
+        <div class="fs-13-px fs-md-5 fw-md-bold lh-1 pb-1 pb-lg-2 cursor-pointer  text-decoration-hover-underline"
              style="word-wrap: break-word"
              (click)="onItemClick(item)"
-        >{{item.title.length > 60 ? item.title.slice(0, 60) + '..' : item.title}}</div>
-        <p class="d-none d-md-block text-black-50 pb-0 mb-0 small">{{item.description}}</p>
-        <div class="text-ebay fs-13-px fs-md-5   fw-md-bold"
-        >{{item.price}}</div>
+        >{{item.title.length > 38 ? item.title.slice(0, 38) + '..' : item.title}}</div>
+        <span class="d-none d-md-block text-black-50 lh-1  small">{{item.description}}</span>
+        <div class="d-flex gap-2 mt-auto  align-items-center">
+          <div class="text-ebay fs-13-px fs-md-5   fw-md-bold"
+          >{{item.price}}</div>
+          <span class="d-none d-md-block text-black-50 pb-0 mb-0 small">{{item.shipping}}</span>
+        </div>
+        <div>
+        <span  [class.bg-transparent]="!item.direkt_kaufen"
+          class="d-none d-md-block fs-12-px fw-normal text-dark badge rounded-pill bg-ebay-background ">
+          {{item.direkt_kaufen}}</span>
+        </div>
       </div>
     </div>
   </div>

@@ -3,19 +3,20 @@ import {AddService} from "../Services/add.service";
 import {Navigation} from "@angular/router";
 import {NavigationService} from "../Services/navigation.service";
 import {filter, map, tap} from "rxjs";
-import {AddPage, SearchResults, User} from "../typing";
+import {AddPage, ImageUrl, SearchResults, User} from "../typing";
 import {UserDetailService} from "../Services/user-detail.service";
 
 @Component({
-  selector: 'app-add-detail',
-  templateUrl: './add-detail.component.html',
-  styleUrls: ['./add-detail.component.css']
+  selector: 'app-add-window',
+  templateUrl: './add-window.component.html',
+  styleUrls: ['./add-window.component.css']
 })
-export class AddDetailComponent {
-  addPage: AddPage | undefined = undefined
+export class AddWindowComponent {
+  addPage: AddPage | null = null
   otherAdd: SearchResults[] = []
   similarAdd: SearchResults[] = []
   user : User | null = null
+  imagesUrl : ImageUrl[] = []
 
   constructor(public addService: AddService, public navigationService: NavigationService,
               public userService:UserDetailService) {
@@ -30,6 +31,8 @@ export class AddDetailComponent {
       this.addPage = addPage
       this.otherAdd = addPage.other_add_by_user
       this.similarAdd = addPage.other_add_similar
+      this.imagesUrl = addPage.images_url
+      console.log(this.imagesUrl)
     }))
   }
 
