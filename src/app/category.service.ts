@@ -58,6 +58,10 @@ export class CategoryService {
 
 
   setActiveCategoryByCode(code:string){
+    if ( code === allCategories.code){
+      this.activeCategory = allCategories;
+      return
+    }
     this.getCategories().subscribe(cs => {
       for (const c of cs) {
         if(c.code === code ){

@@ -1,1 +1,7 @@
 <p>user-detail works!</p>
+<h2 *ngIf="user">{{user.user_name}}</h2>
+<p>add length {{userAdds.length}}</p>
+
+<ul>
+  <li *ngFor="let add of userAdds">{{add.title}}</li>
+</ul>
