@@ -1,0 +1,24 @@
+<div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+  <button class="btn btn-light btn-sm rounded-0 rounded-end  bg-ebay-background  "
+          type="button" ngbDropdownToggle
+          style="width: 7.5rem;">
+
+    {{categoryService.getActiveCategory().name.slice(0, 14)}}</button>
+  <ul class="bg-ebay-background " ngbDropdownMenu
+  >
+    <li class="ps-2 small text-black-50">
+      <a (click)="categoryService.setActiveCategory( all_categories);navigationService.refreshSearchPage()"
+         class="" ngbDropdownItem>{{all_categories.name}}</a>
+    </li>
+    <li *ngFor="let kat of categories" class="ps-2 small text-black-50">
+      <a (click)="categoryService.setActiveCategory( kat); navigationService.refreshSearchPage()"
+         class="dropdown-item cursor-pointer">{{kat.name}}</a>
+      <ul *ngIf="kat.children.length>0" class="submenu dropdown-menu bg-ebay-background">
+        <li *ngFor="let kat2 of kat.children" class="ps-2 small text-black-50">
+          <a (click)="categoryService.setActiveCategory( kat2 );navigationService.refreshSearchPage()"
+             class="dropdown-item">{{kat2.name}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

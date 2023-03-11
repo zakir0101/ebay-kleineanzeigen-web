@@ -1,0 +1,20 @@
+<div class="d-inline-block " ngbDropdown>
+  <button class="btn btn-light  btn-sm rounded-0 rounded-end  bg-ebay-background " ngbDropdownToggle
+          type="button" style="width: 7rem;"
+          #btn1 [ngClass]="{'text-black-50 opacity-100':btn1.disabled}"
+          [disabled]="citiesService.activeCity.name && citiesService.activeCity.code===citiesService.deutschland.code"
+          data-bs-toggle="dropdown" aria-expanded="false">
+    {{!searchService.activeRange ? 'Ganzer Ort' : "+ " + searchService.activeRange + " km" }}
+  </button>
+  <ul class="bg-ebay-background " ngbDropdownMenu
+  >
+    <li class="ps-2 small text-black-50">
+      <a (click)="searchService.activeRange='';navigationService.refreshSearchPage()"
+         class="" ngbDropdownItem>Ganzer Ort</a>
+    </li>
+    <li *ngFor="let range of ranges" class="ps-2 small text-black-50">
+      <a (click)="searchService.activeRange=range;navigationService.refreshSearchPage()"
+         class="" ngbDropdownItem>{{"+ " + range + " km"}}</a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,13 @@
+<ng-template #template>
+
+  <input id="typeahead-basic" type="text" class="form-control"
+         style="width: 10rem;"
+         [(ngModel)]="citiesService.activeCity"
+         [defaultValue]="citiesService.deutschland"
+         (change)="logger(citiesService.activeCity.name)"
+         (selectItem)="navigationService.refreshSearchPage()"
+         [class.is-invalid]="searchFailed"
+         [resultFormatter]="inputFormatter" [inputFormatter]="outputFormatter"
+         [ngbTypeahead]="search"/>
+
+</ng-template>
