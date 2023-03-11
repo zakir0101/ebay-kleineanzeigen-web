@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 
 import {ModeService} from "./mode.service";
-import {City} from "./typing";
+import {City} from "../typing";
 
 
 @Injectable({

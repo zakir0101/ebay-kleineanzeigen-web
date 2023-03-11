@@ -4,7 +4,7 @@ import {CitiesService} from "./cities.service";
 import {allCategories, CategoryService} from "./category.service";
 import {Router} from "@angular/router";
 import {ModeService} from "./mode.service";
-import {SearchPage} from "./typing";
+import {SearchPage} from "../typing";
 
 
 @Injectable({

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ModeService} from "./mode.service";
-import {Cookie} from "./typing";
+import {Cookie} from "../typing";
 
 
 @Injectable({

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { SearchService} from "../search.service";
+import { SearchService} from "../Services/search.service";
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {SearchResults} from "../typing";
-import {NavigationService} from "../navigation.service";
+import {NavigationService} from "../Services/navigation.service";
 
 
 

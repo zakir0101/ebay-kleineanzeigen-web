@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {AddService} from "../add.service";
+import {AddService} from "../Services/add.service";
 import {Navigation} from "@angular/router";
-import {NavigationService} from "../navigation.service";
+import {NavigationService} from "../Services/navigation.service";
 import {filter, map, tap} from "rxjs";
 import {AddPage, SearchResults, User} from "../typing";
-import {UserDetailService} from "../user-detail.service";
+import {UserDetailService} from "../Services/user-detail.service";
 
 @Component({
   selector: 'app-add-detail',

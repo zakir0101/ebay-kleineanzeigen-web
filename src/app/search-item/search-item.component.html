@@ -1,1 +1,31 @@
-<p>search-item works!</p>
+<div class="container-fluid">
+  <div class="row gx-2 gx-md-3">
+    <div class="col-4 cursor-pointer" (click)="onItemClick(item)">
+      <img *ngIf="item.image_url" class="bg-dark flex-shrink-0  w-100 h-100 h-md-auto"
+           [src]="item.image_url" alt="" style="aspect-ratio: 4/3;"
+      >
+      <div *ngIf="!item.image_url" style="aspect-ratio: 4/3;"
+           class="w-100 bg-light opacity-75 w-100 h-100 h-md-auto d-flex align-items-center justify-content-center"
+      >
+        <i class="bi-mortarboard-fill  display-3 text-ebay"></i>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="d-flex flex-column gap-0 ">
+        <div class="d-flex gap-2 text-black-50 small">
+          <i class="bi-geo-alt text-black-50"></i>
+          <span class="small">{{item.location.slice(0, 18)}}</span>
+          <i class="bi-calendar  ms-auto"></i>
+          <span class="small">16.12.1996</span>
+        </div>
+        <div class="fs-13-px fs-md-5 fw-md-bold lh-1 pb-1 pb-lg-2 cursor-pointer text-decoration-hover-underline"
+             style="word-wrap: break-word"
+             (click)="onItemClick(item)"
+        >{{item.title.length > 60 ? item.title.slice(0, 60) + '..' : item.title}}</div>
+        <p class="d-none d-md-block text-black-50 pb-0 mb-0 small">{{item.description}}</p>
+        <div class="text-ebay fs-13-px fs-md-5   fw-md-bold"
+        >{{item.price}}</div>
+      </div>
+    </div>
+  </div>
+</div>

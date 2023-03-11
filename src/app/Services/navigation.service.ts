@@ -4,7 +4,7 @@ import {CitiesService} from "./cities.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ModeService} from "./mode.service";
 import {SearchService} from "./search.service";
-import {City, UserPage} from "./typing";
+import {City, UserPage} from "../typing";
 import {AddService} from "./add.service";
 import {UserDetailService} from "./user-detail.service";
 import {filter, map, Observable, tap} from "rxjs";
@@ -126,7 +126,7 @@ export class NavigationService {
 
   navigateUserPage() {
     this.router.navigate(
-      ['/add'],
+      ['/user'],
       {
         queryParams: {
           userLink: this.userService.userLink

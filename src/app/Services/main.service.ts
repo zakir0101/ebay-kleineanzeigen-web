@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import makeFetchCookie from 'fetch-cookie'
 import {ModeService} from "./mode.service";
-import {MainPage} from "./typing";
+import {MainPage} from "../typing";
 
 
 @Injectable({

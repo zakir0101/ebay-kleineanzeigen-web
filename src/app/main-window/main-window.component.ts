@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MainService} from "../main.service";
-import {CategoryService} from "../category.service";
+import { MainService} from "../Services/main.service";
+import {CategoryService} from "../Services/category.service";
 import {Category, MainItem} from "../typing";
 
 @Component({

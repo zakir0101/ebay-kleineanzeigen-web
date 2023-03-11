@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {allCategories, CategoryService} from "../category.service";
+import {allCategories, CategoryService} from "../Services/category.service";
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {from, of} from "rxjs";
-import {SearchService} from "../search.service";
-import {CitiesService} from "../cities.service";
+import {SearchService} from "../Services/search.service";
+import {CitiesService} from "../Services/cities.service";
 import {Category, City} from "../typing";
-import {NavigationService} from "../navigation.service";
+import {NavigationService} from "../Services/navigation.service";
 
 
 @Component({

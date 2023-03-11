@@ -3,7 +3,7 @@ import {Observable, of} from 'rxjs';
 import {Router} from "@angular/router";
 import {CitiesService} from "./cities.service";
 import {ModeService} from "./mode.service";
-import {Category} from "./typing";
+import {Category} from "../typing";
 
 let allCategories:Category = {name:"alle Kategorien" ,
   url_link :"https://www.ebay-kleinanzeigen.de/s-suchen.html",

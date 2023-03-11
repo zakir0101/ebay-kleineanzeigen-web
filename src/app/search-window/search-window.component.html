@@ -11,33 +11,7 @@
 
             <div *ngFor="let res of searchResults"
                  class="container-fluid p-0 p-md-3 bg-white border-top border-bottom border-1  ">
-              <div class="row gx-2 gx-md-3">
-                <div class="col-4">
-                  <img *ngIf="res.image_url" class="bg-dark flex-shrink-0  w-100 h-100 h-md-auto"
-                       [src]="res.image_url" alt="" style="aspect-ratio: 4/3;"
-                  >
-                  <div *ngIf="!res.image_url"
-                       class="w-100 bg-light opacity-75 w-100 h-100 h-md-auto d-flex align-items-center justify-content-center"
-                  >
-                    <i class="bi-mortarboard-fill  display-3 text-ebay"></i>
-                  </div>
-                </div>
-                <div class="col-8">
-                  <div class="d-flex flex-column gap-0 ">
-                    <div class="d-flex gap-2 text-black-50 small">
-                      <i class="bi-geo-alt text-black-50"></i>
-                      <span class="small">{{res.location.slice(0,18)}}</span>
-                      <i class="bi-calendar  ms-auto"></i>
-                      <span class="small">16.12.1996</span>
-                    </div>
-                    <div class="fs-13-px fs-md-5 fw-md-bold lh-1 pb-1 pb-lg-2" style="word-wrap: break-word"
-                        >{{res.title.length>60?res.title.slice(0,60)+'..':res.title}}</div>
-                    <p class="d-none d-md-block text-black-50 pb-0 mb-0 small">{{res.description}}</p>
-                    <div class="text-ebay fs-13-px fs-md-5   fw-md-bold"
-                         >{{res.price}}</div>
-                  </div>
-                </div>
-              </div>
+              <app-search-item [item]="res"></app-search-item>
             </div>
 
           </div>

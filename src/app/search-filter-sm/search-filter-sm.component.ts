@@ -1,12 +1,12 @@
 import {Component, ElementRef, Input, ViewChild, ViewContainerRef} from '@angular/core';
-import {SearchService} from "../search.service";
-import {CitiesService} from "../cities.service";
-import {allCategories, CategoryService} from "../category.service";
+import {SearchService} from "../Services/search.service";
+import {CitiesService} from "../Services/cities.service";
+import {allCategories, CategoryService} from "../Services/category.service";
 import {Router} from "@angular/router";
 import {debounceTime, distinctUntilChanged, Observable, OperatorFunction, switchMap} from "rxjs";
 import {NgbTypeaheadSelectItemEvent} from "@ng-bootstrap/ng-bootstrap";
 import {Category, City} from "../typing";
-import {NavigationService} from "../navigation.service";
+import {NavigationService} from "../Services/navigation.service";
 
 declare var bootstrap: any;
 

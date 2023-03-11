@@ -1,16 +1,16 @@
 import {Component, ElementRef, Input, TemplateRef, ViewChild} from '@angular/core';
-import {allCategories, CategoryService} from "../category.service";
+import {allCategories, CategoryService} from "../Services/category.service";
 import {debounceTime, distinctUntilChanged, map, Observable, OperatorFunction, switchMap} from "rxjs";
-import {CitiesService} from "../cities.service";
+import {CitiesService} from "../Services/cities.service";
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
-import {SearchService} from "../search.service";
+import {SearchService} from "../Services/search.service";
 import {NgbDropdownConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {MenuItem} from "../appbar-sm/appbar-sm.component";
-import {LoginService} from "../login.service";
-import {CookiesService} from "../cookies.service";
+import {LoginService} from "../Services/login.service";
+import {CookiesService} from "../Services/cookies.service";
 import {Category, City} from "../typing";
-import {NavigationService} from "../navigation.service";
+import {NavigationService} from "../Services/navigation.service";
 
 @Component({
   selector: 'app-appbar',

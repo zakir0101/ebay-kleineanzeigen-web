@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Navigation} from "@angular/router";
-import {NavigationService} from "../navigation.service";
-import {UserDetailService} from "../user-detail.service";
+import {NavigationService} from "../Services/navigation.service";
+import {UserDetailService} from "../Services/user-detail.service";
 import {map, tap} from "rxjs";
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {SearchResults, User, UserPage} from "../typing";

@@ -1,10 +1,10 @@
 import {Component, EmbeddedViewRef, Input, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
-import {SearchService} from "../search.service";
-import {CitiesService} from "../cities.service";
-import { CategoryService} from "../category.service";
+import {SearchService} from "../Services/search.service";
+import {CitiesService} from "../Services/cities.service";
+import { CategoryService} from "../Services/category.service";
 import {Router} from "@angular/router";
 import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
-import {NavigationService} from "../navigation.service";
+import {NavigationService} from "../Services/navigation.service";
 import {Category} from "../typing";
 
 

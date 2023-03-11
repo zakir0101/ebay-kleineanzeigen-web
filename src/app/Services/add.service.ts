@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {AddPage, UserPage} from "./typing";
+import {AddPage, UserPage} from "../typing";
 import {ModeService} from "./mode.service";
 
 @Injectable({

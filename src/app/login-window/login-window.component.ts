@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output, TemplateRef, ViewChild} from '@angular/core';
-import {LoginService} from "../login.service";
-import { CookiesService} from "../cookies.service";
-import {SearchService} from "../search.service";
+import {LoginService} from "../Services/login.service";
+import { CookiesService} from "../Services/cookies.service";
+import {SearchService} from "../Services/search.service";
 import {Cookie} from "../typing";
 
 
