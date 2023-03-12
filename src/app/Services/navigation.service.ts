@@ -47,6 +47,7 @@ export class NavigationService {
   loadQueryParamForUser(): Observable<string> {
     return this.route.queryParams.pipe(
       map(param => param['userLink']),
+      tap(link => console.log(link)),
       filter(link => link.length > 0)
     )
   }

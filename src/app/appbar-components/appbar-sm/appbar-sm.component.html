@@ -39,9 +39,10 @@
 
 
         <div class="input-group input-group-sm flex-grow-1 ">
-          <input type="text" [(ngModel)]="searchService.activeSearch" class="form-control   ">
+          <input type="text" (keyup.enter)="onSearch()"
+                 [(ngModel)]="searchService.activeSearch" class="form-control   ">
           <span class="input-group-text cursor-pointer"
-              (click)="navigationService.navigateSearchPage()">
+              (click)="onSearch()">
             <i class="bi-search" ></i>
           </span>
         </div>

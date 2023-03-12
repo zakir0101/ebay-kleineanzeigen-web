@@ -29,6 +29,7 @@ import {CityTypeaheadComponent} from "./appbar-components/city-typeahead/city-ty
 import { AddWindowImagesComponent } from './add-window-components/add-window-images/add-window-images.component';
 import { AddWindowUserComponent } from './add-window-components/add-window-user/add-window-user.component';
 import { AddWindowFormComponent } from './add-window-components/add-window-form/add-window-form.component';
+import { SearchItemPlaceholderComponent } from './search-window-components/search-item-placeholder/search-item-placeholder.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { AddWindowFormComponent } from './add-window-components/add-window-form/
     CityTypeaheadComponent,
     AddWindowImagesComponent,
     AddWindowUserComponent,
-    AddWindowFormComponent
+    AddWindowFormComponent,
+    SearchItemPlaceholderComponent
   ],
   imports: [
     BrowserModule,

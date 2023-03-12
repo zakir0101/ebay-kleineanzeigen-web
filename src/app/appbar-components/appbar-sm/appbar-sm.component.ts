@@ -28,7 +28,7 @@ export class AppbarSmComponent {
       onItemClick: ()=>{this.offcanvasService.dismiss(); this.navigationService.navigateHomePage()}
     },
     {icon:"bi-search",name:"Suche" ,
-      onItemClick: ()=>{this.offcanvasService.dismiss(); this.navigationService.navigateSearchPage();}
+      onItemClick: ()=>{this.offcanvasService.dismiss(); this.onSearch();}
     },
     {icon:"bi-chat-dots",name:"Nachricht",onItemClick:()=>{}},
     {icon:"bi-star",name:"Favoriten" ,onItemClick:()=>{}},
@@ -63,6 +63,14 @@ export class AppbarSmComponent {
       return this.citiesService.activeCity.name.slice(0,12)
     else
       return this.citiesService.deutschland.name
+  }
+
+  onSearch() {
+    if(this.router.url.includes("search"))
+      this.navigationService.refreshSearchPage()
+    else {
+      this.navigationService.navigateSearchPage()
+    }
   }
 }
 export {MenuItem}

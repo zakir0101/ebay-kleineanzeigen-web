@@ -7,11 +7,14 @@
           <app-search-filter-lg></app-search-filter-lg>
         </div>
         <div class="col-12 col-sm-10 col-lg-9     ">
-          <div class="d-flex flex-column gap-0 gap-md-3 ">
-
+          <div class="d-flex flex-column gap-0 gap-md-3 " *ngIf="searchResults">
             <app-search-item *ngFor="let res of searchResults"
                              [item]="res"></app-search-item>
 
+          </div>
+          <div class="d-flex flex-column gap-0 gap-md-3 " *ngIf="!searchResults">
+            <app-search-item-placeholder *ngFor="let res of [].constructor(15)"
+                             ></app-search-item-placeholder>
 
           </div>
         </div>

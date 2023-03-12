@@ -12,9 +12,9 @@ import {NavigationService} from "../../Services/navigation.service";
   styleUrls: ['./search-window.component.css']
 })
 export class SearchWindowComponent {
-  searchResults:SearchResults[] = []
+  searchResults:SearchResults[]|null = null
   navigation:number  = 0
-  alternative:SearchResults[] = []
+  alternative:SearchResults[] | null = null
 
   constructor(public searchService:SearchService , private route:ActivatedRoute,
               public navigationService:NavigationService) {

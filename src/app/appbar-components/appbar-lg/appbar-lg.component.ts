@@ -60,7 +60,6 @@ meinsItems2:MenuItem[]=[
     })
 
 
-
     // this.searchService.activeSearch = ""
      }
 
@@ -71,4 +70,13 @@ meinsItems2:MenuItem[]=[
   ngAfterContentInit() {
 
   }
+
+  onSearch() {
+    if(this.router.url.includes("search"))
+      this.navigationService.refreshSearchPage()
+    else {
+      this.navigationService.navigateSearchPage()
+    }
+  }
+
 }
