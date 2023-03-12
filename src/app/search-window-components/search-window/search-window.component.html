@@ -9,10 +9,9 @@
         <div class="col-12 col-sm-10 col-lg-9     ">
           <div class="d-flex flex-column gap-0 gap-md-3 ">
 
-            <div *ngFor="let res of searchResults"
-                 class="container-fluid p-0 p-md-3 bg-white border-top border-bottom border-1  ">
-              <app-search-item [item]="res"></app-search-item>
-            </div>
+            <app-search-item *ngFor="let res of searchResults"
+                             [item]="res"></app-search-item>
+
 
           </div>
         </div>

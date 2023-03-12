@@ -19,5 +19,7 @@ export class SearchItemComponent {
   onItemClick(item:SearchResults) {
     this.addService.add_link = item.url_link
     this.navigationService.navigateAddPage()
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+
   }
 }

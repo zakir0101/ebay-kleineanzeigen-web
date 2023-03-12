@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ImageUrl} from "../typing";
+import {ImageUrl} from "../../typing";
 
 @Component({
   selector: 'app-add-window-images',

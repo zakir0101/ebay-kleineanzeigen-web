@@ -33,7 +33,7 @@ interface AddPage {
   other_add_by_user: SearchResults[],
   other_add_similar: SearchResults[],
   user : User,
-  ad_id: string
+  add_id: string
 }
 
 interface ImageUrl{
