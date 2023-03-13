@@ -5,12 +5,14 @@ import {SearchWindowComponent} from "./search-window-components/search-window/se
 import {RouterModule, Routes} from "@angular/router";
 import {AddWindowComponent} from "./add-window-components/add-window/add-window.component"
 import {UserDetailComponent} from "./user-detail/user-detail.component";
+import {MessagesWinsowComponent} from "./messages-winsow/messages-winsow.component";
 
 const routes: Routes = [
   { path: '', component: MainWindowComponent },
   { path: 'search', component: SearchWindowComponent },
   {path : "add" , component : AddWindowComponent},
   {path : "user" , component : UserDetailComponent},
+  {path : "messages" , component : MessagesWinsowComponent}
 ];
 
 

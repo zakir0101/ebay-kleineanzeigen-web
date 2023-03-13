@@ -22,7 +22,7 @@
               <div #scrollDiv class="row g-2 row-cols-2 row-cols-sm-3 pb-3 row-cols-md-4 flex-nowrap overflow-hidden">
                 <div *ngFor="let item of galereis" class="col">
                   <app-main-item [item]="item" [galerie]="true"></app-main-item>
-                </div>
+                </div>g
                 <div  *nggFor="let item of [].constructor(5)" class="col"
                       [ngClass]="{'p-0 m-0':galereis.length > 0}">
                   <div  ngIf="galereis.length == 0">

@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class LoginService {
   login: boolean = false
-
+  user_id:string = ""
   constructor(private modeService: ModeService) {
   }
 
@@ -39,6 +39,8 @@ export class LoginService {
           if (!data.type) {
             this.login = data.isLogged
             subscriber.next(data.isLogged)
+            this.user_id = data.user_id
+            console.log("user_id = "+this.user_id)
           }
         });
 

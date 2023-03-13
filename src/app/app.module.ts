@@ -30,6 +30,7 @@ import { AddWindowImagesComponent } from './add-window-components/add-window-ima
 import { AddWindowUserComponent } from './add-window-components/add-window-user/add-window-user.component';
 import { AddWindowFormComponent } from './add-window-components/add-window-form/add-window-form.component';
 import { SearchItemPlaceholderComponent } from './search-window-components/search-item-placeholder/search-item-placeholder.component';
+import { MessagesWinsowComponent } from './messages-winsow/messages-winsow.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { SearchItemPlaceholderComponent } from './search-window-components/searc
     AddWindowImagesComponent,
     AddWindowUserComponent,
     AddWindowFormComponent,
-    SearchItemPlaceholderComponent
+    SearchItemPlaceholderComponent,
+    MessagesWinsowComponent
   ],
   imports: [
     BrowserModule,

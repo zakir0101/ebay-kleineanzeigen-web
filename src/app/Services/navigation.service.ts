@@ -8,6 +8,8 @@ import {City, UserPage} from "../typing";
 import {AddService} from "./add.service";
 import {UserDetailService} from "./user-detail.service";
 import {filter, map, Observable, tap} from "rxjs";
+import {MessageService} from "./message.service";
+import {LoginService} from "./login.service";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ export class NavigationService {
     , private citiesService: CitiesService, public searchService: SearchService,
               private router: Router, private modeService: ModeService,
               private route: ActivatedRoute, private addService: AddService,
-              private userService: UserDetailService) {
+              private userService: UserDetailService,private messageService:MessageService,
+              private loginService:LoginService) {
   }
 
   loadQueryParamForSearch(): Observable<Params> {
@@ -47,10 +50,20 @@ export class NavigationService {
   loadQueryParamForUser(): Observable<string> {
     return this.route.queryParams.pipe(
       map(param => param['userLink']),
-      tap(link => console.log(link)),
       filter(link => link.length > 0)
     )
   }
+
+
+  loadQueryParamForMessage(): Observable<Params> {
+    return this.route.queryParams.pipe(
+      filter(param => param['size']),
+      tap(param => this.messageService.size = param['size']),
+      tap(param => this.loginService.user_id = param['user_id']),
+      tap(param => this.messageService.conversation_id = param['conversation_id']),
+    )
+  }
+
 
   loadQueryParamForAdd(): Observable<string> {
     return this.route.queryParams.pipe(
@@ -92,9 +105,7 @@ export class NavigationService {
 
   }
 
-
-  navigateHomePage() {
-
+  clearSearchFilter(){
     this.searchService.activeSearch = ""
     this.categoryService.setActiveCategory(allCategories)
     this.citiesService.setActiveCity(this.citiesService.deutschland)
@@ -107,13 +118,17 @@ export class NavigationService {
     this.searchService.activeRange = ""
     this.searchService.isLoaded = false
 
+  }
 
+  navigateHomePage() {
+    this.clearSearchFilter()
     this.router.navigate(['/'],);
 
   }
 
 
   navigateAddPage() {
+    this.clearSearchFilter()
     this.router.navigate(
       ['/add'],
       {
@@ -126,6 +141,7 @@ export class NavigationService {
 
 
   navigateUserPage() {
+    this.clearSearchFilter()
     this.router.navigate(
       ['/user'],
       {
@@ -136,5 +152,19 @@ export class NavigationService {
 
   }
 
+
+  navigateMessagePage() {
+    this.clearSearchFilter()
+    this.router.navigate(
+      ['/messages'],
+      {
+        queryParams: {
+          user_id: this.loginService.user_id,
+          size : this.messageService.size.toString(),
+          conversation_id : this.messageService.conversation_id
+        }
+      });
+
+  }
 
 }

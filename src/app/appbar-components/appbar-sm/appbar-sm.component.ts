@@ -30,14 +30,15 @@ export class AppbarSmComponent {
     {icon:"bi-search",name:"Suche" ,
       onItemClick: ()=>{this.offcanvasService.dismiss(); this.onSearch();}
     },
-    {icon:"bi-chat-dots",name:"Nachricht",onItemClick:()=>{}},
+    {icon:"bi-chat-dots",name:"Nachricht",
+      onItemClick:()=>{this.offcanvasService.dismiss(); this.onNavigateMessagePage()}},
     {icon:"bi-star",name:"Favoriten" ,onItemClick:()=>{}},
     {icon:"bi-plus",name:"Anzeige aufgeben" ,onItemClick:()=>{}},
     {icon:"bi-person",name:"meine Anzeigen" ,onItemClick:()=>{}},
     {icon:"bi-gear-fill",name:"Einstellung" ,onItemClick:()=>{}},
     {icon:"bi-question-circle",name:"Hilfe" ,onItemClick:()=>{}},
   ]
-
+  @Input() login !: boolean
   search:string="s";
   @ViewChild('template', { static: true })  template:any;
   @Input() categories!:Category[];
@@ -54,6 +55,10 @@ export class AppbarSmComponent {
     this.viewContainerRef.createEmbeddedView(this.template)
   }
 
+  onNavigateMessagePage() {
+    console.log("hello world")
+    this.navigationService.navigateMessagePage()
+  }
   openOffcanvas(content: TemplateRef<any>) {
 
   }

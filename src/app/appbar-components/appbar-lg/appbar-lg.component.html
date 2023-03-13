@@ -73,10 +73,11 @@
           >
             <ul #meinsList class="list-unstyled  d-flex flex-column gap-2 p-2 ps-2"
                 style="height: 12rem;">
-              <li class="small fw-500 ms-2 text-black-50 cursor-pointer text-decoration-hover-underline "
-                  *ngFor="let item of meinsItems">{{item.name}}</li>
+              <li *ngFor="let item of meinsItems"
+                class="small fw-500 ms-2 text-black-50 cursor-pointer text-decoration-hover-underline "
+                 (click)="item.onItemClick()" >{{item.name}}</li>
               <div class="bg-black-25 " style="height: 0.5px;"></div>
-              <li *ngFor="let item of meinsItems2"
+              <li *ngFor="let item of meinsItems2" (click)="item.onItemClick()"
                   class="small fw-500   cursor-pointer text-decoration-hover-underline"
                   [ngClass]="{'text-primary opacity-50': item.name.includes('uns'),
                   'text-black-50':!item.name.includes('uns')}">{{item.name}}</li>

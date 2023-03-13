@@ -12,6 +12,7 @@ import {CookiesService} from "../../Services/cookies.service";
 import {Category, City} from "../../typing";
 import {NavigationService} from "../../Services/navigation.service";
 
+
 @Component({
   selector: 'app-appbar-lg',
   templateUrl: './appbar-lg.component.html',
@@ -22,32 +23,45 @@ export class AppbarLgComponent {
 
   all_categories: Category = allCategories
   @Input() categories!: Category[]
+  @Input() login!: boolean
 
 
-
-
-
-  meinsItems:MenuItem[]=[
-    {icon:"",name:"Nachrichten",onItemClick:()=>{}},
-    {icon:"",name:"Anzeigen",onItemClick:()=>{}},
-    {icon:"",name:"Einstellung",onItemClick:()=>{}},
+  meinsItems: MenuItem[] = [
+    {icon: "", name: "Nachrichten", onItemClick:() => this.onNavigateMessagePage()},
+    {
+      icon: "", name: "Anzeigen", onItemClick: () => {
+      }
+    },
+    {
+      icon: "", name: "Einstellung", onItemClick: () => {
+      }
+    },
   ]
-meinsItems2:MenuItem[]=[
-    {icon:"",name:"Merkliste",onItemClick:()=>{}},
-    {icon:"",name:"Nutzer",onItemClick:()=>{}},
-    {icon:"",name:"Über uns",onItemClick:()=>{}},
+  meinsItems2: MenuItem[] = [
+    {
+      icon: "", name: "Merkliste", onItemClick: () => {
+      }
+    },
+    {
+      icon: "", name: "Nutzer", onItemClick: () => {
+      }
+    },
+    {
+      icon: "", name: "Über uns", onItemClick: () => {
+      }
+    },
   ]
-  login:boolean = false
-  modalTemplate:any ;
+  modalTemplate: any;
+
   constructor(public searchService: SearchService,
               public categoryService: CategoryService,
               public citiesService: CitiesService,
               public route: ActivatedRoute,
-              public router: Router, dropdownConfig:NgbDropdownConfig,
-              public loginService:LoginService,
-              public modalService:NgbModal,
-              public cookiesService:CookiesService,
-              public navigationService:NavigationService) {
+              public router: Router, dropdownConfig: NgbDropdownConfig,
+              public loginService: LoginService,
+              public modalService: NgbModal,
+              public cookiesService: CookiesService,
+              public navigationService: NavigationService) {
 
 
   }
@@ -55,15 +69,16 @@ meinsItems2:MenuItem[]=[
   ngOnInit() {
     // this.categories=this.categoryService.getCategories().filter((k)=> (k.name!=='alle Kategorien'))
 
-    this.loginService.isUserLogged().subscribe(islogged => {
-      this.login = islogged
-    })
-
 
     // this.searchService.activeSearch = ""
-     }
+  }
 
-   refreshPage(){
+  onNavigateMessagePage() {
+    console.log("hello world")
+    this.navigationService.navigateMessagePage()
+  }
+
+  refreshPage() {
     window.location.reload();
   }
 
@@ -72,7 +87,7 @@ meinsItems2:MenuItem[]=[
   }
 
   onSearch() {
-    if(this.router.url.includes("search"))
+    if (this.router.url.includes("search"))
       this.navigationService.refreshSearchPage()
     else {
       this.navigationService.navigateSearchPage()

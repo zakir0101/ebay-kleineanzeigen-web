@@ -102,7 +102,50 @@ interface User{
   active_since:string,
 }
 
+interface ConversationPage{
+  conversations: Conversation[],
+  _links : Link,
+  _meta : Meta,
+}
 
+interface Link{
+  next : string,
+  current : string
+}
+interface Meta{
+  numFound : number
+}
 
+// role either Seller or Buyer
+interface Conversation{
+  adId : string,
+  adImage : string,
+  adStatus : string,
+  adTitle : string,
+  adType : string,
+  buyerInitials: string,
+  buyerName : string ,
+  id : string,
+  role : string,
+  sellerName : string,
+  sellerInitials : string,
+  textShortTrimmed : string,
+  unreadMessagesCount:number,
+  userIdBuyer:string,
+  userIdSeller : string
+  messages : Message[]
 
-export {SearchResults,SearchPage, UserPage,MainPage ,MainItem, Cookie ,City,Category,User,AddPage,ImageUrl}
+}
+
+// boundness either OUTBOUND or INBOUND
+interface Message{
+  boundness : string,
+  messageId : string,
+  receiveDate : string,
+  textShort : string,
+  title : string,
+  type : string
+}
+export {SearchResults,SearchPage, UserPage,MainPage ,MainItem,
+  Cookie ,City,Category,User,AddPage,ImageUrl,ConversationPage,
+Link,Meta,Message,Conversation}
