@@ -1,0 +1,48 @@
+<div class="container-fluid px-0  bg-ebay-background ">
+  <div class="container-lg px-0  px-lg-3 px-xl-5 pt-0 pt-lg-5 pb-0 pb-lg-5  ">
+    <div class="flex-column  ">
+      <div id="bar" class="container-fluid p-0  ">
+        <div class="row justify-content-center g-0  ">
+          <div class="d-lg-block col-12 col-sm-10 col-md-8 col-lg-6 bg-white px-3  d-flex flex-column  py-2 border-bottom border-1 border-dark border-opacity-25 "
+                [class.d-none]="mode==='messages'">
+            <span class="fw-500">Meine Nachrichten</span>
+            <div>
+              <button
+                class="btn btn-outline-light border-dark border-opacity-25 mt-3 btn-sm   d-flex align-items-center gap-2 ">
+                <input class="form-check-input m-0 p-0 border-dark" type="checkbox">
+                <span class="fs-13 fw-500 text-black-50">Alle auswählen</span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="d-none col-12 col-sm-10 col-md-8 col-lg-6 d-lg-flex flex-column  bg-white  border-bottom border-1 border-dark border-opacity-25">
+          </div>
+        </div>
+      </div>
+      <div id="main" class="container-fluid p-0 ">
+        <div class="row justify-content-center g-0 ">
+          <div class="col-12 col-sm-10  col-md-8 col-lg-6 ">
+            <div #con_scroll (scroll)="onConScroll(con_scroll)"
+                 class="d-none d-lg-flex flex-column bg-white h-auto h-lg-32-rem  overflow-y-auto"
+                 [class.d-none]="mode==='messages'">
+              <app-conversation-item  *ngFor="let conversation of conversations"
+                                      (click)="onConversationClick(conversation)"
+                                     [conversation]="conversation"></app-conversation-item>
+              <ng-template [ngIf]="!conversations" >
+                <app-conversation-item-placeholder *ngFor="let conversation of [].constructor(3)">
+                </app-conversation-item-placeholder>
+
+              </ng-template>
+            </div>
+          </div>
+          <div class="d-lg-block col-12 col-sm-10  col-md-8 col-lg-6"
+               [class.d-none]="mode==='conversations'">
+            <app-message-box (setMode)="mode=$event"
+              [conversation]="active_conversation"></app-message-box>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

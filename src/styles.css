@@ -22,6 +22,14 @@ html, body {
   color: var(--ebay-color) !important;
 }
 
+.h-64-rem{
+  height : 64rem !important;
+}
+
+.text-orange-red {
+  color: orangered !important;
+}
+
 .border-ebay {
   border-color: var(--ebay-color) !important;
 }
@@ -39,6 +47,10 @@ html, body {
 
 .bg-ebay {
   background-color: var(--ebay-color) !important;
+}
+
+.bg-orange-red {
+  background-color: orangered !important;
 }
 
 .fs-13-px {
@@ -131,9 +143,15 @@ html, body {
 }
 
 .mw-50 {
-  min-width: 50%;
+  min-width: 50% !important;
+}
+.mxw-75{
+  max-width: 75% !important;
 }
 
+.min-h-100{
+  min-height: 100% !important;
+}
 
 @media (min-width: 576px) {
 
@@ -150,8 +168,17 @@ html, body {
     min-width: 75% !important;
   }
 
+ .w-lg-50 {
+    width: 50% !important;
+    min-width: 50% !important;
+  }
+
   .h-lg-auto {
     height: auto !important;
+  }
+
+  .h-lg-32-rem {
+    height: 32rem !important;
   }
 
   .fw-lg-bold {
