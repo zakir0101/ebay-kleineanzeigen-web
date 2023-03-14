@@ -26,6 +26,18 @@ export class MessageBoxComponent {
   ngAfterViewInit() {
     this.setMessageBoxHeight()
     window.addEventListener('resize',()=>this.setMessageBoxHeight())
+
+  }
+
+  ngOnChanges(){
+    let  scrollMessage = document.getElementById("scrollMessage")
+    // @ts-ignore
+    scrollMessage.scrollTop= scrollMessage.scrollHeight
+  }
+  scrollBottom(scrollMessage :HTMLElement){
+    console.log("scroll top = "+ scrollMessage.scrollTop)
+    console.log("scroll height = "+ scrollMessage.scrollHeight)
+    scrollMessage.scrollTop= scrollMessage.scrollHeight
   }
 
   setMessageBoxHeight(){
@@ -97,10 +109,11 @@ export class MessageBoxComponent {
   }
 
   onUserClicked() {
+    let prefix = "/s-bestandsliste.html?userId="
     if(this.conversation?.role==="Seller")
-      this.userService.userLink=this.conversation.userIdBuyer;
+      this.userService.userLink= prefix+ this.conversation.userIdBuyer;
     else if(this.conversation?.role==="Buyer")
-      this.userService.userLink=this.conversation.userIdSeller;
+      this.userService.userLink= prefix + this.conversation.userIdSeller;
     this.navigationService.navigateUserPage()
 
   }

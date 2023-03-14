@@ -53,9 +53,9 @@ export class MessagesWindowComponent {
     let  bigContainer = window.document.getElementById("big_container")
     // @ts-ignore
     bigContainer.onscroll = ()=>{
-      console.log("element was found")
+      // console.log("element was found")
       if(window.innerWidth < 992) {
-          console.log("on window scroll is on")
+          // console.log("on window scroll is on")
           this.onConScroll(bigContainer)
         }
     }
@@ -65,8 +65,8 @@ export class MessagesWindowComponent {
   onConScroll(con_scroll: HTMLElement | null) {
     if (! con_scroll)
       return;
-    console.log("scroll top  is : " + con_scroll.scrollTop)
-    console.log("scroll height is : " + con_scroll.scrollHeight)
+    // console.log("scroll top  is : " + con_scroll.scrollTop)
+    // console.log("scroll height is : " + con_scroll.scrollHeight)
     if(this.waiting)
       return
     let percentage = (con_scroll.scrollHeight - con_scroll.clientHeight) * 0.5

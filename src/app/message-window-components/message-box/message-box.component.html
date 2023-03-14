@@ -13,7 +13,7 @@
           (click)="onTitleClicked()">{{conversation.adTitle}}</span>
     <span *ngIf="!conversation" class="text-ebay fw-500 placeholder col-7"></span>
   </div>
-  <div
+  <div id="scrollMessage" #scrollMessage
     class="bg-ebay-background border-start border-end overflow-y-auto  border border-dark-subtle border-1  "
     [style]="{height:con.clientHeight-top.clientHeight-form.clientHeight+'px'}">
     <div *ngIf="!conversation"
@@ -24,16 +24,16 @@
     </div>
 
     <div *ngIf="conversation"
-         class="p-2 min-h-100  d-flex px-3 justify-content-start flex-column justify-content-end gap-3">
-      <div *ngFor="let msg of conversation.messages" class="d-flex "
+         class="p-2 min-h-100  d-flex px-3  flex-column-reverse gap-3">
+      <div *ngFor="let msg of conversation.messages.reverse()" class="d-flex "
            [class.justify-content-end]="isMe(msg)"
            [class.justify-content-start]="!isMe(msg)">
         <div *ngIf="isMe(msg)"
-             class="bg-ebay text-white fs-12-px fw-500 mw-50 mxw-75 p-2 px-4 rounded-start-5 rounded-top-5">
+             class="bg-ebay  text-white fs-12-px fw-500 mw-50 mxw-75 p-2 px-4 rounded-start-5 rounded-top-5">
           <span>{{msg.textShort}}</span>
         </div>
-        <div *ngIf="!isMe(msg)" class="d-flex gap-2 align-items-end">
-          <div class="badge cursor-pointer rounded-circle p-3 fs-5  bg-dark-subtle text-dark d-flex justify-content-center align-items-center"
+        <div *ngIf="!isMe(msg)" class="d-flex gap-2 align-items-end" >
+          <div class="badge flex-shrink-0 cursor-pointer rounded-circle p-3 fs-5 fw-500  bg-dark-subtle text-dark d-flex justify-content-center align-items-center"
                (click)="onUserClicked()"
                style="width: 3rem;height: 3rem;">
             {{getHisInitials()}}</div>
@@ -50,8 +50,9 @@
   </div>
   <form class="p-2 px-3 " #form>
     <div class="mb-2 ">
-      <label for="exampleFormControlTextarea1" class="form-label fs-13-px">Nachricht</label>
-      <textarea class="form-control fs-12-px fw-500 bg-ebay-background" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <label for="exampleFormControlTextarea1"  class="form-label fs-13-px">Nachricht</label>
+      <textarea  (change)="scrollBottom(scrollMessage)"
+        class="form-control fs-12-px fw-500 bg-ebay-background" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
     <div class="text-end">
       <button class="btn btn-success bg-ebay   bg-hover-ebay-darker fs-13-px fw-bold">
