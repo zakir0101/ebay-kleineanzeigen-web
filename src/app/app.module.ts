@@ -34,7 +34,8 @@ import { MessagesWindowComponent } from './message-window-components/messages-wi
 import { ConversationItemComponent } from './message-window-components/conversation-item/conversation-item.component';
 import { MessageBoxComponent } from './message-window-components/message-box/message-box.component';
 import { ConversationItemPlaceholderComponent } from './message-window-components/conversation-item-placeholder/conversation-item-placeholder.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserDetailComponent } from './user-window-components/user-detail/user-detail.component';
+import { MyAddWindowComponent } from './my-add-window/my-add-window.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     ConversationItemComponent,
     MessageBoxComponent,
     ConversationItemPlaceholderComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    MyAddWindowComponent
   ],
   imports: [
     BrowserModule,

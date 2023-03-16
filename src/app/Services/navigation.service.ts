@@ -152,6 +152,18 @@ export class NavigationService {
 
   }
 
+  navigateMyAddPage() {
+    this.clearSearchFilter()
+    this.router.navigate(
+      ['/myadd'],
+      {
+        queryParams: {
+          userLink: "/s-bestandsliste.html?userId="+ this.loginService.user_id
+        }
+      });
+
+  }
+
 
   navigateMessagePage() {
     this.clearSearchFilter()

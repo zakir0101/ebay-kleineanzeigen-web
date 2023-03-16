@@ -6,13 +6,15 @@ import {RouterModule, Routes} from "@angular/router";
 import {AddWindowComponent} from "./add-window-components/add-window/add-window.component"
 import {UserWindowComponent} from "./user-window-components/user-window/user-window.component";
 import {MessagesWindowComponent} from "./message-window-components/messages-window/messages-window.component";
+import {MyAddWindowComponent} from "./my-add-window/my-add-window.component";
 
 const routes: Routes = [
   { path: '', component: MainWindowComponent },
   { path: 'search', component: SearchWindowComponent },
   {path : "add" , component : AddWindowComponent},
   {path : "user" , component : UserWindowComponent},
-  {path : "messages" , component : MessagesWindowComponent}
+  {path : "messages" , component : MessagesWindowComponent},
+  {path : "myadd" , component : MyAddWindowComponent},
 ];
 
 

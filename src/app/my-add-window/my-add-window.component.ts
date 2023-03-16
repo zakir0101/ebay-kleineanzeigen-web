@@ -1,18 +1,16 @@
-import {Component} from '@angular/core';
-import {Navigation} from "@angular/router";
-import {NavigationService} from "../../Services/navigation.service";
-import {UserDetailService} from "../../Services/user-detail.service";
-import {map, tap} from "rxjs";
-import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
-import {SearchResults, User, UserPage} from "../../typing";
-
+import { Component } from '@angular/core';
+import {tap} from "rxjs";
+import {SearchResults, User} from "../typing";
+import {NavigationService} from "../Services/navigation.service";
+import {UserDetailService} from "../Services/user-detail.service";
 
 @Component({
-  selector: 'app-user-window',
-  templateUrl: './user-window.component.html',
-  styleUrls: ['./user-window.component.css']
+  selector: 'app-my-add-window',
+  templateUrl: './my-add-window.component.html',
+  styleUrls: ['./my-add-window.component.css']
 })
-export class UserWindowComponent {
+export class MyAddWindowComponent {
+
 
   userAdds: SearchResults[] | null = null
   user: User | null = null
@@ -21,6 +19,7 @@ export class UserWindowComponent {
   constructor(private navigationService: NavigationService,
               private userService: UserDetailService) {
   }
+
 
   ngOnInit() {
     this.navigationService.loadQueryParamForUser().pipe(

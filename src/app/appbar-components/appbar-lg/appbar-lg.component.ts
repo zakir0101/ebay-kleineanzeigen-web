@@ -29,7 +29,7 @@ export class AppbarLgComponent {
   meinsItems: MenuItem[] = [
     {icon: "", name: "Nachrichten", onItemClick:() => this.onNavigateMessagePage()},
     {
-      icon: "", name: "Anzeigen", onItemClick: () => {
+      icon: "", name: "Anzeigen", onItemClick: () => {this.navigationService.navigateMyAddPage()
       }
     },
     {
