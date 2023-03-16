@@ -20,7 +20,7 @@ import { LoginWindowComponent } from './appbar-components/login-window/login-win
 import { MainItemComponent } from './main-window-components/main-item/main-item.component';
 import { MainItemPlaceholderComponent } from './main-window-components/main-item-placeholder/main-item-placeholder.component';
 import { MainCategoriesLgComponent } from './main-window-components/main-categories-lg/main-categories-lg.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserWindowComponent } from './user-window-components/user-window/user-window.component';
 import { AddWindowComponent } from './add-window-components/add-window/add-window.component'
 import { SearchItemComponent } from './search-window-components/search-item/search-item.component';
 import { CityRangeDropdownComponent } from './appbar-components/city-range-dropdown/city-range-dropdown.component';
@@ -34,6 +34,7 @@ import { MessagesWindowComponent } from './message-window-components/messages-wi
 import { ConversationItemComponent } from './message-window-components/conversation-item/conversation-item.component';
 import { MessageBoxComponent } from './message-window-components/message-box/message-box.component';
 import { ConversationItemPlaceholderComponent } from './message-window-components/conversation-item-placeholder/conversation-item-placeholder.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { ConversationItemPlaceholderComponent } from './message-window-component
     MainItemComponent,
     MainItemPlaceholderComponent,
     MainCategoriesLgComponent,
-    UserDetailComponent,
+    UserWindowComponent,
     AddWindowComponent,
     SearchItemComponent,
     CityRangeDropdownComponent,
@@ -63,7 +64,8 @@ import { ConversationItemPlaceholderComponent } from './message-window-component
     MessagesWindowComponent,
     ConversationItemComponent,
     MessageBoxComponent,
-    ConversationItemPlaceholderComponent
+    ConversationItemPlaceholderComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

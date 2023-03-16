@@ -19,13 +19,13 @@
             </div>
 
             <div class="container-fluid p-0  ">
-              <div #scrollDiv class="row g-2 row-cols-2 row-cols-sm-3 pb-3 row-cols-md-4 flex-nowrap overflow-hidden">
-                <div *ngFor="let item of galereis" class="col">
-                  <app-main-item [item]="item" [galerie]="true"></app-main-item>
-                </div>g
-                <div  *nggFor="let item of [].constructor(5)" class="col"
-                      [ngClass]="{'p-0 m-0':galereis.length > 0}">
-                  <div  ngIf="galereis.length == 0">
+              <div #scrollDiv class="row g-2 row-cols-2 row-cols-sm-3 pb-3 row-cols-md-4   flex-nowrap overflow-hidden">
+                <div *ngFor="let item of galereis" class="col " >
+                  <app-main-item *ngIf="item.title" [item]="item" [galerie]="true"></app-main-item>
+                </div>
+                <div  *ngFor="let item of [].constructor(5)" class="col"
+                      [ngClass]="{'p-0 m-0 d-none':galereis.length > 0}">
+                  <div   *ngIf="galereis.length == 0">
                     <app-main-item-placeholder [galerie]="true"></app-main-item-placeholder>
                   </div>
                 </div>

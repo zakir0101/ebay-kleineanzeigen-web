@@ -31,10 +31,10 @@ export class MainWindowComponent {
   }
 
   scrollRight(scrollDiv: HTMLDivElement) {
-    scrollDiv.scrollBy({top:0,left:100,behavior:"smooth"})
+    scrollDiv.scrollBy({top:0,left:scrollDiv.clientWidth,behavior:"smooth"})
   }
 
   scrollLeft(scrollDiv: HTMLDivElement) {
-    scrollDiv.scrollBy({top:0,left:-100,behavior:"smooth"})
+    scrollDiv.scrollBy({top:0,left:-scrollDiv.clientWidth ,behavior:"smooth"})
   }
 }

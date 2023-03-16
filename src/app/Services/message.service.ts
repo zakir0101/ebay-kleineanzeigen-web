@@ -22,9 +22,33 @@ export class MessageService {
   constructor(public modeService:ModeService, public loginService:LoginService) { }
 
 
-  sendMessage(): Observable<any  > {
-    let url = this.modeService.address + "/send?message="+this.message
+  sendMessageFromAddpage(): Observable<any  > {
+    let url = this.modeService.address + "/send/addpage?message="+this.message
       +"&add_id="+this.add_id+"&add_type="+this.add_type+"&contact_name="+this.contact_name
+
+
+    const observable: Observable<any> = new Observable((subscriber) => {
+      fetch(url, {
+        credentials: "include"
+      })
+        .then((response: Response) => {
+          return response.json()
+        })
+        .then((data: any) => {
+          if (!data.type)
+            subscriber.next(data)
+        });
+
+    })
+
+    return observable;
+  }
+
+
+
+  sendMessageFromMessagebox(): Observable<any  > {
+    let url = this.modeService.address + "/send/messagebox?message="+this.message
+      +"&user_id="+this.loginService.user_id+"&conversation_id="+this.conversation_id
 
 
     const observable: Observable<any> = new Observable((subscriber) => {

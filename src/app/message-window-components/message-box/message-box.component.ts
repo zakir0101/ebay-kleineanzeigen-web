@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, SimpleChange} from '@angular/core';
 import {Conversation, Message} from "../../typing";
 import {NavigationService} from "../../Services/navigation.service";
 import {AddService} from "../../Services/add.service";
@@ -17,6 +17,7 @@ export class MessageBoxComponent {
   message:string = ""
   contact_name : string = ""
   is_sent :boolean = false
+  @Output() sendMessage : EventEmitter<string> = new EventEmitter<string>()
 
   constructor(public navigationService: NavigationService,
               public addService: AddService, public messageService:MessageService,
@@ -30,14 +31,17 @@ export class MessageBoxComponent {
   }
 
   ngOnChanges(){
-    let  scrollMessage = document.getElementById("scrollMessage")
-    // @ts-ignore
-    scrollMessage.scrollTop= scrollMessage.scrollHeight
+
+    setTimeout(()=> this.scrollBottom(),0)
+    if(this.conversation === null)
+      this.message = ""
   }
-  scrollBottom(scrollMessage :HTMLElement){
-    console.log("scroll top = "+ scrollMessage.scrollTop)
-    console.log("scroll height = "+ scrollMessage.scrollHeight)
-    scrollMessage.scrollTop= scrollMessage.scrollHeight
+  scrollBottom(){
+    let  scrollMessage1 = document.getElementById("scrollMessage")
+    // console.log("scroll top = "+ scrollMessage1?.scrollTop)
+    // console.log("scroll height = "+ scrollMessage1?.scrollHeight)
+    // @ts-ignore
+    scrollMessage1.scrollTop = scrollMessage1.scrollHeight
   }
 
   setMessageBoxHeight(){
@@ -77,21 +81,6 @@ export class MessageBoxComponent {
     return msg.boundness==='OUTBOUND'
   }
 
-
-  sendMessage(){
-    if (!this.messageService.add_id || !this.messageService.add_type
-      || !this.messageService.message || !this.messageService.contact_name)
-      return
-
-    this.messageService.sendMessage().subscribe(res =>{
-
-        if(res.status === "OK")
-          this.is_sent = true
-        this.messageService.message = ""
-        this.messageService.contact_name= ""
-      }
-    )
-  }
 
 
   getHisInitials() {

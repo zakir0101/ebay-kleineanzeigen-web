@@ -23,7 +23,7 @@ export class AddWindowFormComponent {
       || !this.messageService.message || !this.messageService.contact_name)
       return
 
-    this.messageService.sendMessage().subscribe(res =>{
+    this.messageService.sendMessageFromAddpage().subscribe(res =>{
 
       if(res.status === "OK")
         this.is_sent = true

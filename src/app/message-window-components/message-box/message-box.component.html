@@ -25,7 +25,7 @@
 
     <div *ngIf="conversation"
          class="p-2 min-h-100  d-flex px-3  flex-column-reverse gap-3">
-      <div *ngFor="let msg of conversation.messages.reverse()" class="d-flex "
+      <div *ngFor="let msg of conversation.messages.reverse();index as i" class="d-flex "
            [class.justify-content-end]="isMe(msg)"
            [class.justify-content-start]="!isMe(msg)">
         <div *ngIf="isMe(msg)"
@@ -48,17 +48,18 @@
 
     </div>
   </div>
-  <form class="p-2 px-3 " #form>
+  <div class="p-2 px-3 " #form>
     <div class="mb-2 ">
       <label for="exampleFormControlTextarea1"  class="form-label fs-13-px">Nachricht</label>
-      <textarea  (change)="scrollBottom(scrollMessage)"
+      <textarea   [(ngModel)]="message"
         class="form-control fs-12-px fw-500 bg-ebay-background" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
     <div class="text-end">
-      <button class="btn btn-success bg-ebay   bg-hover-ebay-darker fs-13-px fw-bold">
+      <button (click)="sendMessage.emit(message)"  (keyup.enter)="sendMessage.emit(message)"
+        class="btn btn-success bg-ebay   bg-hover-ebay-darker fs-13-px fw-bold">
         Senden
       </button>
     </div>
-  </form>
+  </div>
 
 </div>

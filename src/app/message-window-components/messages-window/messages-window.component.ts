@@ -89,4 +89,26 @@ export class MessagesWindowComponent {
     this.getActiveConversation()
 
   }
+
+
+
+  sendMessage(message:string){
+    if (!this.messageService.conversation_id || !message)
+      return
+
+    this.loading = true
+    this.active_conversation = null
+    this.messageService.message = message
+    this.messageService.sendMessageFromMessagebox().subscribe(res =>{
+        if(res.status === "OK")
+        {
+          this.loading = true
+          this.active_conversation = null
+          this.getActiveConversation()
+        }
+
+      }
+    )
+  }
+
 }
