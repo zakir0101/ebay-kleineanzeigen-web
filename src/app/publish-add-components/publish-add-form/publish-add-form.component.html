@@ -7,7 +7,9 @@
         <label for="title" class="form-label text-black-50">Title</label>
       </div>
       <div class="col-12 col-md-9">
-        <input type="text" class="form-control" id="title" [(ngModel)]="publishService.title">
+        <input (change)="error = ''"
+               type="text" (focusout)="navigationService.navigatePublishPage()"
+               class="form-control" id="title" [(ngModel)]="publishService.title">
       </div>
     </div>
   </div>
@@ -17,22 +19,58 @@
         <label for="desc" class="form-label text-black-50">Beschreibung</label>
       </div>
       <div class="col-12 col-md-9">
-        <textarea class="form-control" id="desc" rows="5"
+        <textarea class="form-control" id="desc" rows="5" (change)="error = ''"
+                  (focusout)="navigationService.navigatePublishPage()"
                   [(ngModel)]="publishService.description"></textarea>
       </div>
     </div>
   </div>
   <div class="container-fluid p-0 mb-3">
     <div class="row align-items-center">
-      <div class="col-4 col-md-3">
+      <div class="col-12 col-md-3">
         <label for="price" class="form-label text-black-50">Preis</label>
       </div>
       <div class="col-4 col-md-3">
-        <input type="text" class="form-control" id="price" [(ngModel)]="publishService.price">
+        <input (focusout)="navigationService.navigatePublishPage()" (change)="error = ''"
+               type="text" class="form-control" id="price" [(ngModel)]="publishService.price">
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-4 col-md-6">
         <span class="fs-13 fw-bold text-black-50">Euro</span>
       </div>
     </div>
+  </div>
+  <div class="container-fluid p-0 mb-3">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-3">
+        <label for="name" class="form-label text-black-50">Name</label>
+      </div>
+      <div class="col-12 col-md-9">
+        <input (focusout)="navigationService.navigatePublishPage()" (change)="error = ''"
+               type="text" class="form-control" id="name" [(ngModel)]="publishService.contact_name">
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-0 mb-3">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-3">
+        <label for="city" class="form-label text-black-50">PLZ</label>
+      </div>
+      <div class="col-3 col-md-2">
+        <app-zip-typeahead (myChange)="error=''"></app-zip-typeahead>
+      </div>
+      <div class="col-8 col-md-6 offset-1">
+        <input type="text" class="form-control" id="city" disabled
+               [value]="getCityName()">
+      </div>
+    </div>
+  </div>
+  <span class="fs-12-px fw-500 text-danger">{{error}}</span>
+  <div>
+    <button (click)="onPublishAdd()"
+            class="btn btn-success bg-ebay bg-hover-ebay-darker d-flex gap-2 align-items-center justify-content-center">
+      <span>  Anzeige aufgeben</span>
+      <div *ngIf="loading" class="spinner-border spinner-border-sm text-light small" role="status"></div>
+    </button>
   </div>
 </div>

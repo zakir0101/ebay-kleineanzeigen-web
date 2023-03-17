@@ -13,7 +13,7 @@ export class AddService {
 
   getAddPage(): Observable<AddPage> {
     const observable: Observable<AddPage> = new Observable((subscriber) => {
-      fetch(this.modeService.address + "/add?link=" + this.add_link, {
+      fetch(this.modeService.address + "/add/api?link=" + this.add_link, {
         credentials: "include"
       })
         .then((response: Response) => {

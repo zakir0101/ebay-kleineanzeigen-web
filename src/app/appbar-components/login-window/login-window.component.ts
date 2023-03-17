@@ -44,17 +44,18 @@ export class LoginWindowComponent {
         this.cookiesService.setCookie(cook)
         // this.cookiesService.clearCookies()
       }
-      this.loginService.isUserLogged().subscribe(logged => {
-        this.isValid = logged
-        if (logged)
+      this.loginService.isUserLogged().subscribe(login => {
+        this.isValid = login.is_logged
+        if (login.is_logged)
           this.msg = "you have logged in Successfully"
-        if (!logged)
+        if (!login.is_logged)
           this.msg = "your credential are not accepted"
       })
 
     }
 
   }
+
 
 
    refreshPage(){

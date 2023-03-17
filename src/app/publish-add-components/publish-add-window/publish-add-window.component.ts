@@ -18,8 +18,9 @@ export class PublishAddWindowComponent {
   }
 
   ngOnInit(){
-    this.navigationService.loadQueryParamForSearch().subscribe(param => {
-
+    this.publishService.current = "error"
+    this.navigationService.loadQueryParamForPublish().subscribe(param => {
+      console.log(param['title'])
     })
   }
 
@@ -27,10 +28,12 @@ export class PublishAddWindowComponent {
     if(!attrCheck)
       return
     this.publishService.publishAdd().subscribe(res => {
+      console.log("response is")
+      console.log(res)
       if(res.state==="OK"){
         this.publishService.current = "waiting"
         let interval = setInterval(() => {
-          if(this.status !== "PROCESSING"){
+          if(!this.status.toLocaleLowerCase().includes( "process" ) && !this.status.includes("sending")){
             this.publishService.clearParams()
             this.navigationService.navigateMyAddPage()
           }

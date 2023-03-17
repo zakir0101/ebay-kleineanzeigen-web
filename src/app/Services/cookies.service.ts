@@ -20,15 +20,17 @@ export class CookiesService {
     if (cookie.expirationDate)
       expires = "; expires=" + d.toUTCString();
     let domain: string = ""
-    if (this.modeService.address?.includes(":"))
-      domain = "; domain=" + this.modeService.address?.split(":")[0]
+    let address = this.modeService.address?.replace("http://","")
+    address  = address?.replace("https://","")
+    if (address?.includes(":"))
+      domain = "; domain=" + "."+address?.split(":")[0]
     else
-      domain = "; domain=." + this.modeService.address
+      domain = "; domain=." + "."+ address
     let path = "; Path=/"
     let secure = ""
     if (cookie.secure)
       secure = "; Secure"
-    let cookieString = cookie.name + "=" + cookie.value + expires
+    let cookieString = cookie.name + "=" + cookie.value + expires+domain
     // +domain  + path  ;
     document.cookie = cookieString
   }

@@ -1,8 +1,14 @@
-<div id="big_container"  class="bg-ebay-background vh-100 d-flex flex-column p-0 m-0 overflow-y-auto" style="overflow-x: hidden">
+<div id="big_container"  class="bg-ebay-background position-relative vh-100 d-flex flex-column p-0 m-0 overflow-y-auto" style="overflow-x: hidden">
   <!--  <div class="d-flex flex-column sticky-top position-sticky top-0  bg-ebay-background    ">-->
   <app-appbar-lg [categories]="categories" [login]="login"></app-appbar-lg>
   <app-appbar-sm [categories]="categories" [login]="login"></app-appbar-sm>
   <!--  </div>-->
+  <div *ngIf="situationUnlogged" class="position-absolute top-50 start-50 translate-middle  py-5 px-2 bg-secondary bg-opacity-50 text-white fw-500 fs-13-px">
+    <span>to view this page, you have to </span>
+    <span class="cursor-pointer text-primary text-decoration-hover-underline"
+          (click)="modalService.open(modalTemplate)"
+    >Login</span>
+  </div>
+  <app-login-window (setModalTemplate)="modalTemplate=$event"></app-login-window>
   <router-outlet ></router-outlet>
 </div>
-

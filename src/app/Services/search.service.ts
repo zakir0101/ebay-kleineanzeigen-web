@@ -59,7 +59,7 @@ export class SearchService {
       if(path === "")
         path = "None"
 
-      fetch(this.modeService.address+"/search/" + search + "/" + searchToken+"?path="+path
+      fetch(this.modeService.address+"/search/" + search + "/" + searchToken+"/api" +"?path="+path
         , {
           credentials : "include"
         })

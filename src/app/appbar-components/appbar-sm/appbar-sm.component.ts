@@ -5,7 +5,8 @@ import { CategoryService} from "../../Services/category.service";
 import {Router} from "@angular/router";
 import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
 import {NavigationService} from "../../Services/navigation.service";
-import {Category} from "../../typing";
+import {Category, Login} from "../../typing";
+import {ModeService} from "../../Services/mode.service";
 
 
 interface MenuItem {
@@ -41,7 +42,8 @@ export class AppbarSmComponent {
     {icon:"bi-gear-fill",name:"Einstellung" ,onItemClick:()=>{}},
     {icon:"bi-question-circle",name:"Hilfe" ,onItemClick:()=>{}},
   ]
-  @Input() login !: boolean
+  @Input() login: Login | null = null
+
   search:string="s";
   @ViewChild('template', { static: true })  template:any;
   @Input() categories!:Category[];
@@ -51,7 +53,8 @@ export class AppbarSmComponent {
               public categoryService : CategoryService,
               public router : Router ,
               public offcanvasService:NgbOffcanvas,
-              public navigationService:NavigationService) {
+              public navigationService:NavigationService,
+              public modeService:ModeService) {
   }
 
   ngOnInit(){

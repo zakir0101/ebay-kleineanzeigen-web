@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {NavigationService} from "../../Services/navigation.service";
 import {PublishAddService} from "../../Services/publish-add.service";
+import {CitiesService} from "../../Services/cities.service";
 
 @Component({
   selector: 'app-publish-add-form',
@@ -10,8 +11,10 @@ import {PublishAddService} from "../../Services/publish-add.service";
 export class PublishAddFormComponent {
   @Output() publishAdd:EventEmitter<boolean> = new EventEmitter<boolean>()
   error : string = ""
+  loading : boolean = false
   constructor(public navigationService:NavigationService,
-              public publishService:PublishAddService) {
+              public publishService:PublishAddService,
+              public citiesService:CitiesService) {
   }
   ngOnInit(){
     this.navigationService.loadQueryParamForSearch().subscribe(param => {
@@ -20,7 +23,10 @@ export class PublishAddFormComponent {
   }
 
   onPublishAdd(){
-      this.publishAdd.emit(this.checkAttributes())
+      let attributeIsCorrect = this.checkAttributes()
+      this.publishAdd.emit(attributeIsCorrect)
+      if (attributeIsCorrect)
+        this.loading = true
   }
 
   checkAttributes(){
@@ -45,9 +51,19 @@ export class PublishAddFormComponent {
       this.error = "you have to enter a zip code"
       return false
     }
-
+      else if(this.publishService.activeCity.code == this.citiesService.deutschland.code){
+        this.error = "you have to enter a zip code"
+        return false
+      }
       else {
         return true
       }
+  }
+
+  getCityName() {
+    if (this.publishService.activeCity.name)
+      return this.publishService.activeCity.name.split(' ')[1].trim()
+    else
+      return ""
   }
 }

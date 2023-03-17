@@ -39,6 +39,8 @@ import { MyAddWindowComponent } from './my-add-window/my-add-window.component';
 import { PublishAddWindowComponent } from './publish-add-components/publish-add-window/publish-add-window.component';
 import { ZipTypeaheadComponent } from './publish-add-components/zip-typeahead/zip-typeahead.component';
 import { PublishAddFormComponent } from './publish-add-components/publish-add-form/publish-add-form.component';
+import { ShowHtmlPipe } from './show-html.pipe';
+import { HaveToLoginComponent } from './have-to-login/have-to-login.component';
 
 
 @NgModule({
@@ -73,7 +75,9 @@ import { PublishAddFormComponent } from './publish-add-components/publish-add-fo
     MyAddWindowComponent,
     PublishAddWindowComponent,
     ZipTypeaheadComponent,
-    PublishAddFormComponent
+    PublishAddFormComponent,
+    ShowHtmlPipe,
+    HaveToLoginComponent
   ],
   imports: [
     BrowserModule,

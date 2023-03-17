@@ -29,7 +29,7 @@ export class PublishAddService {
 
   publishAdd(): Observable<any> {
     const observable: Observable<any> = new Observable((subscriber) => {
-      fetch(this.modeService.address + "/publish?title=" + this.title+"&price="+this.price.toString()+
+      fetch(this.modeService.address + "/publish/api?title=" + this.title+"&price="+this.price.toString()+
         "&zip="+this.zip.toString() + "&city_code=" + this.city_code.toString() +
         "&description=" + this.description + "&contact_name=" + this.contact_name, {
         credentials: "include"

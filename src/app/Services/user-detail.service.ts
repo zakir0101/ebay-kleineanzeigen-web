@@ -29,7 +29,7 @@ export class UserDetailService {
 
   getUserPage(): Observable<UserPage> {
     const observable: Observable<UserPage> = new Observable((subscriber) => {
-      fetch(this.modeService.address + "/user?link=" + this.userLink, {
+      fetch(this.modeService.address + "/user/api?link=" + this.userLink, {
         credentials: "include"
       })
         .then((response: Response) => {

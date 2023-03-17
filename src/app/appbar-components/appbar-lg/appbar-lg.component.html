@@ -4,16 +4,20 @@
     <div class="d-none d-md-flex justify-content-between  "
       [class.align-items-end]="!login" [class.align-items-center]="login">
       <div class="d-flex flex-column cursor-pointer">
-        <img src="../../../assets/logo.png" [routerLink]="['/']" style="width: 13rem;" alt="">
+        <img [src]="modeService.getLogoUrl()" [routerLink]="['/']" style="width: 13rem;" alt="">
         <span class="fw-bold text-black-50  fs-6  ">Kostenlos. Einfach. Lokal</span>
       </div>
-      <div *ngIf="login" class="d-flex gap-3  align-items-center">
-        <span class="small">angemeldet als: zakirelkheir2@gmail.com</span>
-        <span (click)="cookiesService.clearCookies();loginService.logout();refreshPage()"
-          class="fw-bold cursor-pointer text-ebay">Ausloggen</span>
+      <div *ngIf="login && login.is_logged" class="d-flex gap-2  align-items-center">
+        <span class="small">angemeldet als: {{login.user_email}}</span>
+        <span (click)="logout()"
+          class="fw-500 cursor-pointer text-ebay">Ausloggen</span>
         <i class="bi-bell fs-4 cursor-pointer text-dark"></i>
       </div>
-      <div *ngIf="!login" class="d-flex gap-3  align-items-end h-100">
+      <div *ngIf="!login " class="d-flex gap-3  align-items-center placeholder-glow">
+        <span class="small text-black-50 placeholder col-7"></span>
+
+      </div>
+      <div *ngIf="login && !login.is_logged" class="d-flex gap-3  align-items-end h-100">
         <button (click)="modalService.open(modalTemplate)"
           class="btn  gap2 text-white btn-secondary bg-ebay mb-2 text-hover-ebay-darker border-0 d-flex py-2 gap-2 px-3 align-items-center">
           <i class="bi-person fs"></i>
@@ -62,7 +66,7 @@
         </div>
         <div class="bg-white py-2  " style="min-height: 2rem;width: 1px;"></div>
         <div
-          class="d-flex gap-2 position-relative transition-500-ms  text-white pt-1 mt-1 pb-2 px-1  bg-hover-white text-hover-dark w-auto align-items-center rounded-top"
+          class="d-flex gap-2 position-relative transition-500-ms cursor-pointer  text-white pt-1 mt-1 pb-2 px-1  bg-hover-white text-hover-dark w-auto align-items-center rounded-top"
           (mouseover)=" menu.style.visibility='visible';menu.style.opacity='1'"
           (mouseleave)=" menu.style.visibility='hidden';menu.style.opacity='0'">
 
@@ -84,8 +88,8 @@
                   'text-black-50':!item.name.includes('uns')}">{{item.name}}</li>
             </ul>
           </div>
-          <i class="bi-person fs-5 "></i>
-          <span class="small">Meins</span>
+          <i (click)="navigationService.navigateMyAddPage()" class="bi-person fs-5 "></i>
+          <span (click)="navigationService.navigateMyAddPage()"  class="small">Meins</span>
         </div>
       </div>
     </div>

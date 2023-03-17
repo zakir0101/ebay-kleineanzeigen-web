@@ -95,7 +95,7 @@ export class MessageService {
 
 
   get_messages(): Observable<Conversation> {
-    let url = this.modeService.address + "/messages?user_id="+this.loginService.user_id
+    let url = this.modeService.address + "/messages/api?user_id="+this.loginService.user_id
       +"&conversation_id="+this.conversation_id
     const observable: Observable<Conversation> = new Observable((subscriber) => {
       fetch(url, {

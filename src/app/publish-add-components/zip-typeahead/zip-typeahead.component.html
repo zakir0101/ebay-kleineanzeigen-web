@@ -3,8 +3,7 @@
   <input id="typeahead-basic" type="text" class="form-control"
          style="width: 10rem;"
          [(ngModel)]="publishService.activeCity"
-         [defaultValue]="citiesService.deutschland"
-         (selectItem)="setCodeAndZip(publishService.activeCity)"
+         (selectItem)="setCodeAndZip($event)"
          [class.is-invalid]="searchFailed"
          [resultFormatter]="inputFormatter" [inputFormatter]="outputFormatter"
          [ngbTypeahead]="search"/>

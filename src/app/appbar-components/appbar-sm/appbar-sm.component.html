@@ -91,11 +91,12 @@
 
 
   <!--    ****************     Appbar bottom sm 1  *****************-->
+
   <div *ngIf="!router.url.includes('messages')" class="bg-ebay-background d-block d-lg-none py-2">
     <div class="container-lg  px-sm-3 px-md-5 py-3 ">
       <div
         class="d-flex cursor-pointer justify-content-center align-items-center">
-        <img src="../../../assets/logo.png" style="width: 13rem;" alt="">
+        <img [src]="modeService.getLogoUrl()" style="width: 13rem;" alt="">
       </div>
     </div>
   </div>

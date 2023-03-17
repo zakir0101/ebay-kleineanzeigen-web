@@ -9,8 +9,9 @@ import {NgbDropdownConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {MenuItem} from "../appbar-sm/appbar-sm.component";
 import {LoginService} from "../../Services/login.service";
 import {CookiesService} from "../../Services/cookies.service";
-import {Category, City} from "../../typing";
+import {Category, City, Login} from "../../typing";
 import {NavigationService} from "../../Services/navigation.service";
+import {ModeService} from "../../Services/mode.service";
 
 
 @Component({
@@ -23,7 +24,7 @@ export class AppbarLgComponent {
 
   all_categories: Category = allCategories
   @Input() categories!: Category[]
-  @Input() login!: boolean
+  @Input() login: Login | null = null
 
 
   meinsItems: MenuItem[] = [
@@ -61,7 +62,8 @@ export class AppbarLgComponent {
               public loginService: LoginService,
               public modalService: NgbModal,
               public cookiesService: CookiesService,
-              public navigationService: NavigationService) {
+              public navigationService: NavigationService,
+              public modeService : ModeService ) {
 
 
   }
@@ -94,4 +96,9 @@ export class AppbarLgComponent {
     }
   }
 
+  logout() {
+    this.cookiesService.clearCookies();
+    this.loginService.logout();
+    setTimeout(() => this.refreshPage(),500)
+  }
 }

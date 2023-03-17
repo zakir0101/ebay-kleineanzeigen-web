@@ -150,6 +150,16 @@ interface Message{
   title : string,
   type : string
 }
+
+
+interface Login {
+  is_logged:boolean,
+  user_id:string,
+  user_name :string,
+  user_email : string
+}
+
+
 export {SearchResults,SearchPage, UserPage,MainPage ,MainItem,
   Cookie ,City,Category,User,AddPage,ImageUrl,ConversationPage,
-Link,Meta,Message,Conversation,City2}
+Link,Meta,Message,Conversation,City2,Login}

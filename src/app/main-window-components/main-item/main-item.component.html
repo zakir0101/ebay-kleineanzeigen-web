@@ -1,5 +1,5 @@
 <div #con *ngIf="item.title"
-  class="bg-white position-relative    flex-column gap-1 "
+  class="bg-white position-relative cursor-pointer   flex-column gap-1 "
   (mouseover)="con.classList.add('shadow')"
   (mouseleave)="con.classList.remove('shadow')"
      (click)="addService.add_link=item.url_link ; navigationService.navigateAddPage()"

@@ -74,14 +74,6 @@ export class NavigationService {
   }
 
 
-  loadQueryParamForPublish(): Observable<Params> {
-    return this.route.queryParams.pipe(
-      filter(param => param['current']),
-      tap(param => this.publishService.current = param['current']),
-      tap(param => this.publishService.add_id = param['add_id']),
-    )
-  }
-
 
   refreshSearchPage() {
     let update: boolean = this.router.url.includes("/search")
@@ -200,7 +192,6 @@ export class NavigationService {
         queryParams: {
           add_id : this.publishService.add_id,
           current : this.publishService.current,
-
           title : this.publishService.title,
           description : this.publishService.description,
           price : this.publishService.price,
@@ -212,5 +203,34 @@ export class NavigationService {
   }
 
 
+  loadQueryParamForPublish(): Observable<Params> {
+    return this.route.queryParams.pipe(
+      filter(param => param['current']),
+      tap(param => this.publishService.current = param['current']),
+      tap(param => this.publishService.add_id = param['add_id']),
+      tap(param => this.publishService.title = param['title']),
+      tap(param => this.publishService.description = param['description']),
+      tap(param => this.publishService.price = param['price']),
+      tap(param => this.publishService.contact_name = param['contact_name']),
+      tap(param => this.publishService.zip = param['zip']),
+      tap(param => this.getActiveCityByZipAndCode(param['zip'] ,param['city_code']).subscribe(
+        city => this.publishService.activeCity = city
+      )),
 
+    )
+  }
+
+  getActiveCityByZipAndCode(zip:string,code:string){
+    return new Observable<City>(subscriber => {
+      this.citiesService.getCities(zip).subscribe(list => {
+        list = list.filter(city => city.code==code)
+        if (list.length === 0){
+          subscriber.next( this.citiesService.deutschland)
+        }else{
+          subscriber.next(list[0])
+        }
+        })
+    })
+
+  }
 }
