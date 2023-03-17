@@ -1,0 +1,18 @@
+<div class="container-fluid px-0    bg-ebay-background ">
+  <div class="container-lg px-0 px-sm-5 px-lg-3 px-xl-5 pt-3 pb-5  ">
+    <app-publish-add-form (publishAdd)="publishAdd($event)" *ngIf="publishService.current=='form'"></app-publish-add-form>
+    <div *ngIf="publishService.current=='waiting'" class="bg-white d-flex justify-content-center align-items-center vh-100">
+        <div class="d-flex flex-column gap-2">
+          <div class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <span class="small fw-500"
+           [class.text-dark]="status.includes('sending')"
+            [class.text-success]="!status.includes('sending')">{{status}}</span>
+        </div>
+    </div>
+    <div *ngIf="publishService.current=='error'" class="">
+      <div class="vh-100 border-2 border-danger" [innerHTML]="error"></div>
+    </div>
+  </div>
+</div>

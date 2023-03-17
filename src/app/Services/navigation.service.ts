@@ -10,6 +10,7 @@ import {UserDetailService} from "./user-detail.service";
 import {filter, map, Observable, tap} from "rxjs";
 import {MessageService} from "./message.service";
 import {LoginService} from "./login.service";
+import {PublishAddService} from "./publish-add.service";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class NavigationService {
               private router: Router, private modeService: ModeService,
               private route: ActivatedRoute, private addService: AddService,
               private userService: UserDetailService,private messageService:MessageService,
-              private loginService:LoginService) {
+              private loginService:LoginService,private  publishService:PublishAddService) {
   }
 
   loadQueryParamForSearch(): Observable<Params> {
@@ -71,6 +72,16 @@ export class NavigationService {
       filter(link => link.length > 0),
     )
   }
+
+
+  loadQueryParamForPublish(): Observable<Params> {
+    return this.route.queryParams.pipe(
+      filter(param => param['current']),
+      tap(param => this.publishService.current = param['current']),
+      tap(param => this.publishService.add_id = param['add_id']),
+    )
+  }
+
 
   refreshSearchPage() {
     let update: boolean = this.router.url.includes("/search")
@@ -178,5 +189,28 @@ export class NavigationService {
       });
 
   }
+
+
+
+
+  navigatePublishPage() {
+    this.router.navigate(
+      ['/publish'],
+      {
+        queryParams: {
+          add_id : this.publishService.add_id,
+          current : this.publishService.current,
+
+          title : this.publishService.title,
+          description : this.publishService.description,
+          price : this.publishService.price,
+          contact_name : this.publishService.contact_name,
+          zip : this.publishService.zip,
+          city_code : this.publishService.city_code
+        }
+      });
+  }
+
+
 
 }

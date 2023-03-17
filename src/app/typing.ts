@@ -79,6 +79,10 @@ interface City{
   name: string , code:string
 }
 
+interface City2{
+  name: string , id:string
+}
+
 interface Category {
   name:string,
   url_link: string,
@@ -148,4 +152,4 @@ interface Message{
 }
 export {SearchResults,SearchPage, UserPage,MainPage ,MainItem,
   Cookie ,City,Category,User,AddPage,ImageUrl,ConversationPage,
-Link,Meta,Message,Conversation}
+Link,Meta,Message,Conversation,City2}

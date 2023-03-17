@@ -36,6 +36,9 @@ import { MessageBoxComponent } from './message-window-components/message-box/mes
 import { ConversationItemPlaceholderComponent } from './message-window-components/conversation-item-placeholder/conversation-item-placeholder.component';
 import { UserDetailComponent } from './user-window-components/user-detail/user-detail.component';
 import { MyAddWindowComponent } from './my-add-window/my-add-window.component';
+import { PublishAddWindowComponent } from './publish-add-components/publish-add-window/publish-add-window.component';
+import { ZipTypeaheadComponent } from './publish-add-components/zip-typeahead/zip-typeahead.component';
+import { PublishAddFormComponent } from './publish-add-components/publish-add-form/publish-add-form.component';
 
 
 @NgModule({
@@ -67,7 +70,10 @@ import { MyAddWindowComponent } from './my-add-window/my-add-window.component';
     MessageBoxComponent,
     ConversationItemPlaceholderComponent,
     UserDetailComponent,
-    MyAddWindowComponent
+    MyAddWindowComponent,
+    PublishAddWindowComponent,
+    ZipTypeaheadComponent,
+    PublishAddFormComponent
   ],
   imports: [
     BrowserModule,

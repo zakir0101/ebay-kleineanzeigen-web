@@ -1,0 +1,38 @@
+<div class="px-2 py-4 bg-white d-flex flex-column gap-2 ">
+  <h6>Anzeigendetails</h6>
+  <div class="bg-black-10 mb-3" style="height: 0.5px;"></div>
+  <div class="container-fluid p-0 mb-3">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-3">
+        <label for="title" class="form-label text-black-50">Title</label>
+      </div>
+      <div class="col-12 col-md-9">
+        <input type="text" class="form-control" id="title" [(ngModel)]="publishService.title">
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid p-0 mb-3">
+    <div class="row ">
+      <div class="col-12 col-md-3">
+        <label for="desc" class="form-label text-black-50">Beschreibung</label>
+      </div>
+      <div class="col-12 col-md-9">
+        <textarea class="form-control" id="desc" rows="5"
+                  [(ngModel)]="publishService.description"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid p-0 mb-3">
+    <div class="row align-items-center">
+      <div class="col-4 col-md-3">
+        <label for="price" class="form-label text-black-50">Preis</label>
+      </div>
+      <div class="col-4 col-md-3">
+        <input type="text" class="form-control" id="price" [(ngModel)]="publishService.price">
+      </div>
+      <div class="col-12 col-md-6">
+        <span class="fs-13 fw-bold text-black-50">Euro</span>
+      </div>
+    </div>
+  </div>
+</div>

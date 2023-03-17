@@ -7,6 +7,7 @@ import {AddWindowComponent} from "./add-window-components/add-window/add-window.
 import {UserWindowComponent} from "./user-window-components/user-window/user-window.component";
 import {MessagesWindowComponent} from "./message-window-components/messages-window/messages-window.component";
 import {MyAddWindowComponent} from "./my-add-window/my-add-window.component";
+import {PublishAddWindowComponent} from "./publish-add-components/publish-add-window/publish-add-window.component";
 
 const routes: Routes = [
   { path: '', component: MainWindowComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path : "user" , component : UserWindowComponent},
   {path : "messages" , component : MessagesWindowComponent},
   {path : "myadd" , component : MyAddWindowComponent},
+  {path : "publish" , component : PublishAddWindowComponent},
 ];
 
 

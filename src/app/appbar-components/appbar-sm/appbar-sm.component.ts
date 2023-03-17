@@ -33,8 +33,11 @@ export class AppbarSmComponent {
     {icon:"bi-chat-dots",name:"Nachricht",
       onItemClick:()=>{this.offcanvasService.dismiss(); this.onNavigateMessagePage()}},
     {icon:"bi-star",name:"Favoriten" ,onItemClick:()=>{}},
-    {icon:"bi-plus",name:"Anzeige aufgeben" ,onItemClick:()=>{}},
-    {icon:"bi-person",name:"meine Anzeigen" ,onItemClick:()=>{}},
+    {icon:"bi-plus",name:"Anzeige aufgeben" ,
+      onItemClick:()=>{this.offcanvasService.dismiss();this.navigationService.navigatePublishPage()}},
+    {icon:"bi-person",name:"meine Anzeigen" ,onItemClick:()=>{
+      this.offcanvasService.dismiss();this.navigationService.navigateMyAddPage()
+      }},
     {icon:"bi-gear-fill",name:"Einstellung" ,onItemClick:()=>{}},
     {icon:"bi-question-circle",name:"Hilfe" ,onItemClick:()=>{}},
   ]
