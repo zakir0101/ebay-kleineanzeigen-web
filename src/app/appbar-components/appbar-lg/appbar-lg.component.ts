@@ -1,8 +1,8 @@
 import {Component, ElementRef, Input, TemplateRef, ViewChild} from '@angular/core';
 import {allCategories, CategoryService} from "../../Services/category.service";
-import {debounceTime, distinctUntilChanged, map, Observable, OperatorFunction, switchMap} from "rxjs";
+import {debounceTime, distinctUntilChanged, filter, map, Observable, OperatorFunction, switchMap} from "rxjs";
 import {CitiesService} from "../../Services/cities.service";
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {Router, ActivatedRoute, ParamMap, UrlSegment, NavigationStart} from '@angular/router';
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {SearchService} from "../../Services/search.service";
 import {NgbDropdownConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -53,7 +53,7 @@ export class AppbarLgComponent {
     },
   ]
   modalTemplate: any;
-
+  showSearchBar : boolean = true
   constructor(public searchService: SearchService,
               public categoryService: CategoryService,
               public citiesService: CitiesService,
@@ -70,9 +70,16 @@ export class AppbarLgComponent {
 
   ngOnInit() {
     // this.categories=this.categoryService.getCategories().filter((k)=> (k.name!=='alle Kategorien'))
+    this.router.events.pipe(filter(event => event instanceof NavigationStart)).subscribe(event =>{
+      event = <NavigationStart> event
+      let url_str = event.url
+      console.log(url_str)
+      if(url_str.includes("messages") || url_str.includes('publish') )
+        this.showSearchBar = false
+      else
+        this.showSearchBar = true
+    })
 
-
-    // this.searchService.activeSearch = ""
   }
 
   onNavigateMessagePage() {

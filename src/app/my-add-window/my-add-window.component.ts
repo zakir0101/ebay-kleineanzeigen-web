@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {tap} from "rxjs";
-import {SearchResults, User} from "../typing";
+import {Login, SearchResults, User} from "../typing";
 import {NavigationService} from "../Services/navigation.service";
 import {UserDetailService} from "../Services/user-detail.service";
+import {LoginService} from "../Services/login.service";
 
 @Component({
   selector: 'app-my-add-window',
@@ -15,13 +16,36 @@ export class MyAddWindowComponent {
   userAdds: SearchResults[] | null = null
   user: User | null = null
   user_id: string = ""
+  login : Login | null = null
 
   constructor(private navigationService: NavigationService,
-              private userService: UserDetailService) {
+              private userService: UserDetailService,
+              public loginService:LoginService) {
   }
 
 
-  ngOnInit() {
+  setLogin(login:Login){
+    this.login = login
+    if(this.login.is_logged)
+      this.startMyAddWindow()
+
+  }
+
+  ngOnInit(){
+    if(this.loginService.login ){
+      this.setLogin(this.loginService.login)
+    }
+    else {
+      this.loginService.isUserLogged().subscribe(Login => {
+        this.setLogin(Login)
+      })
+    }
+
+
+  }
+
+
+  startMyAddWindow() {
     this.navigationService.loadQueryParamForUser().pipe(
       tap(link => this.userService.userLink = link),
       tap(link => this.userService.getUserPage().subscribe(userPage => {

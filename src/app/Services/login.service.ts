@@ -7,7 +7,7 @@ import {Login} from "../typing";
   providedIn: 'root'
 })
 export class LoginService {
-  login: boolean|null = null
+  login: Login|null = null
   user_id:string = ""
   user_name : string = ""
   user_email : string  =  ""
@@ -22,7 +22,7 @@ export class LoginService {
       .then((response) => response.json())
       .then((data) => {
         if (!data.type) {
-          this.login = false
+          this.login = data
           console.log("user loged out")
         }
       });
@@ -39,7 +39,7 @@ export class LoginService {
         .then((response) => response.json())
         .then((data) => {
           if (!data.type) {
-            this.login = data.isLogged
+            this.login = data
             subscriber.next(data)
             this.user_id = data.user_id
             this.user_name = data.user_name

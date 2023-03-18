@@ -1,5 +1,7 @@
 <div class="container-fluid px-0    bg-ebay-background ">
-  <div class="container-lg px-0 px-sm-5 px-lg-3 px-xl-5 pt-3 pb-5  ">
+  <app-have-to-login [login]="login"></app-have-to-login>
+
+  <div *ngIf="login && login.is_logged" class="container-lg px-0 px-sm-5 px-lg-3 px-xl-5 pt-3 pb-5  ">
     <app-publish-add-form (publishAdd)="publishAdd($event)" *ngIf="publishService.current=='form'"></app-publish-add-form>
     <div *ngIf="publishService.current=='waiting'" class="bg-white d-flex justify-content-center align-items-center vh-100">
         <div class="d-flex flex-column gap-2 ">

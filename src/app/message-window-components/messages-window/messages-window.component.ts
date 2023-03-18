@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {MessageService} from "../../Services/message.service";
 import {LoginService} from "../../Services/login.service";
 import {NavigationService} from "../../Services/navigation.service";
-import {Conversation} from "../../typing";
+import {Conversation, Login} from "../../typing";
 
 @Component({
   selector: 'app-messages-window',
@@ -17,11 +17,12 @@ export class MessagesWindowComponent {
   waiting : boolean = true
 
   loading : boolean = false
-
+  login : Login | null = null
 
 
   constructor(public messageService:MessageService,
-              public loginService:LoginService, public navigationService:NavigationService) {
+              public loginService:LoginService, public navigationService:NavigationService,
+              ) {
   }
 
   getConversationsPage(){
@@ -45,7 +46,9 @@ export class MessagesWindowComponent {
     })
   }
 
-  ngOnInit(){
+  startMessageWindow(){
+
+
     this.navigationService.loadQueryParamForMessage().subscribe(param => {
       this.getConversationsPage()
     })
@@ -55,10 +58,29 @@ export class MessagesWindowComponent {
     bigContainer.onscroll = ()=>{
       // console.log("element was found")
       if(window.innerWidth < 992) {
-          // console.log("on window scroll is on")
-          this.onConScroll(bigContainer)
-        }
+        // console.log("on window scroll is on")
+        this.onConScroll(bigContainer)
+      }
     }
+  }
+
+  setLogin(login:Login){
+    this.login = login
+    if(this.login.is_logged)
+      this.startMessageWindow()
+
+  }
+  ngOnInit(){
+    if(this.loginService.login ){
+      this.setLogin(this.loginService.login)
+    }
+    else {
+      this.loginService.isUserLogged().subscribe(Login => {
+      this.setLogin(Login)
+      })
+    }
+
+
   }
 
 

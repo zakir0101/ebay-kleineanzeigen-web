@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {NavigationService} from "../../Services/navigation.service";
 import {PublishAddService} from "../../Services/publish-add.service";
+import {Login} from "../../typing";
+import {LoginService} from "../../Services/login.service";
 
 @Component({
   selector: 'app-publish-add-window',
@@ -14,10 +16,35 @@ export class PublishAddWindowComponent {
   waitingRate : number = 1000 * 10
   status : string = ""
   attr_error : string  = ""
-  constructor(public navigationService:NavigationService , public publishService:PublishAddService) {
+  login : Login | null  = null
+
+  constructor(public navigationService:NavigationService , public publishService:PublishAddService,
+              public loginService:LoginService) {
+  }
+
+
+
+  setLogin(login:Login){
+    this.login = login
+    if(this.login.is_logged)
+      this.startPublishWindow()
+
   }
 
   ngOnInit(){
+    if(this.loginService.login ){
+      this.setLogin(this.loginService.login)
+    }
+    else {
+      this.loginService.isUserLogged().subscribe(Login => {
+        this.setLogin(Login)
+      })
+    }
+  }
+
+
+
+  startPublishWindow(){
     this.publishService.current = "error"
     this.navigationService.loadQueryParamForPublish().subscribe(param => {
       console.log(param['title'])

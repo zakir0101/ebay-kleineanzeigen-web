@@ -3,7 +3,7 @@ import {SearchService} from "../../Services/search.service";
 import {CitiesService} from "../../Services/cities.service";
 import { CategoryService} from "../../Services/category.service";
 import {Router} from "@angular/router";
-import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal, NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
 import {NavigationService} from "../../Services/navigation.service";
 import {Category, Login} from "../../typing";
 import {ModeService} from "../../Services/mode.service";
@@ -45,8 +45,9 @@ export class AppbarSmComponent {
   @Input() login: Login | null = null
 
   search:string="s";
-  @ViewChild('template', { static: true })  template:any;
+  @ViewChild('conTemplate', { static: true })  conTemplate:any;
   @Input() categories!:Category[];
+  modalTemplate : any
   constructor(public searchService:SearchService
               , public viewContainerRef:ViewContainerRef,
               public citiesService : CitiesService,
@@ -54,11 +55,12 @@ export class AppbarSmComponent {
               public router : Router ,
               public offcanvasService:NgbOffcanvas,
               public navigationService:NavigationService,
-              public modeService:ModeService) {
+              public modeService:ModeService,
+              public modalService:NgbModal) {
   }
 
   ngOnInit(){
-    this.viewContainerRef.createEmbeddedView(this.template)
+    this.viewContainerRef.createEmbeddedView(this.conTemplate)
   }
 
   onNavigateMessagePage() {

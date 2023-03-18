@@ -1,22 +1,22 @@
 <div class="bg-white p-2 pb-3 h-auto">
   <div class="d-flex justify-content-between align-items-center mb-2">
     <span class="fw-normal " style="font-weight: 500!important;;">Kategorien</span>
-    <span *ngIf="!isSearch" class="fw-normal small text-ebay">Alle anzeigen</span>
+    <span  class="fw-normal small text-ebay">Alle anzeigen</span>
   </div>
 
 
-  <div *ngIf="categoryService.getActiveCategory()===allCategories "
+  <div *ngIf="categories.length > 0"
        class="d-flex flex-column gap-1">
     <div *ngFor="let item of categories;index as i1" class="d-flex flex-column ">
         <span (click)="categoryService.setActiveCategory(item);
-                       navigationService.refreshSearchPage()"
+                       navigationService.navigateSearchPage()"
               class="text-black cursor-pointer w-auto" style="font-size: 12px;">{{item.name}}</span>
       <div *ngIf="item.children && !isSearch" class="d-flex flex-column  ps-2">
             <span *ngFor="let it of item.children;index as i" class="text-black-50  cursor-pointer w-auto"
                   [class.d-none]="active!==item && i>2"
                   style="font-size: 10px"
                   (click)="categoryService.setActiveCategory(it);
-                           navigationService.refreshSearchPage()"
+                           navigationService.navigateSearchPage()"
             >{{it.name}}</span>
       </div>
       <span *ngIf="!isSearch"
@@ -26,4 +26,27 @@
       <div *ngIf="!isSearch && i1 < 14 " class="bg-black-25 mt-2   " style="height: 0.5px !important"></div>
     </div>
   </div>
+
+  <div *ngIf="categories.length === 0"
+       class="d-flex flex-column gap-1">
+    <div *ngFor="let item of [].constructor(15);index as i1" class="d-flex flex-column placeholder-glow ">
+        <span (click)="categoryService.setActiveCategory(item);
+                       navigationService.navigateSearchPage()"
+              class="text-black cursor-pointer w-auto" style="font-size: 12px;">{{item.name}}</span>
+      <div *ngIf="item.children && !isSearch" class="d-flex flex-column  ps-2">
+            <span *ngFor="let it of item.children;index as i" class="text-black-50  cursor-pointer w-auto"
+                  [class.d-none]="active!==item && i>2"
+                  style="font-size: 10px"
+                  (click)="categoryService.setActiveCategory(it);
+                           navigationService.navigateSearchPage()"
+            >{{it.name}}</span>
+      </div>
+      <span *ngIf="!isSearch"
+            [class.d-none]="active===item" (click)="active=item"
+            class="text-ebay opacity-75 ps-2 cursor-pointer w-auto"
+            style="font-size: 10px">Mehr...</span>
+      <div *ngIf="!isSearch && i1 < 14 " class="bg-black-25 mt-2   " style="height: 0.5px !important"></div>
+    </div>
+  </div>
+
 </div>

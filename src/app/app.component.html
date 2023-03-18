@@ -3,12 +3,5 @@
   <app-appbar-lg [categories]="categories" [login]="login"></app-appbar-lg>
   <app-appbar-sm [categories]="categories" [login]="login"></app-appbar-sm>
   <!--  </div>-->
-  <div *ngIf="situationUnlogged" class="position-absolute top-50 start-50 translate-middle  py-5 px-2 bg-secondary bg-opacity-50 text-white fw-500 fs-13-px">
-    <span>to view this page, you have to </span>
-    <span class="cursor-pointer text-primary text-decoration-hover-underline"
-          (click)="modalService.open(modalTemplate)"
-    >Login</span>
-  </div>
-  <app-login-window (setModalTemplate)="modalTemplate=$event"></app-login-window>
   <router-outlet ></router-outlet>
 </div>

@@ -18,8 +18,6 @@ export class AppComponent {
   title = 'ebay-kleineanzeigen';
   categories: Category[] = []
   login: Login | null = null
-  // situationUnlogged: boolean = false
-  modalTemplate: any;
 
   constructor(private citiesService: CitiesService, private categoryService: CategoryService,
               private searchService: SearchService, private route: ActivatedRoute, private router: Router,

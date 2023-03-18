@@ -1,6 +1,6 @@
 
 
-<ng-template #template>
+<ng-template #conTemplate>
 
 
   <!--    ****************     Appbar top sm  *****************-->
@@ -16,15 +16,18 @@
         </button>
 
         <ng-template  #content let-offcanvas >
-          <div class="offcanvas-header pb-1 bg-ebay d-flex align-items-start flex-column ps-3 pt-4 pt-md-2">
+          <div class="offcanvas-header pb-1 placeholder-glow bg-ebay d-flex align-items-start flex-column ps-3 pt-4 pt-md-2">
             <div
-              class="badge mb-3 mb-md-2  rounded-circle fs-3 lh-sm text-ebay bg-white d-flex align-items-center justify-content-center">
-              Z
+              class="badge mb-3 mb-md-2  rounded-circle fs-3 lh-sm text-ebay bg-white d-flex align-items-center justify-content-center"
+              style="width: 3rem;height: 3rem;">
+              <span *ngIf="login && login.is_logged">{{login.user_name.charAt(0)}}</span>
             </div>
-            <span class="fw-bold">Zakir</span>
-            <span>zakirelkheir@gmail.com</span>
-            <!--            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>-->
-            <!--            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+            <span *ngIf="login && login.is_logged" class="fw-bold">{{login.user_name}}</span>
+            <span *ngIf="login && login.is_logged">{{login.user_email}}</span>
+            <span *ngIf="!login" class="placeholder col-4 w-100"></span>
+            <span *ngIf="login && !login.is_logged" class="fw-bold cursor-pointer"
+            (click)="modalService.open(modalTemplate)">Login</span>
+            <app-login-window (setModalTemplate)="modalTemplate=$event"></app-login-window>
           </div>
           <div class="offcanvas-body">
             <div class="d-flex flex-column text-black gap-2 gap-md-1 ms-2">

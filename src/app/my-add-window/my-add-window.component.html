@@ -1,5 +1,6 @@
 <div class="container-fluid px-0   bg-ebay-background " >
-  <div class="container-lg px-0 px-sm-2 px-lg-3 px-xl-5 pt-3 pb-5  ">
+  <app-have-to-login [login]="login"></app-have-to-login>
+  <div *ngIf="login && login.is_logged" class="container-lg px-0 px-sm-2 px-lg-3 px-xl-5 pt-3 pb-5  ">
     <div class="row gx-3 gy-3 mt-0 justify-content-center ">
       <div class="col-12 col-sm-10 col-md-10 col-lg-9">
         <app-user-detail [myadd]="true" [user]="user"></app-user-detail>
