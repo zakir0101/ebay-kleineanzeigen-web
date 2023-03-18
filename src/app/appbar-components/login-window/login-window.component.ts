@@ -38,7 +38,6 @@ export class LoginWindowComponent {
       this.msg = "Cookies syntax not accepted , should be Json Format" + e
     }
     if (cookies.length > 0) {
-      let date:any = new Date(Date.now() + 86400e3);
 
       for (const cook of cookies) {
         this.cookiesService.setCookie(cook)

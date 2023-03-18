@@ -41,6 +41,7 @@ export class CookiesService {
       domain = "; domain=" + "."+address?.split(":")[0]
     else
       domain = "; domain=" + "."+ address
+    console.log(domain)
     return domain
   }
 
