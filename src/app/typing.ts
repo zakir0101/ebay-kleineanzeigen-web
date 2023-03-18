@@ -146,6 +146,7 @@ interface Message{
   boundness : string,
   messageId : string,
   receiveDate : string,
+  readableDate : string,
   textShort : string,
   title : string,
   type : string
