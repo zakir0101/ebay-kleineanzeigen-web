@@ -24,7 +24,7 @@
             </div>
             <span *ngIf="login && login.is_logged" class="fw-bold">{{login.user_name}}</span>
             <span *ngIf="login && login.is_logged">{{login.user_email}}</span>
-            <span *ngIf="!login" class="placeholder col-4 w-100"></span>
+            <span *ngIf="!login" class="placeholder col-4  w-100"></span>
             <span *ngIf="login && !login.is_logged" class="fw-bold cursor-pointer"
             (click)="modalService.open(modalTemplate)">Login</span>
             <app-login-window (setModalTemplate)="modalTemplate=$event"></app-login-window>

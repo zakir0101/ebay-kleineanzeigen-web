@@ -35,6 +35,6 @@ export class ModeService {
     if (this.mode === "offline")
       return "../../../assets/logo.png"
     else
-      return "static/assets/logo.png"
+      return "/static/assets/logo.png"
   }
 }

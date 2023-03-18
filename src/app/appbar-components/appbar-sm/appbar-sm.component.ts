@@ -7,6 +7,8 @@ import {NgbModal, NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
 import {NavigationService} from "../../Services/navigation.service";
 import {Category, Login} from "../../typing";
 import {ModeService} from "../../Services/mode.service";
+import {LoginService} from "../../Services/login.service";
+import {CookiesService} from "../../Services/cookies.service";
 
 
 interface MenuItem {
@@ -40,7 +42,9 @@ export class AppbarSmComponent {
       this.offcanvasService.dismiss();this.navigationService.navigateMyAddPage()
       }},
     {icon:"bi-gear-fill",name:"Einstellung" ,onItemClick:()=>{}},
-    {icon:"bi-question-circle",name:"Hilfe" ,onItemClick:()=>{}},
+    {icon:"bi-question-circle",name:"Über uns" ,onItemClick:()=>{}},
+    {icon:"bi-box-arrow-left",name:"Logout" ,onItemClick:()=>{this.logout()}},
+
   ]
   @Input() login: Login | null = null
 
@@ -52,7 +56,8 @@ export class AppbarSmComponent {
               , public viewContainerRef:ViewContainerRef,
               public citiesService : CitiesService,
               public categoryService : CategoryService,
-              public router : Router ,
+              public router : Router ,public cookiesService:CookiesService,
+              public loginService:LoginService,
               public offcanvasService:NgbOffcanvas,
               public navigationService:NavigationService,
               public modeService:ModeService,
@@ -78,6 +83,11 @@ export class AppbarSmComponent {
       return this.citiesService.deutschland.name
   }
 
+
+  refreshPage() {
+    window.location.reload();
+  }
+
   onSearch() {
     if(this.router.url.includes("search"))
       this.navigationService.refreshSearchPage()
@@ -85,5 +95,14 @@ export class AppbarSmComponent {
       this.navigationService.navigateSearchPage()
     }
   }
+
+
+  logout() {
+    this.cookiesService.clearCookies();
+    this.loginService.logout();
+    setTimeout(() => this.refreshPage(),500)
+  }
+
 }
+
 export {MenuItem}

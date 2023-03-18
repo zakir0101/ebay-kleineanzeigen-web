@@ -30,7 +30,7 @@ export class CookiesService {
     let secure = ""
     if (cookie.secure)
       secure = "; Secure"
-    let cookieString = cookie.name + "=" + cookie.value + expires+domain
+    let cookieString = cookie.name + "=" + cookie.value + expires+domain+path
     // +domain  + path  ;
     document.cookie = cookieString
   }
