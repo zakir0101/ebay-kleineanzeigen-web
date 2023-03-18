@@ -1,7 +1,7 @@
 <!--    ****************     Appbar top lg  *****************-->
 <div class="bg-lg-white">
-  <div class="  container-lg px-lg-3 px-xl-5 py-2 d-none d-lg-block bg-lg-white ">
-    <div class="d-none d-md-flex justify-content-between  "
+  <div class="container-lg px-lg-3 px-xl-5 py-2 d-none d-lg-block bg-lg-white ">
+    <div class="d-none d-md-flex justify-content-between placeholder-glow align-items-center "
       [class.align-items-end]="!login" [class.align-items-center]="login">
       <div class="d-flex flex-column cursor-pointer">
         <img [src]="modeService.getLogoUrl()" [routerLink]="['/']" style="width: 13rem;" alt="">
@@ -13,8 +13,7 @@
           class="fw-500 cursor-pointer text-ebay">Ausloggen</span>
         <i class="bi-bell fs-4 cursor-pointer text-dark"></i>
       </div>
-      <div *ngIf="!login " class="d-flex gap-3  align-items-center placeholder-glow">
-        <span class="small text-black-50 placeholder col-7"></span>
+      <div *ngIf="!login " class="small text-black-50 placeholder col-5 my-auto">
 
       </div>
       <div *ngIf="login && !login.is_logged" class="d-flex gap-3  align-items-end h-100">
@@ -72,9 +71,9 @@
           (mouseleave)=" menu.style.visibility='hidden';menu.style.opacity='0'">
 
           <div #menu
-               class="position-absolute transition-500-ms end-0 bg-white border-bottom border-end border-start border-1 border-ebay z-3"
+               class="position-absolute transition-500-ms end-0 bg-white border-bottom border-end border-start border-1 border-ebay "
                style=" width: 9rem!important;
-             visibility: hidden ; opacity: 0;"
+             visibility: hidden ; opacity: 0; z-index: 5!important;"
                [ngStyle]="{'bottom':'-'+meinsList.style.height , 'height':meinsList.style.height}"
           >
             <ul #meinsList class="list-unstyled  d-flex flex-column gap-2 p-2 ps-2"

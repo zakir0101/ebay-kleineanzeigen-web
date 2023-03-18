@@ -5,4 +5,9 @@
         (click)="modalService.open(modalTemplate)"
   >Login</span>
 </div>
+<div *ngIf="!login"
+     class="position-absolute top-50 start-50 translate-middle  py-5  px-2 ">
+  <span class="spinner-border text-ebay"></span>
+</div>
+
 <app-login-window (setModalTemplate)="modalTemplate=$event"></app-login-window>

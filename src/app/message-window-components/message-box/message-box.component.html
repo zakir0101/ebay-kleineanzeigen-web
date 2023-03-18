@@ -9,7 +9,7 @@
     <img [src]="getImageUrl()" alt=""
          class="rounded-circle"
          style="width: 3.5rem;height: 3.5rem">
-    <span *ngIf="conversation" class="text-ebay fw-500 "
+    <span *ngIf="conversation" class="text-ebay fw-500 cursor-pointer "
           (click)="onTitleClicked()">{{conversation.adTitle}}</span>
     <span *ngIf="!conversation" class="text-ebay fw-500 placeholder col-7"></span>
   </div>
@@ -24,8 +24,8 @@
     </div>
 
     <div *ngIf="conversation"
-         class="p-2 min-h-100  d-flex px-3  flex-column-reverse gap-3">
-      <div *ngFor="let msg of conversation.messages.reverse();index as i" class="d-flex "
+         class="p-2 min-h-100  d-flex px-3 flex-column justify-content-end  gap-3">
+      <div *ngFor="let msg of conversation.messages;index as i" class="d-flex "
            [class.justify-content-end]="isMe(msg)"
            [class.justify-content-start]="!isMe(msg)">
         <div *ngIf="isMe(msg)"

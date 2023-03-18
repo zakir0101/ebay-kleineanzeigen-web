@@ -19,21 +19,31 @@ export class CookiesService {
 
     if (cookie.expirationDate)
       expires = "; expires=" + d.toUTCString();
-    let domain: string = ""
-    let address = this.modeService.address?.replace("http://","")
-    address  = address?.replace("https://","")
-    if (address?.includes(":"))
-      domain = "; domain=" + "."+address?.split(":")[0]
-    else
-      domain = "; domain=." + "."+ address
     let path = "; Path=/"
     let secure = ""
     if (cookie.secure)
       secure = "; Secure"
-    let cookieString = cookie.name + "=" + cookie.value + expires+domain+path
+    let cookieString = cookie.name + "=" + cookie.value + expires+this.getCookieDomain()+path
     // +domain  + path  ;
     document.cookie = cookieString
   }
+
+  getCookieDomain (){
+    let domain: string = ""
+
+    let address = this.modeService.address
+    if(address?.includes("http:"))
+      address = address?.replace("http://","")
+    else if (address?.includes('https:'))
+      address = address?.replace("https://","")
+
+    if (address?.includes(":"))
+      domain = "; domain=" + "."+address?.split(":")[0]
+    else
+      domain = "; domain=" + "."+ address
+    return domain
+  }
+
 
   deleteCookie(cname: string) {
     const d = new Date();
