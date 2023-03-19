@@ -41,7 +41,10 @@ export class AppbarSmComponent {
     {icon:"bi-person",name:"meine Anzeigen" ,onItemClick:()=>{
       this.offcanvasService.dismiss();this.navigationService.navigateMyAddPage()
       }},
-    {icon:"bi-gear-fill",name:"Einstellung" ,onItemClick:()=>{}},
+    {icon:"bi-gear-fill",name:"Einstellung" ,onItemClick:()=>{
+        this.offcanvasService.dismiss();this.navigationService.navigateSettingPage()
+
+      }},
     {icon:"bi-question-circle",name:"Über uns" ,onItemClick:()=>{}},
     {icon:"bi-box-arrow-left",name:"Logout" ,onItemClick:()=>{this.logout()}},
 

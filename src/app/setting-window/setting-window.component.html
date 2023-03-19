@@ -1,1 +1,20 @@
-<p>setting-window works!</p>
+<div class="container-fluid px-0   bg-ebay-background ">
+  <app-have-to-login [login]="login"></app-have-to-login>
+  <div *ngIf="login && login.is_logged" class="container-lg px-0 px-sm-5 px-lg-3 px-xl-5 pt-3 pb-5  ">
+    <div class="container-fluid p-0 p-2 pb-3 bg-white">
+      <h5 class="text-black mb-3">Einstellung</h5>
+      <div class="row row-cols-1 row-cols-md-2 g-2 ">
+        <div class="col d-flex flex-column gap-2 ">
+          <span class="fw-500 text-black">Übersicht deiner Aktivitäte</span>
+          <div class="d-flex flex-column placeholder-glow p-2 bg-ebay-background">
+            <h6 class="mb-2">Mein Konto</h6>
+            <span class="text-black-50 small ">{{settingPage?.add_num_online}}</span>
+            <span class="text-black-50 small ">{{settingPage?.add_num_total}}</span>
+            <span *ngIf="!settingPage" class="text-black-50 small placeholder col-6 "></span>
+            <span *ngIf="!settingPage " class="text-black-50 mt-1 small placeholder col-9 "></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

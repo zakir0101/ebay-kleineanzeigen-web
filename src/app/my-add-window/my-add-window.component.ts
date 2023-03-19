@@ -53,6 +53,7 @@ export class MyAddWindowComponent {
         this.user_id = userPage.user_id
         this.user = userPage.user
         this.userAdds = userPage.user_adds
+        this.userService.userLink = "/s-bestandsliste.html?userId="+this.login?.user_id
       }))).subscribe()
 
   }

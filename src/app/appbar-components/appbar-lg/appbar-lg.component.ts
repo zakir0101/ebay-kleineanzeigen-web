@@ -34,7 +34,7 @@ export class AppbarLgComponent {
       }
     },
     {
-      icon: "", name: "Einstellung", onItemClick: () => {
+      icon: "", name: "Einstellung", onItemClick: () => {this.navigationService.navigateSettingPage()
       }
     },
   ]

@@ -167,6 +167,12 @@ export class NavigationService {
 
   }
 
+  navigateSettingPage() {
+    this.clearSearchFilter()
+    this.router.navigate(['/setting']);
+
+  }
+
 
   navigateMessagePage() {
     this.clearSearchFilter()
