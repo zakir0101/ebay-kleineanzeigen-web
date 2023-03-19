@@ -160,7 +160,10 @@ interface Login {
   user_email : string
 }
 
-
+interface SettingPage{
+  add_num_online : string,
+  add_num_total : string
+}
 export {SearchResults,SearchPage, UserPage,MainPage ,MainItem,
   Cookie ,City,Category,User,AddPage,ImageUrl,ConversationPage,
-Link,Meta,Message,Conversation,City2,Login}
+Link,Meta,Message,Conversation,City2,Login,SettingPage}

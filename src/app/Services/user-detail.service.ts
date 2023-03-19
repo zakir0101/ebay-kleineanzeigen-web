@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {MainPage, User, UserPage} from "../typing";
+import {MainPage, SettingPage, User, UserPage} from "../typing";
 import {ModeService} from "./mode.service";
 
 @Injectable({
@@ -30,6 +30,25 @@ export class UserDetailService {
   getUserPage(): Observable<UserPage> {
     const observable: Observable<UserPage> = new Observable((subscriber) => {
       fetch(this.modeService.address + "/user/api?link=" + this.userLink, {
+        credentials: "include"
+      })
+        .then((response: Response) => {
+          return response.json()
+        })
+        .then((data: any) => {
+          if (!data.type)
+            subscriber.next(data)
+        });
+
+    })
+
+    return observable;
+  }
+
+
+  getSettingPage(): Observable<SettingPage> {
+    const observable: Observable<SettingPage> = new Observable((subscriber) => {
+      fetch(this.modeService.address + "/setting/api",  {
         credentials: "include"
       })
         .then((response: Response) => {

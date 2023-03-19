@@ -11,6 +11,8 @@
   <span *ngIf="!user" class="fw-500 mt-1 text-black-50 placeholder col-6"></span>
   <span *ngIf="user" class="fw-500 text-black-50">{{user.active_since}}</span>
   <span *ngIf="!user" class="fw-500 mt-1 text-black-50 placeholder col-9 "></span>
+  <span *ngIf="user" class="fw-500 text-black-50">{{user.user_ad_number}}</span>
+  <span *ngIf="!user" class="fw-500 mt-1 text-black-50 placeholder col-8 "></span>
   <button
     class="btn btn-outline-light text-ebay  btn-sm px-3 py-1 gap-2 fs-13 rounded-3 fw-500 d-flex justify-content-center mt-3 align-items-center border-2">
     <i class="bi-person"></i>

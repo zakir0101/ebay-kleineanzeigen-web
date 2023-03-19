@@ -41,6 +41,7 @@ import { ZipTypeaheadComponent } from './publish-add-components/zip-typeahead/zi
 import { PublishAddFormComponent } from './publish-add-components/publish-add-form/publish-add-form.component';
 import { ShowHtmlPipe } from './show-html.pipe';
 import { HaveToLoginComponent } from './have-to-login/have-to-login.component';
+import { SettingWindowComponent } from './setting-window/setting-window.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { HaveToLoginComponent } from './have-to-login/have-to-login.component';
     ZipTypeaheadComponent,
     PublishAddFormComponent,
     ShowHtmlPipe,
-    HaveToLoginComponent
+    HaveToLoginComponent,
+    SettingWindowComponent
   ],
   imports: [
     BrowserModule,
