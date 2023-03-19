@@ -14,7 +14,7 @@ export class PublishAddWindowComponent {
   error:string = ""
   waitingTime :number = 1000 * 120
   waitingRate : number = 1000 * 10
-  status : string = ""
+  status : string = "sending request"
   attr_error : string  = ""
   login : Login | null  = null
 
@@ -45,7 +45,7 @@ export class PublishAddWindowComponent {
 
 
   startPublishWindow(){
-    this.publishService.current = "error"
+    this.publishService.current = "form"
     this.navigationService.loadQueryParamForPublish().subscribe(param => {
       console.log(param['title'])
     })
