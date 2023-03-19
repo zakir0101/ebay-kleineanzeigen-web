@@ -3,8 +3,8 @@
   <div class="container-lg px-lg-3 px-xl-5 py-2 d-none d-lg-block bg-lg-white ">
     <div class="d-none d-md-flex justify-content-between placeholder-glow align-items-center "
       [class.align-items-end]="!login" [class.align-items-center]="login">
-      <div class="d-flex flex-column cursor-pointer">
-        <img [src]="modeService.getLogoUrl()" [routerLink]="['/']" style="width: 13rem;" alt="">
+      <div class="d-flex flex-column cursor-pointer" style="height: 4rem;">
+        <img  [src]="modeService.getLogoUrl()" [routerLink]="['/']" style="width: 13rem" alt="">
         <span class="fw-bold text-black-50  fs-6  ">Kostenlos. Einfach. Lokal</span>
       </div>
       <div *ngIf="login && login.is_logged" class="d-flex gap-2  align-items-center">
