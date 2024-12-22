@@ -28,7 +28,7 @@
       <div *ngFor="let msg of conversation.messages;index as i" class="d-flex "
            [class.justify-content-end]="isMe(msg)"
            [class.justify-content-start]="!isMe(msg)">
-        <div *ngIf="isMe(msg)" class="d-flex flex-column gap-1">
+        <div *ngIf="isMe(msg)" class="d-flex flex-column gap-1 align-items-end">
           <div
             class="bg-ebay  text-white fs-12-px fw-500 mw-50 mxw-75 p-2 px-4 rounded-start-5 rounded-top-5">
             <span>{{msg.textShort}}</span>

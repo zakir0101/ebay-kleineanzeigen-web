@@ -17,7 +17,6 @@ export class CategoryService {
 
   activeCategory:Category=  allCategories ;
   categories:Category[] = []
-
   constructor( private citiesService :CitiesService,
                private router:Router, private modeService:ModeService) {
   }

@@ -47,7 +47,7 @@ export class PublishAddWindowComponent {
   startPublishWindow(){
     this.publishService.current = "form"
     this.navigationService.loadQueryParamForPublish().subscribe(param => {
-      console.log(param['title'])
+      // console.log(param['title'])
     })
   }
 
@@ -55,8 +55,8 @@ export class PublishAddWindowComponent {
     if(!attrCheck)
       return
     this.publishService.publishAdd().subscribe(res => {
-      console.log("response is")
-      console.log(res)
+      // console.log("response is")
+      // console.log(res)
       if(res.state==="OK"){
         this.publishService.current = "waiting"
         let interval = setInterval(() => {

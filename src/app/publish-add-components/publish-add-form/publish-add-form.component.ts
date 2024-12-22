@@ -16,11 +16,13 @@ export class PublishAddFormComponent {
               public publishService:PublishAddService,
               public citiesService:CitiesService) {
   }
-  ngOnInit(){
-    this.navigationService.loadQueryParamForSearch().subscribe(param => {
 
-    })
-  }
+
+  // ngOnInit(){
+  //   this.navigationService.loadQueryParamForSearch().subscribe(param => {
+  //
+  //   })
+  // }
 
   onPublishAdd(){
       let attributeIsCorrect = this.checkAttributes()

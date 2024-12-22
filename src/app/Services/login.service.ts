@@ -7,8 +7,8 @@ import {Login} from "../typing";
   providedIn: 'root'
 })
 export class LoginService {
-  login: Login|null = null
-  user_id:string = ""
+  login : Login|null = null
+  user_id : string = ""
   user_name : string = ""
   user_email : string  =  ""
   constructor(private modeService: ModeService) {
@@ -44,7 +44,6 @@ export class LoginService {
             this.user_id = data.user_id
             this.user_name = data.user_name
             this.user_email = data.user_email
-            console.log("user_id = "+this.user_id)
           }
         });
 

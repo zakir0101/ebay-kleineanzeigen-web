@@ -48,6 +48,7 @@ export class PublishAddService {
   }
 
 
+
   checkAdd(): Observable<any> {
     const observable: Observable<any> = new Observable((subscriber) => {
       fetch(this.modeService.address + "/check/add?add_id=" + this.add_id.toString(), {

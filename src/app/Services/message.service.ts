@@ -22,6 +22,52 @@ export class MessageService {
   constructor(public modeService:ModeService, public loginService:LoginService) { }
 
 
+  get_conversation(): Observable<ConversationPage  > {
+    let url = this.modeService.address + "/conversations?user_id="+this.loginService.user_id
+      +"&page="+this.page.toString()+"&size="+this.size.toString()
+    const observable: Observable<ConversationPage> = new Observable((subscriber) => {
+      fetch(url, {
+        credentials: "include"
+      })
+        .then((response: Response) => response.json())
+        .then((data: any) => {
+          if (!data.type)
+            subscriber.next(data)
+        });
+
+    })
+
+    return observable;
+  }
+
+
+
+
+
+
+  get_messages(): Observable<Conversation> {
+    let url = this.modeService.address + "/messages/api?user_id="+this.loginService.user_id
+      +"&conversation_id="+this.conversation_id
+    const observable: Observable<Conversation> = new Observable((subscriber) => {
+      fetch(url, {
+        credentials: "include"
+      })
+        .then((response: Response) => response.json())
+        .then((data: any) => {
+          if (!data.type)
+            subscriber.next(data)
+        });
+
+    })
+
+    return observable;
+  }
+
+
+
+
+
+
   sendMessageFromAddpage(): Observable<any  > {
     let url = this.modeService.address + "/send/addpage?message="+this.message
       +"&add_id="+this.add_id+"&add_type="+this.add_type+"&contact_name="+this.contact_name
@@ -70,47 +116,6 @@ export class MessageService {
 
 
 
-
-  get_conversation(): Observable<ConversationPage  > {
-    let url = this.modeService.address + "/conversations?user_id="+this.loginService.user_id
-      +"&page="+this.page.toString()+"&size="+this.size.toString()
-    const observable: Observable<ConversationPage> = new Observable((subscriber) => {
-      fetch(url, {
-        credentials: "include"
-      })
-        .then((response: Response) => response.json())
-        .then((data: any) => {
-          if (!data.type)
-            subscriber.next(data)
-        });
-
-    })
-
-    return observable;
-  }
-
-
-
-
-
-
-  get_messages(): Observable<Conversation> {
-    let url = this.modeService.address + "/messages/api?user_id="+this.loginService.user_id
-      +"&conversation_id="+this.conversation_id
-    const observable: Observable<Conversation> = new Observable((subscriber) => {
-      fetch(url, {
-        credentials: "include"
-      })
-        .then((response: Response) => response.json())
-        .then((data: any) => {
-          if (!data.type)
-            subscriber.next(data)
-        });
-
-    })
-
-    return observable;
-  }
 
 
 }
